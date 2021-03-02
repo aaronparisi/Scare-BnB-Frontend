@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { LoggedInBoolRoute } from '../../utils/route_util'
 import { SignInLinks, SignOutLinks } from './nav_bar_links'
+import logo from '../../images/fontImages/logo.png'
 
 class NavBar extends React.Component {
   constructor({ currentUser, logout }) {
@@ -22,11 +23,13 @@ class NavBar extends React.Component {
   render() {
     return (
       <header className="nav-bar">
-        <Link className="btn" to="/">Home</Link>
-        {/* <Link className="btn" to="/chirps">CHIRPS</Link> */}
-        <div>
-          <LoggedInBoolRoute trueComponent={this.callSignOutLinks} falseComponent={this.callSignInLinks} path="/"/>
+        <div className="nav-button-container">
+          <Link className="btn" to="/">
+            <img className="nav-link-image" src={logo} alt="sbnb logo"/>
+          </Link>
         </div>
+        {/* <Link className="btn" to="/chirps">CHIRPS</Link> */}
+        <LoggedInBoolRoute trueComponent={this.callSignOutLinks} falseComponent={this.callSignInLinks} path="/"/>
       </header>
     );
   }
