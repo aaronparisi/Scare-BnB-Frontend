@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import signupText from '../../images/fontImages/signup.png'
 import loginText from '../../images/fontImages/login.png'
 import logoutText from '../../images/fontImages/logout.png'
+import about from '../../images/fontImages/about.png'
+import contact from '../../images/fontImages/contact.png'
 
 export const SignInLinks = () => {
   return (
     <div className="menu">
-      <div className="session-links">
+      <div className="session-links sub-menu">
         <Link className="btn" to="/signup">
           <img className="nav-link-image" src={signupText} alt="sign up"/>
         </Link>
@@ -16,8 +18,13 @@ export const SignInLinks = () => {
           <img className="nav-link-image" src={loginText} alt="login"/>
         </Link>
       </div>
-      <div className="info-links">
-        {/* stuff about the site, contact, about us, etc. */}
+      <div className="info-links sub-menu">
+        <Link className="btn" to="/">
+          <img className="nav-link-image" src={about} alt="about"/>
+        </Link>
+        <Link className="btn" to="/">
+          <img className="nav-link-image" src={contact} alt="contact"/>
+        </Link>
       </div>
     </div>
   )
@@ -27,15 +34,15 @@ export const SignOutLinks = ({ username, logout }) => {
   return (
     <div className="menu">
       {/* <p>Hello, {username}</p> */}
-      <div className="session-links">
+      <div className="session-links sub-menu">
         <button className="btn" onClick={logout}>
           <img className="nav-link-image" src={logoutText} alt="logout"/>
         </button>
       </div>
-      <div className="info-links">
+      <div className="info-links sub-menu">
         {/* maybe abstract this part */}
       </div>
-      <div className="user-links">
+      <div className="user-links sub-menu">
         {/* links to current user profile */}
       </div>
     </div>

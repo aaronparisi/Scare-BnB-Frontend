@@ -8,16 +8,25 @@ import styled, { ThemeProvider } from 'styled-components'
 
 const StyledDiv = styled.div`
   border: ${props => props.theme.border};
+  width: ${props => props.theme.width};
+  max-height: ${props => props.theme.maxHeight};
+  overflow: ${props => props.theme.overflow};
+  transition: width .5s, max-height .5s;
 `
 
 const Hamburger = props => {
   const [expanded, setExpanded] = useState(false)
   const [topHovered, setTopHovered] = useState(false)
 
-  const hoverTheme = (topHovered) ? {
-    border: '1px solid #FBD822'
-  } : {
-    border: '1px solid #D9A72D'
+  const borderColor = (topHovered) ? '#FBD822' : '#D9A72D'
+  const burgerWidth = (expanded) ? '150px' : '110px'
+  const burgerMaxHeight = (expanded) ? '250px' : '48px'
+
+  const burgerTheme = {
+    border: `1px solid ${borderColor}`,
+    width: burgerWidth,
+    maxHeight: burgerMaxHeight,
+    overflow: 'hidden'
   }
 
   const callSignInLinks = () => {
@@ -29,22 +38,23 @@ const Hamburger = props => {
   }
 
   const MenuDisplay = () => {
-    if (expanded) {
-      return (
-        <LoggedInBoolRoute trueComponent={callSignOutLinks} falseComponent={callSignInLinks} path="/"/>
-      )
-    } else {
-      return null
-    }
+    // if (expanded) {
+    //   return (
+    //     <LoggedInBoolRoute trueComponent={callSignOutLinks} falseComponent={callSignInLinks} path="/"/>
+    //   )
+    // } else {
+    //   return null
+    // }
+    return <LoggedInBoolRoute trueComponent={callSignOutLinks} falseComponent={callSignInLinks} path="/"/>
   }
   return (
-    <ThemeProvider theme={hoverTheme}>
+    <ThemeProvider theme={burgerTheme}>
       <StyledDiv
-        className="hamburger" 
-        onClick={() => setExpanded(!expanded)}
+        className="hamburger"
       >
         <div
           className="hamburger-top"
+          onClick={() => setExpanded(!expanded)}
           onMouseEnter={() => setTopHovered(true)}
           onMouseLeave={() => setTopHovered(false)}
         >

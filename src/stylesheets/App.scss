@@ -27,6 +27,7 @@ $darkest-purple: #26112d;
 $light-yellow: #FDEAAC;
 $yellow: #FBD822;
 $dark-yellow: #D9A72D;
+$darker-yellow: #b18a27;
 
 $black: #191227;
 
@@ -96,21 +97,22 @@ html, body {
 
 .hamburger {
   height: min-content;
-  width: min-content;
+  width: 110px;
   display: flex;
   flex-direction: column;
-  border: 1px solid $dark-yellow;
+  // border: 1px solid $dark-yellow;  // * handled with styled component
   background-color: $darker-purple;
   border-radius: 25px;
   position: absolute;
   top: 50%;
   right: 11%;
-  transform: translateY(-50%);
+  // transform: translateY(-50%);  // * this fails on dropdown, maybe do pixels?
 
   .hamburger-top {
     height: 100%;
     display: flex;
     justify-content: space-between;
+    transition: width 1s;
 
     :first-child {
       margin-right: 10px;
@@ -122,11 +124,10 @@ html, body {
     }
 
     &:hover {
-      // border-color: $yellow;
-      
-
+      cursor: pointer;
       .hamburger-face, .hamburger-dropdown {
         filter: $yellow-filter;
+        // ? i could do this with a styled component too?
       }
     }
   }
@@ -134,13 +135,35 @@ html, body {
   .menu {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    align-items: center;
 
-    .session-links {
+    .sub-menu {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 100%;
+      margin-top: 5px;
+
+      &:first-child {
+        border-bottom: 1px solid $darker-yellow;
+      }
     }
+
+    a.btn {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 5px 25px;
+
+      &:hover .nav-link-image {
+        filter: $yellow-filter;
+      }
+
+      &:last-child {
+        padding-bottom: 10px;
+      }
+    }
+
     .nav-link-image {
       height: $small-font;
       filter: $dark-yellow-filter;
