@@ -38,8 +38,12 @@ $pink: #F781C1;
 $brown: #9C5B01;
 
 $small-font: 16px;
-$med-font: 30px;
+$med-font: 24px;
 $large-font: 48px;
+
+$dark-yellow-filter: invert(71%) sepia(58%) saturate(591%) hue-rotate(355deg) brightness(90%) contrast(87%);
+$yellow-filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%);
+$bright-yellow-filter: invert(84%) sepia(99%) saturate(6954%) hue-rotate(352deg) brightness(95%) contrast(107%);
 
 html, body, div {
   padding: 0;
@@ -66,20 +70,55 @@ html, body, div {
     box-shadow: none;
   }
   .btn {
-    padding: 10px;
+    padding: 15px 20px;
     text-decoration: none;
+    border-radius: 5px;
   }
   .btn:hover {
-    background-color: $dark-purple;
+    background-color: $darker-purple;
+  }
+
+  .nav-link-image.logo {
+    height: $large-font;
   }
 
   .nav-link-image {
     height: $med-font;
-    filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%);
+    filter: $yellow-filter
   }
 
   .nav-link-image:hover {
-    filter: invert(84%) sepia(99%) saturate(6954%) hue-rotate(352deg) brightness(95%) contrast(107%);
+    filter: $bright-yellow-filter
+  }
+
+  .session-links .btn {
+    margin-left: 10px;
+  }
+
+  .hamburger {
+    height: 35%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid $dark-yellow;
+    background-color: $darker-purple;
+    border-radius: 25px;
+
+    :first-child {
+      margin-right: 10px;
+    }
+
+    .hamburger-face, .hamburger-dropdown {
+      height: 100%;
+      filter: $dark-yellow-filter;
+    }
+
+    &:hover {
+      border-color: $yellow;
+
+      .hamburger-face, .hamburger-dropdown {
+        filter: $yellow-filter;
+      }
+    }
   }
 }
 
@@ -111,6 +150,8 @@ html, body, div {
 .hero-img {
   width: 100%;
   margin-bottom: 50px;
+  border: 5px solid $dark-yellow;
+  border-radius: 15px;
 }
 
 .session-form {

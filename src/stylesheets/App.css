@@ -17,15 +17,36 @@ html, body, div {
     border: none;
     box-shadow: none; }
   .nav-bar .btn {
-    padding: 10px;
-    text-decoration: none; }
+    padding: 15px 20px;
+    text-decoration: none;
+    border-radius: 5px; }
   .nav-bar .btn:hover {
-    background-color: #61478E; }
+    background-color: #3E2443; }
+  .nav-bar .nav-link-image.logo {
+    height: 48px; }
   .nav-bar .nav-link-image {
-    height: 30px;
+    height: 24px;
     filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%); }
   .nav-bar .nav-link-image:hover {
     filter: invert(84%) sepia(99%) saturate(6954%) hue-rotate(352deg) brightness(95%) contrast(107%); }
+  .nav-bar .session-links .btn {
+    margin-left: 10px; }
+  .nav-bar .hamburger {
+    height: 35%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #D9A72D;
+    background-color: #3E2443;
+    border-radius: 25px; }
+    .nav-bar .hamburger :first-child {
+      margin-right: 10px; }
+    .nav-bar .hamburger .hamburger-face, .nav-bar .hamburger .hamburger-dropdown {
+      height: 100%;
+      filter: invert(71%) sepia(58%) saturate(591%) hue-rotate(355deg) brightness(90%) contrast(87%); }
+    .nav-bar .hamburger:hover {
+      border-color: #FBD822; }
+      .nav-bar .hamburger:hover .hamburger-face, .nav-bar .hamburger:hover .hamburger-dropdown {
+        filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%); }
 
 .home {
   display: flex;
@@ -48,7 +69,9 @@ html, body, div {
 
 .hero-img {
   width: 100%;
-  margin-bottom: 50px; }
+  margin-bottom: 50px;
+  border: 5px solid #D9A72D;
+  border-radius: 15px; }
 
 .session-form {
   display: flex;
