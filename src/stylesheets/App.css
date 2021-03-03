@@ -7,28 +7,32 @@ html, body, div {
 .nav-bar {
   display: flex;
   justify-content: space-between;
-  padding: 0px 150px;
-  height: 100px;
-  box-sizing: border-box;
+  padding: 10px 150px;
+  height: 130px;
   align-items: center; }
   .nav-bar .nav-button-container {
     display: flex; }
   .nav-bar button {
     border: none;
     box-shadow: none; }
-  .nav-bar .btn {
+  .nav-bar .btn:not(.logo-btn) {
     padding: 15px 20px;
     text-decoration: none;
     border-radius: 5px; }
-  .nav-bar .btn:hover {
-    background-color: #3E2443; }
-  .nav-bar .nav-link-image.logo {
-    height: 48px; }
-  .nav-bar .nav-link-image {
-    height: 24px;
-    filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%); }
-  .nav-bar .nav-link-image:hover {
+  .nav-bar .btn:hover .nav-link-image.logo {
     filter: invert(84%) sepia(99%) saturate(6954%) hue-rotate(352deg) brightness(95%) contrast(107%); }
+  .nav-bar .btn.logo-btn {
+    position: relative; }
+  .nav-bar .nav-link-image.logo {
+    height: 130px; }
+  .nav-bar .nav-link-image.logo-text {
+    filter: invert(13%) sepia(43%) saturate(813%) hue-rotate(244deg) brightness(94%) contrast(89%);
+    height: 24px;
+    position: absolute;
+    left: 34%;
+    top: 63%; }
+  .nav-bar .nav-link-image:not(.logo-text) {
+    filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%); }
   .nav-bar .session-links .btn {
     margin-left: 10px; }
   .nav-bar .hamburger {

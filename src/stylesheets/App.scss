@@ -44,6 +44,7 @@ $large-font: 48px;
 $dark-yellow-filter: invert(71%) sepia(58%) saturate(591%) hue-rotate(355deg) brightness(90%) contrast(87%);
 $yellow-filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%);
 $bright-yellow-filter: invert(84%) sepia(99%) saturate(6954%) hue-rotate(352deg) brightness(95%) contrast(107%);
+$darker-purple-filter: invert(13%) sepia(43%) saturate(813%) hue-rotate(244deg) brightness(94%) contrast(89%);
 
 html, body, div {
   padding: 0;
@@ -55,10 +56,8 @@ html, body, div {
 .nav-bar {
   display: flex;
   justify-content: space-between;
-  padding: 0px 150px;
-  height: 100px;
-  box-sizing: border-box;
-  // background: lightblue;
+  padding: 10px 150px;
+  height: 130px;
   align-items: center;
 
   .nav-button-container {
@@ -69,26 +68,34 @@ html, body, div {
     border: none;
     box-shadow: none;
   }
-  .btn {
+  .btn:not(.logo-btn) {
     padding: 15px 20px;
     text-decoration: none;
     border-radius: 5px;
   }
-  .btn:hover {
-    background-color: $darker-purple;
+  .btn:hover .nav-link-image.logo {
+    // filter: $bright-yellow-filter;
+    filter: $bright-yellow-filter;
+  }
+
+  .btn.logo-btn {
+    position: relative;
   }
 
   .nav-link-image.logo {
-    height: $large-font;
+    height: 130px;
   }
 
-  .nav-link-image {
+  .nav-link-image.logo-text {
+    filter: $darker-purple-filter;
     height: $med-font;
-    filter: $yellow-filter
+    position: absolute;
+    left: 34%;
+    top: 63%;
   }
 
-  .nav-link-image:hover {
-    filter: $bright-yellow-filter
+  .nav-link-image:not(.logo-text) {
+    filter: $yellow-filter
   }
 
   .session-links .btn {
