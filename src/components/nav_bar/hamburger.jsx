@@ -51,10 +51,12 @@ const Hamburger = props => {
     <ThemeProvider theme={burgerTheme}>
       <StyledDiv
         className="hamburger"
+        onMouseEnter={() => setExpanded(true)}
+        onMouseLeave={() => setExpanded(false)}
       >
         <div
           className="hamburger-top"
-          onClick={() => setExpanded(!expanded)}
+          // onClick={() => setExpanded(!expanded)}
           onMouseEnter={() => setTopHovered(true)}
           onMouseLeave={() => setTopHovered(false)}
         >
