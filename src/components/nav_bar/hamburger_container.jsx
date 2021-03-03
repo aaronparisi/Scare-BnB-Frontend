@@ -1,15 +1,16 @@
 import { connect } from 'react-redux'
 import Hamburger from './hamburger'
+import { logout } from '../../actions/session_actions'
 
 const mapStateToProps = state => {
   return {
-
+    currentUser: state.currentUser
   }
 }
 
-const mapDispatchToProps = dispach => {
+const mapDispatchToProps = dispatch => {
   return {
-
+    logout: () => dispatch(logout)
   }
 }
 

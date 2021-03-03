@@ -1,4 +1,4 @@
-html, body, div {
+html, body {
   padding: 0;
   margin: 0;
   font-family: sans-serif;
@@ -10,46 +10,47 @@ html, body, div {
   padding: 10px 150px;
   height: 130px;
   align-items: center; }
-  .nav-bar .nav-button-container {
-    display: flex; }
-  .nav-bar button {
-    border: none;
-    box-shadow: none; }
-  .nav-bar .btn:not(.logo-btn) {
-    padding: 15px 20px;
-    text-decoration: none;
-    border-radius: 5px; }
-  .nav-bar .btn:hover .nav-link-image.logo {
-    filter: invert(84%) sepia(99%) saturate(6954%) hue-rotate(352deg) brightness(95%) contrast(107%); }
-  .nav-bar .btn.logo-btn {
-    position: relative; }
-  .nav-bar .nav-link-image.logo {
+
+.nav-link-image {
+  height: 24px; }
+
+.nav-bar-logo {
+  display: flex; }
+  .nav-bar-logo .nav-link-image.logo {
     height: 130px; }
-  .nav-bar .nav-link-image.logo-text {
+  .nav-bar-logo .nav-link-image.logo-text {
     filter: invert(13%) sepia(43%) saturate(813%) hue-rotate(244deg) brightness(94%) contrast(89%);
     height: 24px;
     position: absolute;
     left: 34%;
     top: 63%; }
-  .nav-bar .nav-link-image:not(.logo-text) {
+  .nav-bar-logo .btn:hover .nav-link-image.logo {
+    filter: invert(84%) sepia(99%) saturate(6954%) hue-rotate(352deg) brightness(95%) contrast(107%); }
+  .nav-bar-logo .btn.logo-btn {
+    position: relative; }
+  .nav-bar-logo .nav-link-image:not(.logo-text) {
     filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%); }
-  .nav-bar .session-links .btn {
-    margin-left: 10px; }
-  .nav-bar .hamburger {
-    height: 35%;
+
+.hamburger {
+  height: min-content;
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #D9A72D;
+  background-color: #3E2443;
+  border-radius: 25px; }
+  .hamburger .hamburger-top {
+    height: 100%;
     display: flex;
-    justify-content: space-between;
-    border: 1px solid #D9A72D;
-    background-color: #3E2443;
-    border-radius: 25px; }
-    .nav-bar .hamburger :first-child {
+    justify-content: space-between; }
+    .hamburger .hamburger-top :first-child {
       margin-right: 10px; }
-    .nav-bar .hamburger .hamburger-face, .nav-bar .hamburger .hamburger-dropdown {
-      height: 100%;
+    .hamburger .hamburger-top .hamburger-face, .hamburger .hamburger-top .hamburger-dropdown {
+      height: 48px;
       filter: invert(71%) sepia(58%) saturate(591%) hue-rotate(355deg) brightness(90%) contrast(87%); }
-    .nav-bar .hamburger:hover {
+    .hamburger .hamburger-top:hover {
       border-color: #FBD822; }
-      .nav-bar .hamburger:hover .hamburger-face, .nav-bar .hamburger:hover .hamburger-dropdown {
+      .hamburger .hamburger-top:hover .hamburger-face, .hamburger .hamburger-top:hover .hamburger-dropdown {
         filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%); }
 
 .home {

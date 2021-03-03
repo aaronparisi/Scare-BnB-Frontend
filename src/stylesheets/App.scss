@@ -46,7 +46,7 @@ $yellow-filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) bright
 $bright-yellow-filter: invert(84%) sepia(99%) saturate(6954%) hue-rotate(352deg) brightness(95%) contrast(107%);
 $darker-purple-filter: invert(13%) sepia(43%) saturate(813%) hue-rotate(244deg) brightness(94%) contrast(89%);
 
-html, body, div {
+html, body {
   padding: 0;
   margin: 0;
   font-family: sans-serif;
@@ -59,33 +59,19 @@ html, body, div {
   padding: 10px 150px;
   height: 130px;
   align-items: center;
+}
 
-  .nav-button-container {
-    display: flex;
-  }
+.nav-link-image {
+  height: $med-font;
+}
 
-  button {
-    border: none;
-    box-shadow: none;
-  }
-  .btn:not(.logo-btn) {
-    padding: 15px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-  }
-  .btn:hover .nav-link-image.logo {
-    // filter: $bright-yellow-filter;
-    filter: $bright-yellow-filter;
-  }
-
-  .btn.logo-btn {
-    position: relative;
-  }
+.nav-bar-logo {
+  display: flex;
 
   .nav-link-image.logo {
     height: 130px;
   }
-
+  
   .nav-link-image.logo-text {
     filter: $darker-purple-filter;
     height: $med-font;
@@ -94,28 +80,39 @@ html, body, div {
     top: 63%;
   }
 
+  .btn:hover .nav-link-image.logo {
+    filter: $bright-yellow-filter;
+  }
+
+  .btn.logo-btn {
+    position: relative;
+  }
+  
   .nav-link-image:not(.logo-text) {
     filter: $yellow-filter
   }
+}
 
-  .session-links .btn {
-    margin-left: 10px;
-  }
+.hamburger {
+  height: min-content;
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $dark-yellow;
+  background-color: $darker-purple;
+  border-radius: 25px;
 
-  .hamburger {
-    height: 35%;
+  .hamburger-top {
+    height: 100%;
     display: flex;
     justify-content: space-between;
-    border: 1px solid $dark-yellow;
-    background-color: $darker-purple;
-    border-radius: 25px;
 
     :first-child {
       margin-right: 10px;
     }
 
     .hamburger-face, .hamburger-dropdown {
-      height: 100%;
+      height: $large-font;
       filter: $dark-yellow-filter;
     }
 
@@ -127,7 +124,12 @@ html, body, div {
       }
     }
   }
+
+  .menu {
+    
+  }
 }
+
 
 .home {
   display: flex;
