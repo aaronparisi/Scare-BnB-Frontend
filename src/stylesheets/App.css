@@ -60,8 +60,6 @@ html, body {
     .hamburger .hamburger-top .hamburger-face {
       position: relative;
       right: -2px; }
-    .hamburger .hamburger-top:hover {
-      cursor: pointer; }
   .hamburger .menu {
     display: flex;
     flex-direction: column;

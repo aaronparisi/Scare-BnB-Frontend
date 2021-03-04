@@ -1,0 +1,10 @@
+Cognito_springfieldbnbAuth_Role  - authenticated
+Cognito_springfieldbnbUnauth_Role - unauthenticated
+
+// Initialize the Amazon Cognito credentials provider
+AWS.config.region = 'us-east-2'; // Region
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'us-east-2:581dd513-ce1f-4148-9a10-8f2a22172c2d',
+});
+
+springfieldbnbiampolicy
