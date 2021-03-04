@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../stylesheets/App.css';
+import '../../stylesheets/reset.css';
 
 import NavBarContainer from '../nav_bar/nav_bar_container'
 // import ChirpIndexContainer from '../chirps/chirp_index_container'

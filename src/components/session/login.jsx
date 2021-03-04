@@ -1,12 +1,13 @@
 import React from 'react'
+import loginText from '../../images/fontImages/login.png'
 
 class Login extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      username: 'fake_user',
-      email: 'fake@user.com',
+      username: 'Coach_Lugash',
+      email: 'Coach_Lugash@springfieldbnb.com',
       password: 'password'
     }
 
@@ -28,33 +29,34 @@ class Login extends React.Component {
   render() {
     return (
       <div className="session-form">
-        <h2>Log In</h2>
+        <img className="form-title" src={loginText} alt="login"/>
         <form
           onSubmit={e => this.handleSubmit(e)}
         >
-          <label htmlFor="username">Username</label>
+          {/* <label htmlFor="username">Username</label> */}
           <input
             type="text"
             value={this.state.username}
             id="username"
-            placeholder="John Doe"
+            placeholder="Username"
             onChange={e => this.handleInput(e, "username")}
           />
 
-          <label htmlFor="email">Email</label>
+          {/* <label htmlFor="email">Email</label> */}
           <input
             type="email"
             value={this.state.email}
             id="email"
-            placeholder="john@doe.com"
+            placeholder="Email"
             onChange={e => this.handleInput(e, "email")}
           />
 
-          <label htmlFor="password">Password</label>
+          {/* <label htmlFor="password">Password</label> */}
           <input
             type="password"
             value={this.state.password}
             id="password"
+            placeholder="password"
             onChange={e => this.handleInput(e, "password")}
           />
 

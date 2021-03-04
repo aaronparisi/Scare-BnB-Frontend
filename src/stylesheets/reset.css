@@ -21,3 +21,8 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+button, input {
+  box-shadow: none;
+  border: none;
+}

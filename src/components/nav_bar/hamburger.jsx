@@ -7,26 +7,33 @@ import donut from '../../images/icons/donut.png'
 import styled, { ThemeProvider } from 'styled-components'
 
 const StyledDiv = styled.div`
-  border: ${props => props.theme.border};
   width: ${props => props.theme.width};
   max-height: ${props => props.theme.maxHeight};
   overflow: ${props => props.theme.overflow};
   transition: width .5s, max-height .5s;
 `
 
+const StyledImg = styled.img`
+  padding: ${props => props.theme.padding};
+  transition: padding .5s
+`
+
 const Hamburger = props => {
   const [expanded, setExpanded] = useState(false)
   const [topHovered, setTopHovered] = useState(false)
 
-  const borderColor = (topHovered) ? '#FBD822' : '#D9A72D'
+  // const borderColor = (topHovered) ? '#FBD822' : '#D9A72D'
   const burgerWidth = (expanded) ? '150px' : '110px'
   const burgerMaxHeight = (expanded) ? '250px' : '48px'
 
   const burgerTheme = {
-    border: `1px solid ${borderColor}`,
     width: burgerWidth,
     maxHeight: burgerMaxHeight,
     overflow: 'hidden'
+  }
+
+  const faceTheme = {
+    padding: (expanded) ? '5px 7px' : '0px 0px',
   }
 
   const callSignInLinks = () => {
@@ -38,14 +45,13 @@ const Hamburger = props => {
   }
 
   const MenuDisplay = () => {
-    // if (expanded) {
-    //   return (
-    //     <LoggedInBoolRoute trueComponent={callSignOutLinks} falseComponent={callSignInLinks} path="/"/>
-    //   )
-    // } else {
-    //   return null
-    // }
-    return <LoggedInBoolRoute trueComponent={callSignOutLinks} falseComponent={callSignInLinks} path="/"/>
+    return (
+      <LoggedInBoolRoute 
+        trueComponent={callSignOutLinks} 
+        falseComponent={callSignInLinks} 
+        path="/"
+      />
+    )
   }
   return (
     <ThemeProvider theme={burgerTheme}>
@@ -61,8 +67,15 @@ const Hamburger = props => {
           onMouseLeave={() => setTopHovered(false)}
         >
           <img src={donut} alt="donut" className="nav-link-image hamburger-dropdown"/>
-          <img className="nav-link-image hamburger-face" src={loginFace} alt="generic head"/>
+          <ThemeProvider theme={faceTheme}>
+            <StyledImg 
+              className="nav-link-image hamburger-face" 
+              src={loginFace} 
+              alt="generic head"
+            />
+          </ThemeProvider>
         </div>
+        
         <MenuDisplay />
       </StyledDiv>
    </ThemeProvider>
