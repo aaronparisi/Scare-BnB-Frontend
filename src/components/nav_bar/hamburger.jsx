@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { LoggedInBoolRoute } from '../../utils/route_util'
 import { SignInLinks, SignOutLinks } from './nav_bar_links'
 import loginFace from '../../images/icons/login.png'
+import coachFace from '../../images/profilePics/Coach_Lugash.png'
 import donut from '../../images/icons/donut.png'
 
 import styled, { ThemeProvider } from 'styled-components'
@@ -15,14 +16,14 @@ const StyledDiv = styled.div`
 
 const StyledImg = styled.img`
   padding: ${props => props.theme.padding};
-  transition: padding .5s
+  filter: ${props => props.theme.filter};
+  transition: padding .5s ease-in-out;
 `
 
 const Hamburger = props => {
   const [expanded, setExpanded] = useState(false)
   const [topHovered, setTopHovered] = useState(false)
 
-  // const borderColor = (topHovered) ? '#FBD822' : '#D9A72D'
   const burgerWidth = (expanded) ? '150px' : '110px'
   const burgerMaxHeight = (expanded) ? '250px' : '48px'
 
@@ -34,6 +35,7 @@ const Hamburger = props => {
 
   const faceTheme = {
     padding: (expanded) ? '5px 7px' : '0px 0px',
+    filter: (props.currentUser) ? 'none' : 'invert(71%) sepia(58%) saturate(591%) hue-rotate(355deg) brightness(90%) contrast(87%)'
   }
 
   const callSignInLinks = () => {
@@ -53,6 +55,25 @@ const Hamburger = props => {
       />
     )
   }
+
+  const LoggedInFace = () => {
+    return (
+      <img src={coachFace} alt="coach lugash"/>
+    )
+  }
+
+  const LoggedOutFace = () => {
+    return (
+      <ThemeProvider theme={faceTheme}>
+        <StyledImg 
+          className="nav-link-image hamburger-face" 
+          src={loginFace} 
+          alt="generic head"
+        />
+      </ThemeProvider>
+    )
+  }
+
   return (
     <ThemeProvider theme={burgerTheme}>
       <StyledDiv
@@ -67,6 +88,12 @@ const Hamburger = props => {
           onMouseLeave={() => setTopHovered(false)}
         >
           <img src={donut} alt="donut" className="nav-link-image hamburger-dropdown"/>
+          {/* <LoggedInBoolRoute
+            trueComponent={LoggedInFace}
+            falseComponent={LoggedOutFace}
+          /> */}
+          {/* when i move the above to a separate function,
+          the transition on the padding does not work */}
           <ThemeProvider theme={faceTheme}>
             <StyledImg 
               className="nav-link-image hamburger-face" 

@@ -59,7 +59,7 @@ html, body {
 .nav-bar {
   display: flex;
   justify-content: space-between;
-  padding: 10px 150px;
+  padding-left: 80px;
   height: 160px;
   align-items: center;
   position: relative;
@@ -69,32 +69,32 @@ html, body {
   height: $med-font;
 }
 
-.nav-bar-logo {
+.btn.logo-btn {
+  // align-self: flex-end;
   display: flex;
+  position: relative;
 
-  .nav-link-image.logo {
+  .logo-couch {
     height: 130px;
+    filter: $dark-yellow-filter;
+
+    &:hover {
+      filter: $yellow-filter;
+      cursor: pointer;
+    }
   }
   
-  .nav-link-image.logo-text {
+  .logo-text {
     filter: $darker-purple-filter;
     height: $med-font;
     position: absolute;
     left: 34%;
     top: 63%;
   }
+}
 
-  .btn:hover .nav-link-image.logo {
-    filter: $bright-yellow-filter;
-  }
-
-  .btn.logo-btn {
-    position: relative;
-  }
-  
-  .nav-link-image:not(.logo-text) {
-    filter: $yellow-filter
-  }
+.logo-couch:hover .hero-img-frame {
+  border-color: $yellow;
 }
 
 .hamburger {
@@ -122,13 +122,16 @@ html, body {
 
     .hamburger-face, .hamburger-dropdown {
       height: $large-font;
+    }
+
+    .hamburger-dropdown {
       filter: $dark-yellow-filter;
     }
 
     .hamburger-face {
       position: relative;
       right: -2px;
-      
+
     }
 
     &:hover {
@@ -241,7 +244,7 @@ html, body {
     font-family: 'M PLUS Rounded 1c', sans-serif;
     text-align: center;
     margin: 5px 0px;
-    border-radius: 5px;
+    border-radius: 10px;
     color: $darker-purple;
 
     &::placeholder {

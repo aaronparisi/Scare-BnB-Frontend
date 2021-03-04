@@ -8,7 +8,7 @@ html, body {
 .nav-bar {
   display: flex;
   justify-content: space-between;
-  padding: 10px 150px;
+  padding-left: 80px;
   height: 160px;
   align-items: center;
   position: relative; }
@@ -16,22 +16,24 @@ html, body {
 .nav-link-image {
   height: 24px; }
 
-.nav-bar-logo {
-  display: flex; }
-  .nav-bar-logo .nav-link-image.logo {
-    height: 130px; }
-  .nav-bar-logo .nav-link-image.logo-text {
+.btn.logo-btn {
+  display: flex;
+  position: relative; }
+  .btn.logo-btn .logo-couch {
+    height: 130px;
+    filter: invert(71%) sepia(58%) saturate(591%) hue-rotate(355deg) brightness(90%) contrast(87%); }
+    .btn.logo-btn .logo-couch:hover {
+      filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%);
+      cursor: pointer; }
+  .btn.logo-btn .logo-text {
     filter: invert(13%) sepia(43%) saturate(813%) hue-rotate(244deg) brightness(94%) contrast(89%);
     height: 24px;
     position: absolute;
     left: 34%;
     top: 63%; }
-  .nav-bar-logo .btn:hover .nav-link-image.logo {
-    filter: invert(84%) sepia(99%) saturate(6954%) hue-rotate(352deg) brightness(95%) contrast(107%); }
-  .nav-bar-logo .btn.logo-btn {
-    position: relative; }
-  .nav-bar-logo .nav-link-image:not(.logo-text) {
-    filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%); }
+
+.logo-couch:hover .hero-img-frame {
+  border-color: #FBD822; }
 
 .hamburger {
   height: min-content;
@@ -52,7 +54,8 @@ html, body {
     .hamburger .hamburger-top :first-child {
       margin-right: 10px; }
     .hamburger .hamburger-top .hamburger-face, .hamburger .hamburger-top .hamburger-dropdown {
-      height: 48px;
+      height: 48px; }
+    .hamburger .hamburger-top .hamburger-dropdown {
       filter: invert(71%) sepia(58%) saturate(591%) hue-rotate(355deg) brightness(90%) contrast(87%); }
     .hamburger .hamburger-top .hamburger-face {
       position: relative;
@@ -133,7 +136,7 @@ html, body {
     font-family: 'M PLUS Rounded 1c', sans-serif;
     text-align: center;
     margin: 5px 0px;
-    border-radius: 5px;
+    border-radius: 10px;
     color: #3E2443; }
     .session-form input::placeholder {
       color: #b1a0c4; }
