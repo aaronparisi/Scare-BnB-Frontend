@@ -267,3 +267,30 @@ html, body {
     }
   }
 }
+
+.listings-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  .listing {
+    border: 2px solid $yellow;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    height: 300px;
+    width: 400px;
+    overflow: scroll;
+
+    .property-images {
+      display: flex;
+      overflow-x: scroll;
+      flex-wrap: nowrap;
+
+      .property-thumbnail {
+        height: 200px;
+        border: 2px solid $darker-yellow;
+        margin: 0px 0px;
+      }
+    }
+  }
+}

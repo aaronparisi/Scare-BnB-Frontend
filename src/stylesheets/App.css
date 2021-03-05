@@ -155,4 +155,24 @@ html, body {
       background-color: #61478E;
       cursor: pointer; }
 
+.listings-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; }
+  .listings-grid .listing {
+    border: 2px solid #FBD822;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    height: 300px;
+    width: 400px;
+    overflow: scroll; }
+    .listings-grid .listing .property-images {
+      display: flex;
+      overflow-x: scroll;
+      flex-wrap: nowrap; }
+      .listings-grid .listing .property-images .property-thumbnail {
+        height: 200px;
+        border: 2px solid #b18a27;
+        margin: 0px 0px; }
+
 /*# sourceMappingURL=App.css.map */
