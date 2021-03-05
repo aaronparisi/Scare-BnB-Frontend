@@ -1,5 +1,6 @@
 import * as sessionApiUtil from '../utils/session_util'
 import { history } from '../index' // ! where do I save this?
+import { getProperties } from './properties_actions'
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER'
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER'
@@ -24,8 +25,7 @@ export const createNewUser = formUser => dispatch => {
   .then(
     newUser => {
       dispatch(receiveCurrentUser(newUser.data))
-      history.push('/')  // todo specify post sign up redirect
-      // return newUser
+      getProperties()
     },
     err => {
       return Promise.reject(err)
@@ -38,8 +38,7 @@ export const login = formUser => dispatch => {
   .then(
     curUser => {
       dispatch(receiveCurrentUser(curUser.data))
-      history.push('/')  // todo specify post login redirect
-      // return curUser
+      getProperties()(dispatch)
     },
     err => {
       return Promise.reject(err)

@@ -8,6 +8,7 @@ import { Router } from 'react-router';
 import { createBrowserHistory } from 'history'
 
 import { fetchCurrentUser } from './actions/session_actions'
+import { getProperties } from './actions/properties_actions';
 
 const axios = require('axios').default
 if (process.env.NODE_ENV === "production") {
@@ -21,6 +22,11 @@ const store = createStore()
 export const history = createBrowserHistory()
 
 fetchCurrentUser()(store.dispatch)
+.then(msg => {
+  if (store.getState().session.currentUser != null) {
+    getProperties()(store.dispatch)
+  }
+})
 .then(
   msg => {
     ReactDOM.render(

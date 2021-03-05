@@ -11,6 +11,9 @@ const mapStateToProps = state => {
 const RootRedirect = () => {
   return <Redirect to="/" />
 }
+const ListingsRedirect = () => {
+  return <Redirect to="/listings" />
+}
 const LoginRedirect = () => {
   return <Redirect to="/login" />
 }
@@ -35,7 +38,7 @@ const LoggedInBool = ({ trueComponent: TrueComponent, falseComponent: FalseCompo
 // * where one component is s
 
 const Auth = ({ component: Component, path, loggedIn, exact }) => {
-  return LoggedInBool({ trueComponent: RootRedirect, falseComponent: Component, path, loggedIn, exact })
+  return LoggedInBool({ trueComponent: ListingsRedirect, falseComponent: Component, path, loggedIn, exact })
 }
 
 const Protected = ({ component: Component, path, loggedIn, exact }) => {
