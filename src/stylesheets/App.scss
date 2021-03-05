@@ -1,3 +1,5 @@
+@import "react-alice-carousel/lib/alice-carousel.css";
+
 $white: #FFFFFF;
 $dark-white: #D5CDCA;
 
@@ -283,16 +285,21 @@ html, body {
     color: $dark-yellow;
     text-align: center;
 
-    .property-images {
-      display: flex;
-      overflow-x: scroll;
-      flex-wrap: nowrap;
-      height: 200px;
-
-      .property-thumbnail {
-        border: 2px solid $darker-yellow;
-        margin: 0px 0px;
-      }
+    .property-thumbnail {
+      height: 100px;
+      border: 2px solid $darker-yellow;
+      margin: 0px 0px;
     }
   }
+}
+
+.alice-carousel {
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+  // justify-content: center;
+}
+
+.alice-carousel__prev-button, .alice-carousel__next-button {
+  // width: 20%
 }

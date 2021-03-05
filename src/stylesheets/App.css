@@ -1,3 +1,4 @@
+@import url(react-alice-carousel/lib/alice-carousel.css);
 html, body {
   padding: 0;
   margin: 0;
@@ -168,13 +169,9 @@ html, body {
     overflow: scroll;
     color: #D9A72D;
     text-align: center; }
-    .listings-grid .listing .property-images {
-      display: flex;
-      overflow-x: scroll;
-      flex-wrap: nowrap;
-      height: 200px; }
-      .listings-grid .listing .property-images .property-thumbnail {
-        border: 2px solid #b18a27;
-        margin: 0px 0px; }
+    .listings-grid .listing .property-thumbnail {
+      height: 100px;
+      border: 2px solid #b18a27;
+      margin: 0px 0px; }
 
 /*# sourceMappingURL=App.css.map */
