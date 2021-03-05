@@ -280,14 +280,16 @@ html, body {
     height: 300px;
     width: 400px;
     overflow: scroll;
+    color: $dark-yellow;
+    text-align: center;
 
     .property-images {
       display: flex;
       overflow-x: scroll;
       flex-wrap: nowrap;
+      height: 200px;
 
       .property-thumbnail {
-        height: 200px;
         border: 2px solid $darker-yellow;
         margin: 0px 0px;
       }

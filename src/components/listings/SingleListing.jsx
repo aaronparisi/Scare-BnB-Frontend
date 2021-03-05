@@ -20,10 +20,10 @@ const SingleListing = props => {
           className="property-thumbnail"
         />
       </div>
-      <h1>{props.property.title}</h1>
-      <p>{props.property.description}</p>
+      <h1>{props.property.title.split('_').join(' ')}</h1>
       <p>beds: {props.property.beds}</p>
       <p>baths: {props.property.baths}</p>
+      <p>{props.property.description}</p>
     </li>
   )
 }

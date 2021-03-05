@@ -2,7 +2,7 @@ import { RECEIVE_PROPERTIES } from '../actions/properties_actions'
 import { LOGOUT_CURRENT_USER } from '../actions/session_actions'
 
 const _emptyProperties = {
-  properties: []
+  
 }
 
 const propertiesReducer = (state = _emptyProperties, action) => {
