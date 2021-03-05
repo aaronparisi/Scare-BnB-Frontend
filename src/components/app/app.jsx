@@ -4,6 +4,7 @@ import '../../stylesheets/reset.css';
 
 import NavBarContainer from '../nav_bar/nav_bar_container'
 import ListingsContainer from '../listings/ListingsContainer'
+import FullListingContainer from '../listings/FullListingContainer'
 import SignupContainer from '../session/signup_container'
 import LoginContainer from '../session/login_container'
 import HomeContainer from '../home/home_container'
@@ -18,6 +19,7 @@ const App = () => {
       <Route path="/" component={NavBarContainer} />
       <Route exact path="/" component={HomeContainer} />
       <ProtectedRoute exact path="/listings" component={ListingsContainer} />
+      <ProtectedRoute path="/properties/*" component={FullListingContainer} />
       <AuthRoute exact path="/signup" component={SignupContainer} />
       <AuthRoute exact path="/login" component={LoginContainer} />
     </div>

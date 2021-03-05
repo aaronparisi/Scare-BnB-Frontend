@@ -114,6 +114,12 @@ html, body {
   border: 5px solid #D9A72D;
   border-radius: 15px; }
 
+.logo-btn.listings-link {
+  padding: 20px 30px;
+  border-radius: 20px; }
+  .logo-btn.listings-link:hover {
+    background-color: #3E2443; }
+
 .session-form {
   padding-top: 50px;
   display: flex;
@@ -156,28 +162,33 @@ html, body {
       background-color: #61478E;
       cursor: pointer; }
 
+.listings {
+  display: flex;
+  justify-content: center; }
+
 .listings-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly; }
+  justify-content: space-evenly;
+  border: 5px solid #D9A72D;
+  border-radius: 10px;
+  width: 90%;
+  padding: 30px; }
   .listings-grid .listing {
     border: 2px solid #FBD822;
     border-radius: 5px;
     margin-bottom: 40px;
     height: 300px;
     width: 400px;
-    overflow: scroll;
+    overflow-y: scroll;
     color: #D9A72D;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center; }
+    text-align: center; }
     .listings-grid .listing .carousel {
       overflow-x: scroll;
       display: flex;
       flex-wrap: nowrap; }
     .listings-grid .listing .property-thumbnail {
-      height: 100px;
+      height: 200px;
       border: 2px solid #b18a27;
       margin: 0px 0px; }
 

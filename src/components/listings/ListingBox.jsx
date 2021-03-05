@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
+import { Link, withRouter } from 'react-router-dom';
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 
 
-const SingleListing = props => {
+const ListingBox = props => {
   return (
     <li className="listing">
       <div className="carousel">
@@ -24,6 +25,9 @@ const SingleListing = props => {
         />
       </div>
       <h1>{props.property.title.split('_').join(' ')}</h1>
+      <Link to={`/properties/${props.stateId}`} >
+        <h2>Book me!</h2>
+      </Link>
       <p>beds: {props.property.beds}</p>
       <p>baths: {props.property.baths}</p>
       <p>{props.property.description}</p>
@@ -31,4 +35,4 @@ const SingleListing = props => {
   )
 }
 
-export default SingleListing
+export default withRouter(ListingBox)

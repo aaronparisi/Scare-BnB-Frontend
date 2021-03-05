@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 // import springfieldHero from '../../images/heroes/Simpsons_cast.png'
 // import welcomeHero from '../../images/heroes/welcome_to_springfield.jpg'
 // import familyHero from '../../images/heroes/family.jpg'
@@ -19,11 +20,13 @@ class Home extends React.Component {
       <div className="home">
         <div className="hero-img-frame">
           <img className="hero-img" src={margeCouchHero} alt="marge on the couch"/>
-          <img className="tagline" src={tagline} alt="tagline"/>
+          <Link to="/listings" className="logo-btn listings-link">
+            <img src={tagline} alt="tagline"/>
+          </Link>
         </div> 
       </div>
     )
   }
 }
 
-export default Home
+export default withRouter(Home)
