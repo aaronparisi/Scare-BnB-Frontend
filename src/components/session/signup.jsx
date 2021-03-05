@@ -1,4 +1,5 @@
 import React from 'react'
+import signupText from '../../images/fontImages/signup.png'
 
 class Signup extends React.Component {
   constructor(props) {
@@ -28,33 +29,34 @@ class Signup extends React.Component {
   render() {
     return (
       <div className="session-form">
-        <h2>Sign Up</h2>
+        <img className="form-title" src={signupText} alt="login"/>
         <form
           onSubmit={e => this.handleSubmit(e)}
         >
-          <label htmlFor="username">Username</label>
+          {/* <label htmlFor="username">Username</label> */}
           <input
             type="text"
             value={this.state.username}
             id="username"
-            placeholder="John Doe"
+            placeholder="Username"
             onChange={e => this.handleInput(e, "username")}
           />
 
-          <label htmlFor="email">Email</label>
+          {/* <label htmlFor="email">Email</label> */}
           <input
             type="email"
             value={this.state.email}
             id="email"
-            placeholder="john@doe.com"
+            placeholder="Email"
             onChange={e => this.handleInput(e, "email")}
           />
 
-          <label htmlFor="password">Password</label>
+          {/* <label htmlFor="password">Password</label> */}
           <input
             type="password"
             value={this.state.password}
             id="password"
+            placeholder="Password"
             onChange={e => this.handleInput(e, "password")}
           />
 

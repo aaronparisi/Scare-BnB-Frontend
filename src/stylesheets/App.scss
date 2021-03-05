@@ -155,13 +155,14 @@ html, body {
       }
     }
 
-    a.btn {
+    a.btn, button.btn {
       width: 100%;
       display: flex;
       justify-content: center;
       padding: 5px 25px;
 
       &:hover .nav-link-image {
+        cursor: pointer;
         filter: $yellow-filter;
       }
 

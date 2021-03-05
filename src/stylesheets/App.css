@@ -74,14 +74,15 @@ html, body {
       margin-top: 5px; }
       .hamburger .menu .sub-menu:first-child {
         border-bottom: 1px solid #b18a27; }
-    .hamburger .menu a.btn {
+    .hamburger .menu a.btn, .hamburger .menu button.btn {
       width: 100%;
       display: flex;
       justify-content: center;
       padding: 5px 25px; }
-      .hamburger .menu a.btn:hover .nav-link-image {
+      .hamburger .menu a.btn:hover .nav-link-image, .hamburger .menu button.btn:hover .nav-link-image {
+        cursor: pointer;
         filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%); }
-      .hamburger .menu a.btn:last-child {
+      .hamburger .menu a.btn:last-child, .hamburger .menu button.btn:last-child {
         padding-bottom: 10px; }
     .hamburger .menu .nav-link-image {
       height: 16px;
