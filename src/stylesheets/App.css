@@ -60,6 +60,8 @@ html, body {
     .hamburger .hamburger-top .hamburger-face {
       position: relative;
       right: -2px; }
+    .hamburger .hamburger-top .hamburger-avatar {
+      height: 46px; }
   .hamburger .menu {
     display: flex;
     flex-direction: column;
