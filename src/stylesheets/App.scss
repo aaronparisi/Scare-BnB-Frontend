@@ -284,6 +284,15 @@ html, body {
     overflow: scroll;
     color: $dark-yellow;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .carousel {
+      overflow-x: scroll;
+      display: flex;
+      flex-wrap: nowrap;
+    }
 
     .property-thumbnail {
       height: 100px;

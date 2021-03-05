@@ -6,12 +6,7 @@ import "react-alice-carousel/lib/alice-carousel.css";
 const SingleListing = props => {
   return (
     <li className="listing">
-      <AliceCarousel 
-        className="property-images"
-        disableDotsControls={true}
-        mouseTracking={true}
-        
-      >
+      <div className="carousel">
         <img
           src={`https://springfieldbnb.s3.amazonaws.com/properties/${props.property.title}.png`}
           alt={props.property.title}
@@ -27,7 +22,7 @@ const SingleListing = props => {
           alt={props.property.title}
           className="property-thumbnail"
         />
-      </AliceCarousel>
+      </div>
       <h1>{props.property.title.split('_').join(' ')}</h1>
       <p>beds: {props.property.beds}</p>
       <p>baths: {props.property.baths}</p>
