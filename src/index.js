@@ -24,6 +24,7 @@ export const history = createBrowserHistory()
 fetchCurrentUser()(store.dispatch)
 .then(msg => {
   if (store.getState().session.currentUser != null) {
+    console.log('getting properties')
     getProperties()(store.dispatch)
   }
 })

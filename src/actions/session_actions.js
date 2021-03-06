@@ -38,7 +38,7 @@ export const login = formUser => dispatch => {
   .then(
     curUser => {
       dispatch(receiveCurrentUser(curUser.data))
-      getProperties()(dispatch)
+      history.push('/')
     },
     err => {
       return Promise.reject(err)

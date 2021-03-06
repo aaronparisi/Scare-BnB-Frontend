@@ -2,6 +2,7 @@ import * as propertiesApiUtil from '../utils/properties_util'
 import { history } from '../index'
 
 export const RECEIVE_PROPERTIES = "RECEIVE_PROPERTIES"
+export const RECEIVE_CURRENT_PROPERTY = "RECEIVE_CURRENT_PROPERTY"
 
 export const receiveProperties = properties => {
   return {
@@ -17,7 +18,7 @@ export const getProperties = criteria => dispatch => {
   .then(
     properties => {
       dispatch(receiveProperties(properties.data))
-      history.push('/listings')  // todo specify post login redirect
+      // history.push('/listings')  // todo specify post login redirect
     },
     err => {
       console.log('error getting properties')

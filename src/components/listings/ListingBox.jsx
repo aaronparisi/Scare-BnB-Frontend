@@ -24,9 +24,8 @@ const ListingBox = props => {
           className="property-thumbnail"
         />
       </div>
-      <h1>{props.property.title.split('_').join(' ')}</h1>
       <Link to={`/properties/${props.stateId}`} >
-        <h2>Book me!</h2>
+        <h1>{props.property.title.split('_').join(' ')}</h1>
       </Link>
       <p>beds: {props.property.beds}</p>
       <p>baths: {props.property.baths}</p>

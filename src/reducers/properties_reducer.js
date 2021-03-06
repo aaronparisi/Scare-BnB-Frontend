@@ -7,7 +7,7 @@ const _emptyProperties = {
 
 const propertiesReducer = (state = _emptyProperties, action) => {
   Object.freeze(state)
-
+  
   switch(action.type) {
     case RECEIVE_PROPERTIES:
       return Object.assign({}, action.properties)
