@@ -1,7 +1,9 @@
 import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from '../actions/session_actions'
+import { RECEIVE_BOOKINGS } from '../actions/booking_actions'
 
 const _nullSession = {
-  currentUser: null
+  currentUser: null,
+  bookings: []
 }
 
 const sessionsReducer = (state = _nullSession, action) => {
@@ -9,11 +11,13 @@ const sessionsReducer = (state = _nullSession, action) => {
 
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
-      // previous state is irrelevant
-      return Object.assign({}, {currentUser: action.user})
+      return Object.assign({}, state, {currentUser: action.user})
     case LOGOUT_CURRENT_USER:
-      // simply clear the current user
       return _nullSession
+    case RECEIVE_BOOKINGS:
+      const newBookings = state.bookings;
+      action.bookings.forEach(booking => newBookings.push(booking))
+      return Object.assign({}, state, { bookings: newBookings })
     default:
       return state;
   }

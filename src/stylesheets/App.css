@@ -60,7 +60,7 @@
 .logo-couch:hover .hero-img-frame {
   border-color: #FBD822; }
 
-.notices {
+.notices, .errors {
   position: absolute;
   left: 50%; }
 

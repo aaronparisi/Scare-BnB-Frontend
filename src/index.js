@@ -9,6 +9,7 @@ import { createBrowserHistory } from 'history'
 
 import { fetchCurrentUser } from './actions/session_actions'
 import { getProperties } from './actions/properties_actions';
+import { receiveBookings } from './actions/booking_actions';
 
 const axios = require('axios').default
 if (process.env.NODE_ENV === "production") {
@@ -22,6 +23,9 @@ const store = createStore()
 export const history = createBrowserHistory()
 
 fetchCurrentUser()(store.dispatch)
+.then(info => {
+  store.dispatch(receiveBookings(info.data.bookings))
+})
 .then(msg => {
   if (store.getState().session.currentUser != null) {
     console.log('getting properties')

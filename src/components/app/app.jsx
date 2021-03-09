@@ -12,6 +12,7 @@ import HomeContainer from '../home/home_container'
 
 import { Route } from 'react-router-dom'
 import { AuthRoute, ProtectedRoute } from '../../utils/route_util'
+import GuestProfileContainer from '../profile/GuestProfileContainer';
 
 const App = () => {
 
@@ -19,9 +20,12 @@ const App = () => {
     <div className="main-content">
       <Route path="/" component={NavBarContainer} />
       <Route exact path="/" component={HomeContainer} />
+
       <ProtectedRoute exact path="/listings" component={ListingsContainer} />
       <ProtectedRoute path="/properties/*" component={FullListingContainer} />
       <ProtectedRoute path="/properties/*/book-me" component={BookingFormContainer} />
+      <ProtectedRoute exact path="/profile" component={GuestProfileContainer} />
+
       <AuthRoute exact path="/signup" component={SignupContainer} />
       <AuthRoute exact path="/login" component={LoginContainer} />
     </div>

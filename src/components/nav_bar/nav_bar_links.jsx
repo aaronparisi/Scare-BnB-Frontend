@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import signupText from '../../images/fontImages/signup.png'
 import loginText from '../../images/fontImages/login.png'
 import logoutText from '../../images/fontImages/logout.png'
+import profileText from '../../images/fontImages/profile.png'
 import about from '../../images/fontImages/about.png'
 import contact from '../../images/fontImages/contact.png'
 
 export const SignInLinks = () => {
+
   return (
     <div className="menu">
       <div className="session-links sub-menu">
@@ -43,7 +45,9 @@ export const SignOutLinks = ({ username, logout }) => {
         {/* maybe abstract this part */}
       </div>
       <div className="user-links sub-menu">
-        {/* links to current user profile */}
+        <Link className="btn" to="/profile">
+          <img className="nav-link-image" src={profileText} alt="profile"/>
+        </Link>
       </div>
     </div>
   )
