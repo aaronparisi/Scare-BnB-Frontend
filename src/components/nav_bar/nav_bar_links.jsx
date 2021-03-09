@@ -36,11 +36,6 @@ export const SignOutLinks = ({ username, logout }) => {
   return (
     <div className="menu">
       {/* <p>Hello, {username}</p> */}
-      <div className="session-links sub-menu">
-        <button className="btn" onClick={logout}>
-          <img className="nav-link-image" src={logoutText} alt="logout"/>
-        </button>
-      </div>
       <div className="info-links sub-menu">
         {/* maybe abstract this part */}
       </div>
@@ -48,6 +43,11 @@ export const SignOutLinks = ({ username, logout }) => {
         <Link className="btn" to="/profile">
           <img className="nav-link-image" src={profileText} alt="profile"/>
         </Link>
+      </div>
+      <div className="session-links sub-menu">
+        <button className="btn" onClick={logout}>
+          <img className="nav-link-image" src={logoutText} alt="logout"/>
+        </button>
       </div>
     </div>
   )

@@ -24,12 +24,14 @@ export const history = createBrowserHistory()
 
 fetchCurrentUser()(store.dispatch)
 .then(info => {
-  store.dispatch(receiveBookings(info.data.bookings))
-})
-.then(msg => {
-  if (store.getState().session.currentUser != null) {
-    console.log('getting properties')
+  if (info.data != "") {
     getProperties()(store.dispatch)
+  }
+  return info
+})
+.then(info => {
+  if (info.data.bookings != undefined) {
+    store.dispatch(receiveBookings(info.data.bookings))
   }
 })
 .then(
@@ -46,6 +48,6 @@ fetchCurrentUser()(store.dispatch)
     )
   },
   err => {
-    console.log('error fetching current user')
+    console.log(err)
   }
 )

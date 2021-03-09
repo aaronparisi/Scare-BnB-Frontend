@@ -1,0 +1,10 @@
+@import "vars";
+
+.user-profile {
+  border: 5px solid $dark-yellow;
+  border-radius: 10px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
