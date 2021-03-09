@@ -28,7 +28,7 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div className="session-form">
+      <div className="app-form signup-form">
         <img className="form-title" src={signupText} alt="login"/>
         <form
           onSubmit={e => this.handleSubmit(e)}

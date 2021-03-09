@@ -35,15 +35,13 @@ export const createNewUser = formUser => dispatch => {
 
 export const login = formUser => dispatch => {
   return sessionApiUtil.postSession(formUser)
-  .then(
-    curUser => {
+  .then(curUser => {
       dispatch(receiveCurrentUser(curUser.data))
-      history.push('/')
-    },
-    err => {
-      return Promise.reject(err)
     }
   )
+  .then(() => {
+    history.push('/listings')
+  })
 }
 
 export const logout = () => dispatch => {

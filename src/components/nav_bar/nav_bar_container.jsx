@@ -7,6 +7,8 @@ import { logout } from '../../actions/session_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
+  notices: state.notices.notices, 
+  errors: state.notices.errors
 });
 
 const mapDispatchToProps = dispatch => ({

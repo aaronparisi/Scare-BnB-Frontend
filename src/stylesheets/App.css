@@ -1,16 +1,33 @@
-@import url(react-alice-carousel/lib/alice-carousel.css);
-html, body {
-  padding: 0;
-  margin: 0;
-  font-family: sans-serif;
-  background-color: #26112d;
-  font-family: 'M PLUS Rounded 1c', sans-serif; }
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .home h1 {
+    height: 100%;
+    z-index: 1;
+    color: white;
+    text-shadow: 1px 1px 15px black;
+    text-align: center;
+    width: 100%; }
 
-.main-content {
+.hero-img-frame {
+  width: 90%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  position: relative; }
+  justify-content: center;
+  align-items: center; }
+
+.hero-img {
+  width: 100%;
+  margin-bottom: 50px;
+  border: 5px solid #D9A72D;
+  border-radius: 15px; }
+
+.logo-btn.listings-link {
+  padding: 20px 30px;
+  border-radius: 20px; }
+  .logo-btn.listings-link:hover {
+    background-color: #3E2443; }
 
 .nav-bar {
   width: 100%;
@@ -42,6 +59,10 @@ html, body {
 
 .logo-couch:hover .hero-img-frame {
   border-color: #FBD822; }
+
+.notices {
+  position: absolute;
+  left: 50%; }
 
 .hamburger {
   height: min-content;
@@ -96,53 +117,24 @@ html, body {
       height: 16px;
       filter: invert(71%) sepia(58%) saturate(591%) hue-rotate(355deg) brightness(90%) contrast(87%); }
 
-.home {
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-  .home h1 {
-    height: 100%;
-    z-index: 1;
-    color: white;
-    text-shadow: 1px 1px 15px black;
-    text-align: center;
-    width: 100%; }
-
-.hero-img-frame {
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; }
-
-.hero-img {
-  width: 100%;
-  margin-bottom: 50px;
-  border: 5px solid #D9A72D;
-  border-radius: 15px; }
-
-.logo-btn.listings-link {
-  padding: 20px 30px;
-  border-radius: 20px; }
-  .logo-btn.listings-link:hover {
-    background-color: #3E2443; }
-
-.session-form {
+.app-form {
   padding-top: 50px;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 90vh;
   align-items: center; }
-  .session-form .form-title {
-    filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%); }
-  .session-form form {
-    padding-top: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; }
-  .session-form input {
+
+.form-title {
+  filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%); }
+
+form {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  form input {
     background-color: #CFC6D9;
     width: 500px;
     height: 60px;
@@ -153,21 +145,48 @@ html, body {
     margin: 5px 0px;
     border-radius: 10px;
     color: #3E2443; }
-    .session-form input::placeholder {
+    form input::placeholder {
       color: #b1a0c4; }
-    .session-form input:focus {
+    form input:focus {
       background-color: #B283B7;
       outline: none; }
-  .session-form input[type=submit] {
+  form input[type=submit] {
     background-color: #3E2443;
     color: #D9A72D;
     border: 2px solid #D9A72D;
     padding: 0px 0px; }
-    .session-form input[type=submit]:hover {
+    form input[type=submit]:hover {
       color: #FBD822;
       border-color: #FBD822;
       background-color: #61478E;
       cursor: pointer; }
+
+.booking-form-parent {
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  width: 100%; }
+  .booking-form-parent .form-title {
+    position: relative;
+    top: 0px; }
+  .booking-form-parent .booking-form-container {
+    opacity: 85%;
+    background-color: #26112d;
+    width: 100%;
+    height: 100%; }
+  .booking-form-parent .booking-form {
+    border: 2px solid #D9A72D;
+    border-radius: 10px;
+    color: #FBD822;
+    background-color: #26112d;
+    opacity: 100%;
+    position: relative;
+    top: -77%;
+    left: 25%;
+    height: 75%;
+    width: 50%; }
+    .booking-form-parent .booking-form input {
+      margin-bottom: 35px; }
 
 .listings {
   display: flex;
@@ -214,24 +233,18 @@ html, body {
     .full-listing .carousel img {
       border: 2px solid #b18a27; }
 
-.booking-form-parent {
-  position: absolute;
-  z-index: 2;
-  height: 100%;
-  width: 100%; }
-  .booking-form-parent .booking-form-container {
-    opacity: 75%;
-    background-color: #3E2443;
-    width: 100%;
-    height: 100%; }
-  .booking-form-parent .booking-form {
-    border: 2px solid #26112d;
-    background-color: #D5CDCA;
-    opacity: 100%;
-    position: relative;
-    top: -77%;
-    left: 25%;
-    height: 75%;
-    width: 50%; }
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #26112d;
+  color: #FBD822;
+  font-family: 'M PLUS Rounded 1c', sans-serif; }
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; }
 
 /*# sourceMappingURL=App.css.map */

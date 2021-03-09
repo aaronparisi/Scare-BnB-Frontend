@@ -13,7 +13,8 @@ class FullListing extends React.Component {
 
   render() {
     if (this.props.property == undefined) {
-      return <p>no current property</p>;
+      // return <p>no current property</p>;
+      return null
     } else {
       return (
         <div className="full-listing">

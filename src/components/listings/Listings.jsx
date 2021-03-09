@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { getProperties } from '../../actions/properties_actions'
 import ListingBoxContainer from './ListingBoxContainer'
 
 class Listings extends React.Component {
@@ -8,7 +7,7 @@ class Listings extends React.Component {
   }
 
   componentDidMount() {
-    getProperties()
+    this.props.getProperties()
   }
 
   render() {

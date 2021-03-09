@@ -18,7 +18,6 @@ export const getProperties = criteria => dispatch => {
   .then(
     properties => {
       dispatch(receiveProperties(properties.data))
-      // history.push('/listings')  // todo specify post login redirect
     },
     err => {
       console.log('error getting properties')
