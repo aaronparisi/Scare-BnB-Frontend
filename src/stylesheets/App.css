@@ -249,6 +249,12 @@ html, body {
   color: #FBD822;
   font-family: 'M PLUS Rounded 1c', sans-serif; }
 
+a {
+  color: #FBD822; }
+
+a:visited {
+  color: #2B7FC6; }
+
 .main-content {
   display: flex;
   flex-direction: column;

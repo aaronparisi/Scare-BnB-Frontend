@@ -15,6 +15,14 @@ html, body {
   font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
+a {
+  color: $yellow;
+}
+
+a:visited {
+  color: $blue;
+}
+
 .main-content {
   display: flex;
   flex-direction: column;

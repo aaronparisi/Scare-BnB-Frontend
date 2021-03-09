@@ -12,7 +12,7 @@ const GuestProfile = props => {
         {props.bookings.map((booking, idx) => {
           return (
             <li className="booking-list-item" key={idx}>
-              <Link to={`/api/bookings/${booking.id}`} >
+              <Link to={`/bookings/${booking.id}`} >
                 {booking.propertyTitle}
               </Link>
             </li>

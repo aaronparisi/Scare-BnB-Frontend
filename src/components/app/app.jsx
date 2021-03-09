@@ -13,6 +13,7 @@ import HomeContainer from '../home/home_container'
 import { Route } from 'react-router-dom'
 import { AuthRoute, ProtectedRoute } from '../../utils/route_util'
 import GuestProfileContainer from '../profile/GuestProfileContainer';
+import BookingOverviewContainer from '../bookings/BookingOverviewContainer';
 
 const App = () => {
 
@@ -25,7 +26,7 @@ const App = () => {
       <ProtectedRoute path="/properties/*" component={FullListingContainer} />
       <ProtectedRoute path="/properties/*/book-me" component={BookingFormContainer} />
       <ProtectedRoute exact path="/profile" component={GuestProfileContainer} />
-
+      <ProtectedRoute path="/bookings/*" component={BookingOverviewContainer} />
       <AuthRoute exact path="/signup" component={SignupContainer} />
       <AuthRoute exact path="/login" component={LoginContainer} />
     </div>

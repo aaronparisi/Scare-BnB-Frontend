@@ -29,7 +29,8 @@ export const postBooking = info => dispatch => {
     return madeBooking
   })
   .then(madeBooking => {
-    history.push(`/properties/${madeBooking.data.property.id-1}`)  // can I just remove the 'book-me' part of the url?
+    // history.push(`/properties/${madeBooking.data.property_id-1}`)  // can I just remove the 'book-me' part of the url?
+    history.push(`/bookings/${madeBooking.data.id}`)  // can I just remove the 'book-me' part of the url?
   })
   .catch(err => {
     dispatch(receiveErrors({ 0: err.response.data[0] }))
