@@ -15,11 +15,13 @@ class BookingForm extends React.Component {
     tomorrow = tomorrow.toJSON().slice(0, 10)
 
     this.state = {
-      startDate: today,
-      endDate: tomorrow
+      startDate: null,
+      endDate: null,
+      endDatePossibilities: []
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.updateStartDate = this.updateStartDate.bind(this)
   }
 
   componentDidMount() {
@@ -40,6 +42,28 @@ class BookingForm extends React.Component {
     })
     .then(madeBooking => {
       history.push(`/bookings/${madeBooking.data.id}`)  // can I just remove the 'book-me' part of the url?
+    })
+  }
+
+  updateStartDate(startDate) {
+    let newStart = new Date(startDate).toJSON().slice(0, 10)
+    let newEndDatePoss = [];
+
+    let curDate = new Date(newStart);
+      
+    while (
+      ! this.props.conflictDates.includes(curDate.toJSON().slice(0, 10)) &&
+      newEndDatePoss.length <= 30  // limit stay to 30 days??
+    ) {
+      newEndDatePoss.push(new Date(curDate).toJSON().slice(0, 10))
+
+      const newDate = curDate.setDate(curDate.getDate()+1)
+      curDate = new Date(newDate)
+    }
+    
+    this.setState({ 
+      endDatePossibilities: newEndDatePoss,
+      startDate: newStart
     })
   }
 
@@ -69,8 +93,7 @@ class BookingForm extends React.Component {
             id="start_date"
             value={startDate}
             onChange={startDate => {
-              let newStart = new Date(startDate).toJSON().slice(0, 10)
-              this.setState({ startDate: newStart })
+              this.updateStartDate(startDate)
             }}
             options={
               { minDate:  new Date().toJSON().slice(0, 10) },
@@ -89,7 +112,7 @@ class BookingForm extends React.Component {
             }}
             options={
               { minDate:  this.state.startDate + 1 },
-              { disable: this.props.conflictDates }
+              { enable: this.state.endDatePossibilities }
             }
           />
   
