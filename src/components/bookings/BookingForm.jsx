@@ -48,8 +48,8 @@ class BookingForm extends React.Component {
   updateStartDate(startDate) {
     let newStart = new Date(startDate).toJSON().slice(0, 10)
     let newEndDatePoss = [];
-
-    let curDate = new Date(newStart);
+    let startPlusOne = startDate.setDate(startDate.getDate()+1)
+    let curDate = new Date(startPlusOne);
       
     while (
       ! this.props.conflictDates.includes(curDate.toJSON().slice(0, 10)) &&
@@ -57,8 +57,13 @@ class BookingForm extends React.Component {
     ) {
       newEndDatePoss.push(new Date(curDate).toJSON().slice(0, 10))
 
-      const newDate = curDate.setDate(curDate.getDate()+1)
-      curDate = new Date(newDate)
+      const nextCur = curDate.setDate(curDate.getDate()+1)
+      curDate = new Date(nextCur)
+    }
+
+    if (newEndDatePoss.length === 0) {
+      // user picked a bad start date...
+      // can I put some kind of notice here so they don't think it's broken?
     }
     
     this.setState({ 
@@ -93,7 +98,7 @@ class BookingForm extends React.Component {
             id="start_date"
             value={startDate}
             onChange={startDate => {
-              this.updateStartDate(startDate)
+              this.updateStartDate(startDate[0])
             }}
             options={
               { minDate:  new Date().toJSON().slice(0, 10) },
