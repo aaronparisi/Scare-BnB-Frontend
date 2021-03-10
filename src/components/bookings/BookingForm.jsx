@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import 'flatpickr/dist/themes/airbnb.css'
 import Flatpickr from 'react-flatpickr'
 import bookText from '../../images/fontImages/book.png'
+import { history } from '../../index' // ! where do I save this?
 
 class BookingForm extends React.Component {
   constructor(props) {
@@ -36,6 +37,9 @@ class BookingForm extends React.Component {
         guest_id: this.props.guestId,
         property_id: this.props.property.id
       }
+    })
+    .then(madeBooking => {
+      history.push(`/bookings/${madeBooking.data.id}`)  // can I just remove the 'book-me' part of the url?
     })
   }
 

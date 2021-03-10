@@ -1,29 +1,43 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-const BookingOverview = props => {
-  if (props.property != undefined) {
+const BookingDetails = ({ property, booking }) => {
+  if (property != undefined) {
     return (
-      <div className="booking-overview">
-        <h1>Your booking at {props.property.title}</h1>
-        <p>Start Date: {props.booking.start_date}</p>
-        <p>End Date: {props.booking.end_date}</p>
-
-        <Link className="btn" to="/profile">
-          Back to your profile
-        </Link>
+      <div className="booking-details">
+        <h1>Your booking at {property.title}</h1>
+        <p>Start Date: {booking.start_date}</p>
+        <p>End Date: {booking.end_date}</p>
       </div>
     )
   } else {
     return (
-      <div className="booking-overview">
+      <div className="booking-details">
         
-        <Link className="btn" to="/profile">
-          Back to your profile
-        </Link>
       </div>
     )
   }
+}
+
+const BookingOverview = props => {
+
+  return (
+    <div className="booking-overview">
+      <BookingDetails property={props.property} booking={props.booking} />
+
+      <Link
+        className="btn cancel-booking-btn"
+        onClick={e => props.deleteBooking(parseInt(props.match.params[0]))}
+        to="/profile"
+      >
+        Cancel Booking
+      </Link>
+
+      <Link className="btn" to="/profile">
+        Back to your profile
+      </Link>
+    </div>
+  )
 }
 
 export default BookingOverview

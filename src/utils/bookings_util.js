@@ -21,3 +21,10 @@ export const postBooking = info => {
     data: info
   })
 }
+
+export const deleteBooking = bookingId => {
+  return axios ({
+    method: 'delete',
+    url: `/api/bookings/${bookingId}`
+  })
+}

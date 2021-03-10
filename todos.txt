@@ -1,0 +1,3 @@
+- user bookings in calendar format
+- make sure state is loading correct data, no redundant data
+- notices don't go away unless there is a dispatch...
