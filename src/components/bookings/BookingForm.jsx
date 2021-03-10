@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link, withRouter } from 'react-router-dom';
 import 'flatpickr/dist/themes/airbnb.css'
 import Flatpickr from 'react-flatpickr'
+import bookText from '../../images/fontImages/book.png'
 
 class BookingForm extends React.Component {
   constructor(props) {
@@ -44,11 +46,19 @@ class BookingForm extends React.Component {
     return (
       <div className="booking-form-parent">
         <div className="app-form booking-form-container">
-        
+
         </div>
+
+        <Link 
+          to={`/properties/${this.props.match.params[0]}`} 
+          className="close-form-button"
+        >
+          X
+        </Link>
         
-        {/* <img className="form-title" src={bookText} alt="Book A Stay"/> */}
         <form className="booking-form" onSubmit={e => this.handleSubmit(e)}>
+          <img className="form-title" src={bookText} alt="Book A Stay"/>
+
           <label htmlFor="start_date">Start Date</label>
           <Flatpickr
             name="start_date"
@@ -87,4 +97,4 @@ class BookingForm extends React.Component {
 
 }
 
-export default BookingForm
+export default withRouter(BookingForm)
