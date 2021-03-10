@@ -25,6 +25,7 @@ class BookingForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    
     this.props.postBooking({
       booking: {
         start_date: this.state.startDate,
@@ -38,7 +39,7 @@ class BookingForm extends React.Component {
   render() {
     const { startDate } = this.state
     const { endDate } = this.state
-
+    
     return (
       <div className="booking-form-parent">
         <div className="app-form booking-form-container">
@@ -52,7 +53,10 @@ class BookingForm extends React.Component {
             name="start_date"
             id="start_date"
             value={startDate}
-            onChange={startDate => {this.setState({ startDate })}}
+            onChange={startDate => {
+              let newStart = new Date(startDate).toJSON().slice(0, 10)
+              this.setState({ startDate: newStart })
+            }}
             options={
               { minDate:  new Date().toJSON().slice(0, 10) },
               { disable: this.props.conflictDates }
@@ -64,7 +68,10 @@ class BookingForm extends React.Component {
             name="end_date"
             id="end_date"
             value={endDate}
-            onChange={endDate => {this.setState({ endDate })}}
+            onChange={endDate => {
+              let newEnd = new Date(endDate).toJSON().slice(0, 10)
+              this.setState({ endDate: newEnd })
+            }}
             options={
               { minDate:  this.state.startDate + 1 },
               { disable: this.props.conflictDates }

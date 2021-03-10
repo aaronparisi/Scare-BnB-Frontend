@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import BookingOverview from './BookingOverview'
 
 const mapStateToProps = (state, ownProps) => {
-  const booking = state.session.bookings.filter(booking => booking.id === parseInt(ownProps.match.params[0]))[0]
+  const booking = state.bookings.filter(booking => booking.id === parseInt(ownProps.match.params[0]))[0]
   const property = Object.values(state.properties).filter(prop => prop.id === booking.property_id)[0]
 
   return {
