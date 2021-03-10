@@ -3,6 +3,7 @@ import { history } from '../index' // ! where do I save this?
 import { receiveErrors, receiveNotices } from './notices_actions'
 
 export const RECEIVE_BOOKINGS = "RECEIVE_BOOKINGS"
+export const ADD_BOOKING = "ADD_BOOKING"
 
 export const receiveBookings = bookings  => {
   return {
@@ -11,10 +12,27 @@ export const receiveBookings = bookings  => {
   }
 }
 
+export const addBooking = booking  => {
+  return {
+    type: RECEIVE_BOOKINGS,
+    bookings: [booking]
+  }
+}
+
 export const getBookings = userId => dispatch => {
   return bookingsApiUtil.getBookings(userId)
   .then(bookings => {
-    dispatch(receiveBookings(bookings))
+    dispatch(receiveBookings(bookings.data))
+  })
+  .catch(err => {
+    console.log('error getting bookings')
+  })
+}
+
+export const getBookingsByProperty = propertyId => dispatch => {
+  return bookingsApiUtil.getBookingsByProperty(propertyId)
+  .then(bookings => {
+    dispatch(receiveBookings(bookings.data))
   })
   .catch(err => {
     console.log('error getting bookings')
@@ -25,7 +43,7 @@ export const postBooking = info => dispatch => {
   return bookingsApiUtil.postBooking(info)
   .then(madeBooking => {
     dispatch(receiveNotices({ 0: "Booking saved!" }))
-    dispatch(receiveBookings([madeBooking.data]))
+    dispatch(addBooking([madeBooking.data]))
     return madeBooking
   })
   .then(madeBooking => {

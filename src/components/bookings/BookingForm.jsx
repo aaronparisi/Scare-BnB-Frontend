@@ -1,5 +1,6 @@
 import React from 'react'
-import bookText from '../../images/fontImages/book.png'
+import 'flatpickr/dist/themes/airbnb.css'
+import Flatpickr from 'react-flatpickr'
 
 class BookingForm extends React.Component {
   constructor(props) {
@@ -18,6 +19,10 @@ class BookingForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  componentDidMount() {
+    this.props.getBookingsByProperty(parseInt(this.props.match.params[0]))
+  }
+
   handleSubmit(event) {
     event.preventDefault()
     this.props.postBooking({
@@ -31,6 +36,9 @@ class BookingForm extends React.Component {
   }
 
   render() {
+    const { startDate } = this.state
+    const { endDate } = this.state
+
     return (
       <div className="booking-form-parent">
         <div className="app-form booking-form-container">
@@ -40,21 +48,27 @@ class BookingForm extends React.Component {
         {/* <img className="form-title" src={bookText} alt="Book A Stay"/> */}
         <form className="booking-form" onSubmit={e => this.handleSubmit(e)}>
           <label htmlFor="start_date">Start Date</label>
-          <input 
-            type="date" 
-            name="start_date" 
+          <Flatpickr
+            name="start_date"
             id="start_date"
-            value={this.state.startDate}
-            onChange={e => this.setState({ startDate: e.currentTarget.value })}
+            value={startDate}
+            onChange={startDate => {this.setState({ startDate })}}
+            options={
+              { minDate:  new Date().toJSON().slice(0, 10) },
+              { disable: this.props.conflictDates }
+            }
           />
   
           <label htmlFor="end_date">End Date</label>
-          <input 
-            type="date" 
-            name="end_date" 
+          <Flatpickr
+            name="end_date"
             id="end_date"
-            value={this.state.endDate}
-            onChange={e => this.setState({ endDate: e.currentTarget.value })}
+            value={endDate}
+            onChange={endDate => {this.setState({ endDate })}}
+            options={
+              { minDate:  this.state.startDate + 1 },
+              { disable: this.props.conflictDates }
+            }
           />
   
           <input type="submit" value="Book your stay!"/>

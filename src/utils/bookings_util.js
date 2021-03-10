@@ -7,6 +7,13 @@ export const getBookings = userId => {
   })
 }
 
+export const getBookingsByProperty = propertyId => {
+  return axios({
+    method: 'get',
+    url: `/api/properties/${propertyId}/bookings`
+  })
+}
+
 export const postBooking = info => {
   return axios({
     method: 'post',
