@@ -7,4 +7,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  input[type="date"] {
+    background-color: $white;
+  }
 }

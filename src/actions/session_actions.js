@@ -1,6 +1,7 @@
 import * as sessionApiUtil from '../utils/session_util'
 import { history } from '../index' // ! where do I save this?
 import { getProperties } from './properties_actions'
+import { getBookings } from './booking_actions'
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER'
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER'
@@ -37,8 +38,12 @@ export const login = formUser => dispatch => {
   return sessionApiUtil.postSession(formUser)
   .then(curUser => {
       dispatch(receiveCurrentUser(curUser.data))
+      return curUser
     }
   )
+  .then(curUser => {
+    dispatch(getBookings(curUser.data.id))
+  })
   .then(() => {
     history.push('/listings')
   })
