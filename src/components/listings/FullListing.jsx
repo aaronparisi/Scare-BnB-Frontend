@@ -19,21 +19,27 @@ class FullListing extends React.Component {
       return (
         <div className="full-listing">
           <div className="carousel">
-            <img
-              src={`https://springfieldbnb.s3.amazonaws.com/properties/${this.props.property.title}.png`}
-              alt={this.props.property.title}
-              className="property-thumbnail"
-            />
-            <img
-              src={`https://springfieldbnb.s3.amazonaws.com/properties/${this.props.property.title}.png`}
-              alt={this.props.property.title}
-              className="property-thumbnail"
-            />
-            <img
-              src={`https://springfieldbnb.s3.amazonaws.com/properties/${this.props.property.title}.png`}
-              alt={this.props.property.title}
-              className="property-thumbnail"
-            />
+            <div className="carousel-box">
+              <img
+                src={`https://springfieldbnb.s3.amazonaws.com/properties/${this.props.property.title}/0.png`}
+                alt={this.props.property.title}
+                className="property-thumbnail"
+              />
+            </div>
+            <div className="carousel-box">
+              <img
+                src={`https://springfieldbnb.s3.amazonaws.com/properties/${this.props.property.title}/0.png`}
+                alt={this.props.property.title}
+                className="property-thumbnail"
+              />
+            </div>
+            <div className="carousel-box">
+              <img
+                src={`https://springfieldbnb.s3.amazonaws.com/properties/${this.props.property.title}/0.png`}
+                alt={this.props.property.title}
+                className="property-thumbnail"
+              />
+            </div>
           </div>
           <h1>{this.props.property.title.split('_').join(' ')}</h1>
           <p>beds: {this.props.property.beds}</p>

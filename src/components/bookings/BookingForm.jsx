@@ -73,9 +73,6 @@ class BookingForm extends React.Component {
   }
 
   render() {
-    const { startDate } = this.state
-    const { endDate } = this.state
-    
     return (
       <div className="booking-form-parent">
         <div className="app-form booking-form-container">
@@ -96,7 +93,7 @@ class BookingForm extends React.Component {
           <Flatpickr
             name="start_date"
             id="start_date"
-            value={startDate}
+            value={this.state.startDate}
             onChange={startDate => {
               this.updateStartDate(startDate[0])
             }}
@@ -110,7 +107,7 @@ class BookingForm extends React.Component {
           <Flatpickr
             name="end_date"
             id="end_date"
-            value={endDate}
+            value={this.state.endDate}
             onChange={endDate => {
               let newEnd = new Date(endDate).toJSON().slice(0, 10)
               this.setState({ endDate: newEnd })

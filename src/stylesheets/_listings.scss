@@ -23,18 +23,27 @@
     overflow-y: scroll;
     color: $dark-yellow;
     text-align: center;
+  }
+}
 
-    .carousel {
-      overflow-x: scroll;
-      display: flex;
-      flex-wrap: nowrap;
-    }
+.carousel {
+  overflow-x: scroll;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+}
 
-    .property-thumbnail {
-      height: 200px;
-      border: 2px solid $darker-yellow;
-      margin: 0px 0px;
-    }
+.carousel-box {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+  width: 100%;
+  min-width: 100%;
+
+  .property-thumbnail {
+    height: 200px;
+    border: 2px solid $darker-yellow;
+    margin: 0px 0px;
   }
 }
 
@@ -47,15 +56,7 @@
   flex-direction: column;
   align-items: center;
 
-  .carousel {
-    // ! this should be abstracted
-    overflow-x: scroll;
-    display: flex;
-    flex-wrap: nowrap;
-    // border: 2px solid $darker-yellow;
-
-    img {
-      border: 2px solid $darker-yellow
-    }
+  .carousel, .carousel-box, .property-thumbnail {
+    height: 400px;
   }
 }

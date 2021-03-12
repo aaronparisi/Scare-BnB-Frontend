@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
       curDate = new Date(curDate.setDate(curDate.getDate()+1))
     }
   })
-
+  
   return {
     property: property,
     guestId: state.session.currentUser.id,

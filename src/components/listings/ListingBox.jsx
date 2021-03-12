@@ -8,21 +8,27 @@ const ListingBox = props => {
   return (
     <li className="listing">
       <div className="carousel">
-        <img
-          src={`https://springfieldbnb.s3.amazonaws.com/properties/${props.property.title}.png`}
-          alt={props.property.title}
-          className="property-thumbnail"
-        />
-        <img
-          src={`https://springfieldbnb.s3.amazonaws.com/properties/${props.property.title}.png`}
-          alt={props.property.title}
-          className="property-thumbnail"
-        />
-        <img
-          src={`https://springfieldbnb.s3.amazonaws.com/properties/${props.property.title}.png`}
-          alt={props.property.title}
-          className="property-thumbnail"
-        />
+        <div className="carousel-box">
+          <img
+            src={`https://springfieldbnb.s3.amazonaws.com/properties/${props.property.title}/0.png`}
+            alt={props.property.title}
+            className="property-thumbnail"
+          />
+        </div>
+        <div className="carousel-box">
+          <img
+            src={`https://springfieldbnb.s3.amazonaws.com/properties/${props.property.title}/0.png`}
+            alt={props.property.title}
+            className="property-thumbnail"
+          />
+        </div>
+        <div className="carousel-box">
+          <img
+            src={`https://springfieldbnb.s3.amazonaws.com/properties/${props.property.title}/0.png`}
+            alt={props.property.title}
+            className="property-thumbnail"
+          />
+        </div>
       </div>
       <Link to={`/properties/${props.stateId}`} >
         <h1>{props.property.title.split('_').join(' ')}</h1>

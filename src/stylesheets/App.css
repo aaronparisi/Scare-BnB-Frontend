@@ -222,14 +222,23 @@ form {
     overflow-y: scroll;
     color: #D9A72D;
     text-align: center; }
-    .listings-grid .listing .carousel {
-      overflow-x: scroll;
-      display: flex;
-      flex-wrap: nowrap; }
-    .listings-grid .listing .property-thumbnail {
-      height: 200px;
-      border: 2px solid #b18a27;
-      margin: 0px 0px; }
+
+.carousel {
+  overflow-x: scroll;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%; }
+
+.carousel-box {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+  width: 100%;
+  min-width: 100%; }
+  .carousel-box .property-thumbnail {
+    height: 200px;
+    border: 2px solid #b18a27;
+    margin: 0px 0px; }
 
 .full-listing {
   width: 90%;
@@ -239,12 +248,8 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center; }
-  .full-listing .carousel {
-    overflow-x: scroll;
-    display: flex;
-    flex-wrap: nowrap; }
-    .full-listing .carousel img {
-      border: 2px solid #b18a27; }
+  .full-listing .carousel, .full-listing .carousel-box, .full-listing .property-thumbnail {
+    height: 400px; }
 
 .user-profile {
   border: 5px solid #D9A72D;

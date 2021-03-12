@@ -6,10 +6,12 @@ const mapStateToProps = state => {
 
   let bookingsPlus = state.bookings.map(booking => {
     const title = (propsArray.length > 0) ? propsArray.filter(prop => prop.id === booking.property_id)[0].title : 'no title'
+    
     return {
       startDate: booking.start_date,
       endDate: booking.end_date,
-      title: title
+      title: title,
+      id: booking.id
     }
   })
   
