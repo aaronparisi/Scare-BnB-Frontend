@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
   ) : (
     Object.values(state.properties).filter(prop => prop.id === booking.property_id)[0]
   )
-
+  
   return {
     booking: booking,
     property: property

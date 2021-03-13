@@ -20,7 +20,7 @@ const BookingDetails = ({ property, booking }) => {
 }
 
 const BookingOverview = props => {
-
+  
   return (
     <div className="booking-overview">
       <BookingDetails property={props.property} booking={props.booking} />
