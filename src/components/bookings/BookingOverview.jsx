@@ -2,12 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 const BookingDetails = ({ property, booking }) => {
+  const formatDate = date => {
+    return new Date(date).toDateString() + " @ 4pm"
+  }
+
   if (property != undefined) {
     return (
       <div className="booking-details">
         <h1>Your booking at {property.title}</h1>
-        <p>Start Date: {booking.start_date}</p>
-        <p>End Date: {booking.end_date}</p>
+        <p>Your check in time is: {formatDate(booking.start_date)}</p>
+        <p>Your check out time is: {formatDate(booking.end_date)}</p>
       </div>
     )
   } else {
@@ -20,9 +24,9 @@ const BookingDetails = ({ property, booking }) => {
 }
 
 const BookingOverview = props => {
-  
+
   return (
-    <div className="booking-overview">
+    <div className="booking-overview yellow-container">
       <BookingDetails property={props.property} booking={props.booking} />
 
       <Link
