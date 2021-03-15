@@ -7,7 +7,7 @@ const _emptyBookings = {
 
 const bookingsReducer = (state = _emptyBookings, action) => {
   Object.freeze(state)
-
+  
   switch(action.type) {
     case ADD_USER_BOOKING:
       let addedUserBookings = state.userBookings.slice();
@@ -18,11 +18,9 @@ const bookingsReducer = (state = _emptyBookings, action) => {
     case RECEIVE_PROPERTY_BOOKINGS:
       return Object.assign({}, state, { propertyBookings: action.bookings })
     case REMOVE_USER_BOOKING:
-      let removedUserBookings = {};
-      Object.values(state.userBookings).forEach((booking, idx) => {
-        if (booking.id !== action.booking.id) {
-          removedUserBookings[idx] = booking;
-        }
+      let removedUserBookings = state.userBookings.slice()
+      .filter(booking => {
+        return booking.id !== action.booking.id
       })
       return Object.assign({}, state, { userBookings: removedUserBookings })
     default:
