@@ -7,7 +7,6 @@ class FullListing extends React.Component {
   }
 
   componentDidMount() {
-    console.log('about to extract current property')
     // this.props.extractCurrentProperty(parseInt(this.props.match.params[0]))
   }
 
@@ -45,6 +44,10 @@ class FullListing extends React.Component {
           <p>beds: {this.props.property.beds}</p>
           <p>baths: {this.props.property.baths}</p>
           <p>{this.props.property.description}</p>
+
+          <p>
+            Manager: <Link to={`/manager/${this.props.property.manager.id}`} >{this.props.property.manager.username}</Link>
+          </p>
     
           <Link to={`${this.props.match.url}/book-me`} >
             <h1>Book me!</h1>

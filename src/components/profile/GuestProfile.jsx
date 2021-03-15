@@ -49,10 +49,6 @@ class GuestProfile extends React.Component {
     };
   }
 
-  componentDidUpdate() {
-    console.log('should re render??')
-  }
-
   render() {
     return (
       <div className="user-profile">

@@ -3,10 +3,10 @@ import FullListing from './FullListing'
 import { extractCurrentProperty } from '../../actions/properties_actions'
 
 const mapStateToProps = (state, ownProps) => {
-  // const idx = parseInt(ownProps.match.params[0].split('/')[2])
   const idx = parseInt(ownProps.match.params[0])
+  const property = state.properties[idx]
   return {
-    property: state.properties[idx]
+    property: property
   }
 }
 

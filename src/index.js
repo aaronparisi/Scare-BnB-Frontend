@@ -24,15 +24,13 @@ export const history = createBrowserHistory()
 
 fetchCurrentUser()(store.dispatch)
 .then(info => {
-  if (info.data != "") {
-    getProperties()(store.dispatch)
-  }
-  return info
-})
-.then(info => {
   if (info.data.bookings != undefined) {
-    store.dispatch(receiveBookings(info.data.bookings))
+    return store.dispatch(receiveBookings(info.data.bookings))
   }
+})
+.then(() => {
+  // ? the properties get loaded into state even if someone is not logged in
+  return getProperties()(store.dispatch)
 })
 .then(
   msg => {

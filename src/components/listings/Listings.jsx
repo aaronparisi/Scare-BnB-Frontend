@@ -11,11 +11,12 @@ class Listings extends React.Component {
   }
 
   render() {
+    
     return (
       <div className="listings">
         <ul className="listings-grid">
-          {Object.values(this.props.properties).map((property, idx) => {
-            return <ListingBoxContainer key={idx} property={property} stateId={idx} />
+          {this.props.properties.map((property, idx) => {
+            return <ListingBoxContainer key={idx} property={property} stateId={property.id-1} />
           })}
         </ul>
       </div>

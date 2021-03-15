@@ -9,6 +9,7 @@ import BookingFormContainer from '../bookings/BookingFormContainer'
 import SignupContainer from '../session/signup_container'
 import LoginContainer from '../session/login_container'
 import HomeContainer from '../home/home_container'
+import ManagerProfileContainer from '../profile/ManagerProfileContainer'
 
 import { Route } from 'react-router-dom'
 import { AuthRoute, ProtectedRoute } from '../../utils/route_util'
@@ -23,9 +24,11 @@ const App = () => {
       <Route exact path="/" component={HomeContainer} />
 
       <ProtectedRoute exact path="/listings" component={ListingsContainer} />
+      <ProtectedRoute exact path="/listings/*" component={ListingsContainer} />
       <ProtectedRoute path="/properties/*" component={FullListingContainer} />
       <ProtectedRoute path="/properties/*/book-me" component={BookingFormContainer} />
       <ProtectedRoute exact path="/profile" component={GuestProfileContainer} />
+      <ProtectedRoute exact path="/manager/*" component={ManagerProfileContainer} />
       <ProtectedRoute path="/bookings/*" component={BookingOverviewContainer} />
       <AuthRoute exact path="/signup" component={SignupContainer} />
       <AuthRoute exact path="/login" component={LoginContainer} />
