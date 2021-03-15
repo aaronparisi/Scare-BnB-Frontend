@@ -7,7 +7,7 @@ class FullListing extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.extractCurrentProperty(parseInt(this.props.match.params[0]))
+    this.props.fetchManager(this.props.property.manager_id)
   }
 
   render() {
@@ -46,7 +46,7 @@ class FullListing extends React.Component {
           <p>{this.props.property.description}</p>
 
           <p>
-            Manager: <Link to={`/manager/${this.props.property.manager.id}`} >{this.props.property.manager.username}</Link>
+            Manager: <Link to={`/manager/${this.props.manager.id}`} >{this.props.manager.username}</Link>
           </p>
     
           <Link to={`${this.props.match.url}/book-me`} >

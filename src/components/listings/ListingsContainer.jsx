@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
 
   if (Object.keys(ownProps.match.params).length !== 0) {
     // we are only showing a subset of listings
-    properties = properties.filter(prop => prop.manager.id === parseInt(ownProps.match.params[0]))
+    properties = properties.filter(prop => prop.manager_id === parseInt(ownProps.match.params[0]))
   }
   
   return {

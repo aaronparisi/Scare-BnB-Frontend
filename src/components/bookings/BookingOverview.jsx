@@ -9,7 +9,9 @@ const BookingDetails = ({ property, booking }) => {
   if (property != undefined) {
     return (
       <div className="booking-details">
-        <h1>Your booking at {property.title}</h1>
+        <h1>
+          Your booking at <Link to={`/properties/${property.id-1}`} >{property.title}</Link>
+        </h1>
         <p>Your check in time is: {formatDate(booking.start_date)}</p>
         <p>Your check out time is: {formatDate(booking.end_date)}</p>
 
