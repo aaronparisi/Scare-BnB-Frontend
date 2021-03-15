@@ -4,7 +4,9 @@ import GuestProfile from './GuestProfile'
 const mapStateToProps = state => {
   let propsArray = Object.values(state.properties)
 
-  let bookingsPlus = state.bookings.map(booking => {
+  let bookingsPlus = state.bookings.userBookings
+  .filter(booking => booking.guest_id === state.session.currentUser.id)
+  .map(booking => {
     const title = (propsArray.length > 0) ? propsArray.filter(prop => prop.id === booking.property_id)[0].title : 'no title'
     
     return {

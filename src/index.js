@@ -9,7 +9,7 @@ import { createBrowserHistory } from 'history'
 
 import { fetchCurrentUser } from './actions/session_actions'
 import { getProperties } from './actions/properties_actions';
-import { receiveBookings } from './actions/booking_actions';
+import { receiveUserBookings } from './actions/booking_actions';
 
 const axios = require('axios').default
 if (process.env.NODE_ENV === "production") {
@@ -25,7 +25,7 @@ export const history = createBrowserHistory()
 fetchCurrentUser()(store.dispatch)
 .then(info => {
   if (info.data.bookings != undefined) {
-    return store.dispatch(receiveBookings(info.data.bookings))
+    return store.dispatch(receiveUserBookings(info.data.bookings))
   }
 })
 .then(() => {

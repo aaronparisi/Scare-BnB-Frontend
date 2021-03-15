@@ -3,7 +3,7 @@ import { deleteBooking } from '../../actions/booking_actions'
 import BookingOverview from './BookingOverview'
 
 const mapStateToProps = (state, ownProps) => {
-  const booking = state.bookings.filter(booking => booking.id === parseInt(ownProps.match.params[0]))[0]
+  const booking = state.bookings.userBookings.filter(booking => booking.id === parseInt(ownProps.match.params[0]))[0]
   const property = (booking === undefined) ? (
     undefined
   ) : (

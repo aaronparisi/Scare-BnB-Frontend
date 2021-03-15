@@ -25,7 +25,6 @@ class BookingForm extends React.Component {
   }
 
   componentDidMount() {
-    console.log('getting bookings by property')
     this.props.getBookingsByProperty(parseInt(this.props.match.params[0]) + 1)
   }
 

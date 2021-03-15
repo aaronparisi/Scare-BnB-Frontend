@@ -1,48 +1,56 @@
 import * as bookingsApiUtil from '../utils/bookings_util'
 import { receiveErrors, receiveNotices } from './notices_actions'
 
-export const RECEIVE_BOOKINGS = "RECEIVE_BOOKINGS"
-export const ADD_BOOKING = "ADD_BOOKING"
-export const REMOVE_BOOKING = "REMOVE_BOOKING"
+export const RECEIVE_USER_BOOKINGS = "RECEIVE_USER_BOOKINGS"
+export const RECEIVE_PROPERTY_BOOKINGS = "RECEIVE_PROPERTY_BOOKINGS"
+export const ADD_USER_BOOKING = "ADD_USER_BOOKING"
+export const REMOVE_USER_BOOKING = "REMOVE_USER_BOOKING"
 
-export const receiveBookings = bookings  => {
+export const receiveUserBookings = bookings  => {
   return {
-    type: RECEIVE_BOOKINGS,
+    type: RECEIVE_USER_BOOKINGS,
     bookings: bookings
   }
 }
 
-export const addBooking = booking  => {
+export const receivePropertyBookings = bookings  => {
   return {
-    type: ADD_BOOKING,
+    type: RECEIVE_PROPERTY_BOOKINGS,
+    bookings: bookings
+  }
+}
+
+export const addUserBooking = booking  => {
+  return {
+    type: ADD_USER_BOOKING,
     bookings: [booking]
   }
 }
 
-export const removeBooking = booking => {
+export const removeUserBooking = booking => {
   return {
-    type: REMOVE_BOOKING,
+    type: REMOVE_USER_BOOKING,
     booking: booking
   }
 }
 
-export const getBookings = userId => dispatch => {
+export const getBookingsByUser = userId => dispatch => {
   return bookingsApiUtil.getBookings(userId)
   .then(bookings => {
-    dispatch(receiveBookings(bookings.data))
+    dispatch(receiveUserBookings(bookings.data))
   })
   .catch(err => {
-    console.log('error getting bookings')
+    console.log('error getting user bookings')
   })
 }
 
 export const getBookingsByProperty = propertyId => dispatch => {
   return bookingsApiUtil.getBookingsByProperty(propertyId)
   .then(bookings => {
-    dispatch(receiveBookings(bookings.data))
+    dispatch(receivePropertyBookings(bookings.data))
   })
   .catch(err => {
-    console.log('error getting bookings')
+    console.log('error getting property bookings')
   })
 }
 
@@ -50,7 +58,7 @@ export const postBooking = info => dispatch => {
   return bookingsApiUtil.postBooking(info)
   .then(madeBooking => {
     dispatch(receiveNotices({ 0: "Booking saved!" }))
-    dispatch(addBooking(madeBooking.data))
+    dispatch(addUserBooking(madeBooking.data))
     return madeBooking
   })
   // .then(madeBooking => {
@@ -66,7 +74,7 @@ export const postBooking = info => dispatch => {
 export const deleteBooking = bookingId => dispatch => {
   return bookingsApiUtil.deleteBooking(bookingId)
   .then(deletedBooking => {
-    dispatch(removeBooking(deletedBooking.data))
+    dispatch(removeUserBooking(deletedBooking.data))
     dispatch(receiveNotices({ 0: "Booking deleted!" }))
     return deleteBooking
   })

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 const BookingDetails = ({ property, booking }) => {
   const formatDate = date => {
@@ -12,6 +12,8 @@ const BookingDetails = ({ property, booking }) => {
         <h1>Your booking at {property.title}</h1>
         <p>Your check in time is: {formatDate(booking.start_date)}</p>
         <p>Your check out time is: {formatDate(booking.end_date)}</p>
+
+
       </div>
     )
   } else {
@@ -44,4 +46,4 @@ const BookingOverview = props => {
   )
 }
 
-export default BookingOverview
+export default withRouter(BookingOverview)
