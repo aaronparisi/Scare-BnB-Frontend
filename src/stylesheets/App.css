@@ -209,8 +209,6 @@ form {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  border: 5px solid #D9A72D;
-  border-radius: 10px;
   width: 90%;
   padding: 30px; }
   .listings-grid .listing {

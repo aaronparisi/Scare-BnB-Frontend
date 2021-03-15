@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ManagerProfile from './ManagerProfile'
-import { addManagerRating, fetchManager } from '../../actions/manager_actions'
+import { addManagerRating, updateManagerRating, fetchManager } from '../../actions/manager_actions'
 
 const mapStateToProps = (state, ownProps) => {
   // // ! this is ugly
@@ -10,13 +10,14 @@ const mapStateToProps = (state, ownProps) => {
   
   return {
     manager: state.manager,
-    currentUserId: state.session.currentUser.id
+    currentUser: state.session.currentUser
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     addManagerRating: (managerId, guestId, newRating) => dispatch(addManagerRating(managerId, guestId, newRating)),
+    updateManagerRating: (managerId, guestId, newRating) => dispatch(updateManagerRating(managerId, guestId, newRating)),
     fetchManager: managerId => dispatch(fetchManager(managerId))
   }
 }

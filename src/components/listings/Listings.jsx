@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ListingBoxContainer from './ListingBoxContainer'
+import { Link, withRouter } from 'react-router-dom'
 
 class Listings extends React.Component {
   constructor(props) {
@@ -13,12 +14,16 @@ class Listings extends React.Component {
   render() {
     
     return (
-      <div className="listings">
+      <div className="listings yellow-container">
         <ul className="listings-grid">
           {this.props.properties.map((property, idx) => {
             return <ListingBoxContainer key={idx} property={property} stateId={property.id-1} />
           })}
         </ul>
+
+        <Link to="/listings" >
+          All Properties!
+        </Link>
       </div>
     )
   }

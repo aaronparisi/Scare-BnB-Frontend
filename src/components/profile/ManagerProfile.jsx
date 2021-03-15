@@ -7,8 +7,12 @@ class ManagerProfile extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
+    const yourRating = props.currentUser.madeManagerRatings.filter(rating => {
+      return rating.managerId === props.manager.id
+    })[0]
 
+    this.state = {
+      yourRating: yourRating
     }
 
     this.changeRating = this.changeRating.bind(this)
@@ -19,7 +23,13 @@ class ManagerProfile extends React.Component {
   }
 
   changeRating = newRating => {
-    this.props.addManagerRating(this.props.manager.id, this.props.currentUserId, newRating)
+    if (this.state.yourRating === undefined) {
+      // first time this user is rating this manager
+      this.props.addManagerRating(this.props.manager.id, this.props.currentUser.id, newRating)
+    } else {
+      // we are updating a user rating
+      this.props.updateManagerRating(this.props.manager.id, this.props.currentUser.id, newRating)
+    }
   }
 
   render() {
@@ -28,14 +38,15 @@ class ManagerProfile extends React.Component {
     } else {
       return (
         <div className="yellow-container manager-profile">
-          <img src={`https://springfieldbnb.s3.amazonaws.com/avatars/${this.props.manager.username}.png`} alt={this.props.manager.username}/>
+          <img 
+            src={`https://springfieldbnb.s3.amazonaws.com/avatars/${this.props.manager.username}.png`} 
+            alt={this.props.manager.username}
+          />
           <h1>{this.props.manager.username}</h1>
           <h2>Manager Rating</h2>
           <Ratings
-            // rating={this.props.manager.manager_rating}
             rating={parseFloat(this.props.manager.manager_rating)}
             widgetRatedColors="blue"
-            // changeRating={this.changeRating}
           >
             <Ratings.Widget />
             <Ratings.Widget />
@@ -46,9 +57,8 @@ class ManagerProfile extends React.Component {
 
           <h2>Rate this manager!</h2>
           <Ratings
-            // rating={this.props.manager.manager_rating}
-            rating={0}
-            widgetRatedColors="blue"
+            rating={(this.state.yourRating === undefined) ? 0 : this.state.yourRating.rating}
+            widgetRatedColors="yellow"
             changeRating={this.changeRating}
           >
             <Ratings.Widget />
