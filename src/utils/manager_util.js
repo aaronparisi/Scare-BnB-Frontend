@@ -3,7 +3,7 @@ import axios from "axios"
 export const fetchManager = managerId => {
   return axios({
     method: 'get',
-    url: `/api/users/${managerId}`
+    url: `/api/users/${managerId}/manager`
   })
 }
 

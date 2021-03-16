@@ -7,14 +7,6 @@ class ManagerProfile extends React.Component {
   constructor(props) {
     super(props)
 
-    const yourRating = props.currentUser.madeManagerRatings.filter(rating => {
-      return rating.managerId === props.manager.id
-    })[0]
-
-    this.state = {
-      yourRating: yourRating
-    }
-
     this.changeRating = this.changeRating.bind(this)
   }
 
@@ -23,11 +15,13 @@ class ManagerProfile extends React.Component {
   }
 
   changeRating = newRating => {
-    if (this.state.yourRating === undefined) {
+    if (this.props.madeRating === undefined) {
       // first time this user is rating this manager
+      console.log('adding new rating')
       this.props.addManagerRating(this.props.manager.id, this.props.currentUser.id, newRating)
     } else {
       // we are updating a user rating
+      console.log('updating existing rating')
       this.props.updateManagerRating(this.props.manager.id, this.props.currentUser.id, newRating)
     }
   }
@@ -57,7 +51,7 @@ class ManagerProfile extends React.Component {
 
           <h2>Rate this manager!</h2>
           <Ratings
-            rating={(this.state.yourRating === undefined) ? 0 : this.state.yourRating.rating}
+            rating={this.props.madeRating || 0}
             widgetRatedColors="yellow"
             changeRating={this.changeRating}
           >

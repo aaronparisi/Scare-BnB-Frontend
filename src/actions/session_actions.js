@@ -5,11 +5,11 @@ import { getBookingsByUser } from './booking_actions'
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER'
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER'
-export const ADD_MADE_MANAGER_RATING = 'ADD_MADE_MANAGER_RATING'
+export const RECEIVE_MADE_MANAGER_RATINGS = 'RECEIVE_MADE_MANAGER_RATINGS'
 
-export const addMadeManagerRating = toAdd => {
+export const receiveMadeManagerRatings = toAdd => {
   return {
-    type: ADD_MADE_MANAGER_RATING,
+    type: RECEIVE_MADE_MANAGER_RATINGS,
     toAdd
   }
 }

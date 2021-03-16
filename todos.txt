@@ -3,3 +3,5 @@
 - link property manager to booking, property pages
 - booking form centering
 - css for yellow border items
+
+- navigaing away from manager profile then coming back, current user's rating is missing

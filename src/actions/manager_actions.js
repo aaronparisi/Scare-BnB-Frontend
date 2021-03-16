@@ -1,5 +1,5 @@
 import * as managerApiUtil from '../utils/manager_util'
-import { addMadeManagerRating } from './session_actions'
+import { receiveMadeManagerRatings } from './session_actions'
 
 export const RECEIVE_MANAGER = "RECEIVE_MANAGER"
 
@@ -14,6 +14,7 @@ export const fetchManager = managerId => dispatch => {
   return managerApiUtil.fetchManager(managerId)
   .then(info => {
     dispatch(receiveManager(info.data))
+    dispatch(receiveMadeManagerRatings(info.data))
   })
 }
 
@@ -21,7 +22,7 @@ export const addManagerRating = (managerId, guestId, newRating) => dispatch => {
   return managerApiUtil.addManagerRating(managerId, guestId, newRating)
   .then(info => {
     dispatch(receiveManager(info.data))
-    dispatch(addMadeManagerRating(info.data))
+    dispatch(receiveMadeManagerRatings(info.data))
   })
 }
 
@@ -29,7 +30,7 @@ export const updateManagerRating = (managerId, guestId, newRating) => dispatch =
   return managerApiUtil.updateManagerRating(managerId, guestId, newRating)
   .then(info => {
     dispatch(receiveManager(info.data))
-    dispatch(addMadeManagerRating(info.data))
+    dispatch(receiveMadeManagerRatings(info.data))
   })
 }
 

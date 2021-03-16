@@ -7,10 +7,12 @@ const mapStateToProps = (state, ownProps) => {
   // const manager = Object.values(state.properties).filter(prop => {
   //   return prop.manager.id === parseInt(ownProps.match.params[0])
   // })[0].manager
-  
+  const firstRating = state.session.madeRatings[0]
+
   return {
     manager: state.manager,
-    currentUser: state.session.currentUser
+    currentUser: state.session.currentUser,
+    madeRating: (firstRating === undefined) ? undefined : firstRating.rating
   }
 }
 
