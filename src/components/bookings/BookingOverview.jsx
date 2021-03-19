@@ -6,7 +6,7 @@ const BookingDetails = ({ property, booking }) => {
     return new Date(date).toDateString() + " @ 4pm"
   }
 
-  if (property != undefined) {
+  if (property !== undefined) {
     return (
       <div className="booking-details">
         <h1>

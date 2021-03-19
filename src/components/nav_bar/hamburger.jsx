@@ -5,6 +5,7 @@ import loginFace from '../../images/icons/login.png'
 import donut from '../../images/icons/donut.png'
 
 import styled, { ThemeProvider } from 'styled-components'
+import { getAvatar } from '../../utils/aws_util'
 
 const StyledDiv = styled.div`
   width: ${props => props.theme.width};
@@ -21,12 +22,16 @@ const StyledImg = styled.img`
 
 const Hamburger = props => {
   const [expanded, setExpanded] = useState(false)
-  const [topHovered, setTopHovered] = useState(false)
 
   const burgerWidth = (expanded) ? '150px' : '110px'
   const burgerMaxHeight = (expanded) ? '250px' : '48px'
 
-  const loginAvatar = (props.currentUser == null || props.currentUser.image_url == null) ? loginFace : `https://springfieldbnb.s3.amazonaws.com/avatars/${props.currentUser.image_url}.png`
+  const loginAvatar = (
+    props.currentUser == null || props.currentUser.image_url == null
+  ) ? 
+  loginFace : 
+  `https://springfieldbnb.s3.amazonaws.com/users/${props.currentUser.id-1}/${props.currentUser.image_url}.png`
+  // getAvatar(props.currentUser.image_url)
 
   const burgerTheme = {
     width: burgerWidth,
@@ -58,12 +63,6 @@ const Hamburger = props => {
     )
   }
 
-  const LoggedInFace = () => {
-    return (
-      <img src="" alt="coach lugash"/>
-    )
-  }
-
   const genHamburgerFaceClass = () => {
     if (props.currentUser == null) {
       return (
@@ -76,18 +75,6 @@ const Hamburger = props => {
     }
   }
 
-  const LoggedOutFace = () => {
-    return (
-      <ThemeProvider theme={faceTheme}>
-        <StyledImg 
-          className={genHamburgerFaceClass()} 
-          src={loginFace}
-          alt="hamburger avatar"
-        />
-      </ThemeProvider>
-    )
-  }
-
   return (
     <ThemeProvider theme={burgerTheme}>
       <StyledDiv
@@ -97,9 +84,6 @@ const Hamburger = props => {
       >
         <div
           className="hamburger-top"
-          // onClick={() => setExpanded(!expanded)}
-          onMouseEnter={() => setTopHovered(true)}
-          onMouseLeave={() => setTopHovered(false)}
         >
           <img src={donut} alt="donut" className="nav-link-image hamburger-dropdown"/>
           {/* <LoggedInBoolRoute

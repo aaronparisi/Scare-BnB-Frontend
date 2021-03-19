@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom';
 
 import Paper from '@material-ui/core/Paper';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Radio from '@material-ui/core/Radio';
+// import RadioGroup from '@material-ui/core/RadioGroup';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { ViewState } from '@devexpress/dx-react-scheduler';
 import {
   Scheduler,
@@ -15,25 +14,26 @@ import {
   MonthView,
   Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
+import { addObject } from '../../utils/aws_util';
 
 // import { appointments } from '../../../demo-data/month-appointments';
 
-const ExternalViewSwitcher = ({
-  currentViewName,
-  onChange,
-}) => (
-  <RadioGroup
-    aria-label="Views"
-    style={{ flexDirection: 'row' }}
-    name="views"
-    value={currentViewName}
-    onChange={onChange}
-  >
-    <FormControlLabel value="Week" control={<Radio />} label="Week" />
-    <FormControlLabel value="Work Week" control={<Radio />} label="Work Week" />
-    <FormControlLabel value="Month" control={<Radio />} label="Month" />
-  </RadioGroup>
-);
+// const ExternalViewSwitcher = ({
+//   currentViewName,
+//   onChange,
+// }) => (
+//   <RadioGroup
+//     aria-label="Views"
+//     style={{ flexDirection: 'row' }}
+//     name="views"
+//     value={currentViewName}
+//     onChange={onChange}
+//   >
+//     <FormControlLabel value="Week" control={<Radio />} label="Week" />
+//     <FormControlLabel value="Work Week" control={<Radio />} label="Work Week" />
+//     <FormControlLabel value="Month" control={<Radio />} label="Month" />
+//   </RadioGroup>
+// );
 
 class GuestProfile extends React.Component {
   constructor(props) {
@@ -47,13 +47,33 @@ class GuestProfile extends React.Component {
     this.currentViewNameChange = (e) => {
       this.setState({ currentViewName: e.target.value });
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const newFile = e.currentTarget.elements[1].files[0]
+    addObject(newFile, `avatars/${this.props.user.username}`)
   }
 
   render() {
     return (
       <div className="user-profile">
         <h1>{this.props.user.username}</h1>
-        <img src={`https://springfieldbnb.s3.amazonaws.com/avatars/${this.props.user.username}.png`} alt={this.props.user.username}/>
+        <img src={`https://springfieldbnb.s3.amazonaws.com/users/${this.props.user.id}/${this.props.user.image_url}.png`} alt={this.props.user.username}/>
+
+        <form
+          onSubmit={e => this.handleSubmit(e)}
+        >
+          <fieldset>
+            <legend>Upload a new photo!</legend>
+            <input type="file" name="thumbnail" id="thumbnail"/>
+
+            <input type="submit" value="Upload Photo!"/>
+          </fieldset>
+        </form>
   
         {/* <ul className="bookings-list">
           {this.props.bookings.map((booking, idx) => {
@@ -112,4 +132,4 @@ class GuestProfile extends React.Component {
   }
 }
 
-export default withRouter(GuestProfile)
+export default GuestProfile

@@ -1,5 +1,4 @@
 import * as propertiesApiUtil from '../utils/properties_util'
-import { history } from '../index'
 
 export const RECEIVE_PROPERTIES = "RECEIVE_PROPERTIES"
 export const RECEIVE_CURRENT_PROPERTY = "RECEIVE_CURRENT_PROPERTY"

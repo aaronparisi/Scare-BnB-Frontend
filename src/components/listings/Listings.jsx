@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ListingBoxContainer from './ListingBoxContainer'
 import { Link, withRouter } from 'react-router-dom'
 
 class Listings extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      
+    }
   }
 
   componentDidMount() {
@@ -30,4 +34,4 @@ class Listings extends React.Component {
 
 }
 
-export default Listings
+export default withRouter(Listings)

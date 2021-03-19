@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, withRouter } from 'react-router-dom';
+import CarouselContainer from './CarouselContainer'
 
 class FullListing extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+
+    }
   }
 
   componentDidMount() {
@@ -11,35 +16,15 @@ class FullListing extends React.Component {
   }
 
   render() {
-    if (this.props.property == undefined) {
+    if (this.props.property === undefined) {
       // return <p>no current property</p>;
       return null
     } else {
+      
       return (
         <div className="full-listing">
-          <div className="carousel">
-            <div className="carousel-box">
-              <img
-                src={`https://springfieldbnb.s3.amazonaws.com/properties/${this.props.property.title}/0.png`}
-                alt={this.props.property.title}
-                className="property-thumbnail"
-              />
-            </div>
-            <div className="carousel-box">
-              <img
-                src={`https://springfieldbnb.s3.amazonaws.com/properties/${this.props.property.title}/0.png`}
-                alt={this.props.property.title}
-                className="property-thumbnail"
-              />
-            </div>
-            <div className="carousel-box">
-              <img
-                src={`https://springfieldbnb.s3.amazonaws.com/properties/${this.props.property.title}/0.png`}
-                alt={this.props.property.title}
-                className="property-thumbnail"
-              />
-            </div>
-          </div>
+          <CarouselContainer propertyId={this.props.property.id} />
+
           <h1>{this.props.property.title.split('_').join(' ')}</h1>
           <p>beds: {this.props.property.beds}</p>
           <p>baths: {this.props.property.baths}</p>

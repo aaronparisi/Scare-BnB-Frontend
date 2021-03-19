@@ -1,11 +1,10 @@
 import { connect } from 'react-redux'
 import ListingBox from './ListingBox'
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
-  
+    property: ownProps.property
   }
-  // * nothing goes here because we aren't pulling it from state, it's being passed in......
 }
 
 const mapDispatchToProps = dispatch => {

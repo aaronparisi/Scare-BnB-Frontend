@@ -8,9 +8,6 @@ const mapStateToProps = state => {
   }
 }
 
-const RootRedirect = () => {
-  return <Redirect to="/" />
-}
 const ListingsRedirect = () => {
   return <Redirect to="/listings" />
 }

@@ -9,11 +9,6 @@ class BookingForm extends React.Component {
   constructor(props) {
     super(props)
 
-    const today = new Date().toJSON().slice(0, 10);
-    let tomorrow = new Date();
-    tomorrow = new Date(tomorrow.setDate(tomorrow.getDate()+1))
-    tomorrow = tomorrow.toJSON().slice(0, 10)
-
     this.state = {
       startDate: null,
       endDate: null,
