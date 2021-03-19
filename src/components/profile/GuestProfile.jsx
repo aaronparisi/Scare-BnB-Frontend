@@ -14,7 +14,10 @@ import {
   MonthView,
   Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { addObject } from '../../utils/aws_util';
+import { addObject, getAvatarKey, emptyFolder } from '../../utils/aws_util';
+
+import S3FileUpload from 'react-s3'
+import { changeUserImageUrl } from '../../utils/session_util';
 
 // import { appointments } from '../../../demo-data/month-appointments';
 
@@ -42,6 +45,7 @@ class GuestProfile extends React.Component {
     this.state = {
       // data: appointments,
       currentViewName: 'Month',
+      avatarKey: ''
     };
 
     this.currentViewNameChange = (e) => {
@@ -51,18 +55,45 @@ class GuestProfile extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleSubmit(e) {
+  componentDidMount() {
+    getAvatarKey(`users/${this.props.user.id-1}/avatar/`)
+    .then(key => {
+      this.setState({ avatarKey: key })
+    })
+  }
+
+  async handleSubmit(e) {
     e.preventDefault();
 
+    const config = {
+      bucketName: 'springfieldbnb',
+      dirName: `users/${this.props.user.id-1}/avatar`,
+      region: 'us-west-2',
+      accessKeyId: 'AKIAR263SA55XO4CPECT',
+      secretAccessKey: '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'
+    }
+
     const newFile = e.currentTarget.elements[1].files[0]
-    addObject(newFile, `avatars/${this.props.user.username}`)
+    e.currentTarget.value = null
+
+    S3FileUpload.deleteFile(this.props.user.image_url.split('/').slice(-1)[0], config)
+    .then(data => {
+      return S3FileUpload.uploadFile(newFile, config)
+      // addObject(newFile, `users/${this.props.user.id-1}/avatar/`)
+    })
+    .then(data => {
+      this.props.setCurrentUserAvatar(this.props.user.id, data.key)
+    })
+    .catch(err => {
+      console.log(`error uploading new avatar`)
+    })
   }
 
   render() {
     return (
       <div className="user-profile">
         <h1>{this.props.user.username}</h1>
-        <img src={`https://springfieldbnb.s3.amazonaws.com/users/${this.props.user.id}/${this.props.user.image_url}.png`} alt={this.props.user.username}/>
+        <img src={`https://springfieldbnb.s3.amazonaws.com/${this.props.user.image_url}`} alt={this.props.user.username}/>
 
         <form
           onSubmit={e => this.handleSubmit(e)}

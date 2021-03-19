@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { setCurrentUserAvatar } from '../../actions/session_actions';
 import GuestProfile from './GuestProfile'
 
 const mapStateToProps = state => {
@@ -25,7 +26,7 @@ const mapStateToProps = state => {
  
 const mapDispatchToProps = dispatch => {
   return {
-
+    setCurrentUserAvatar: (id, url) => dispatch(setCurrentUserAvatar(id, url))
   }
 }
 

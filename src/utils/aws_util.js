@@ -2,7 +2,8 @@ import {
   S3Client,
   GetObjectCommand,
   ListObjectsCommand,
-  PutObjectCommand
+  PutObjectCommand,
+  DeleteObjectCommand
 } from "@aws-sdk/client-s3";
 import { CognitoIdentityClient } from "@aws-sdk/client-cognito-identity";
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-provider-cognito-identity";
@@ -19,13 +20,28 @@ export const s3 = new S3Client({
   }),
 });
 
+export const emptyFolder = async (path) => {
+  const props = {
+    Bucket: "springfieldbnb",
+    Key: path
+  }
+
+  try {
+    s3.send(
+      new DeleteObjectCommand(props)
+    )
+  } catch (error) {
+    console.log(`error deleting object: ${error.message}`)
+  }
+}
+
 export const addObject = async (file, path) => {
   const props = {
     Bucket: "springfieldbnb",
     Key: path,
     Body: file
   }
-
+  debugger
   try {
     const data = await s3.send(
       new PutObjectCommand(props)
@@ -38,20 +54,9 @@ export const addObject = async (file, path) => {
   }
 }
 
-export const getAvatar = async (avatarName) => {
-  console.log(`avatar requested: ${avatarName}`)
-  // let avatarKey = encodeURIComponent(avatarName)
-  // const props = {
-  //   Bucket: "springfieldbnb",
-  //   Key: `avatars/${avatarKey}`
-  // }
-  
-  // const data = await s3.send(
-  //   // new ListObjectsCommand({
-  //   new GetObjectCommand(props)
-  // )
-
-  // return data
+export const getAvatarKey = async (folderPath) => {
+  let avatarKeys = await getAllObjectKeysInFolder(folderPath)
+  return avatarKeys[0]
 }
 
 export const getPropertyImage = async (pathToImage) => {

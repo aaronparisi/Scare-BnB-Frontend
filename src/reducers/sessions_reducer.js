@@ -1,4 +1,9 @@
-import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, RECEIVE_MADE_MANAGER_RATINGS } from '../actions/session_actions'
+import { 
+  RECEIVE_CURRENT_USER, 
+  LOGOUT_CURRENT_USER, 
+  RECEIVE_MADE_MANAGER_RATINGS, 
+  RECEIVE_CURRENT_USER_AVATAR 
+} from '../actions/session_actions'
 
 const _nullSession = {
   currentUser: null,
@@ -14,6 +19,14 @@ const sessionsReducer = (state = _nullSession, action) => {
         {}, 
         state, 
         { currentUser: action.user })
+    case RECEIVE_CURRENT_USER_AVATAR:
+      const user = Object.assign({}, state.currentUser)
+      user['image_url'] = action.imageUrl
+      return Object.assign(
+        {},
+        state,
+        { currentUser: user }
+      )
     case LOGOUT_CURRENT_USER:
       return _nullSession
     case RECEIVE_MADE_MANAGER_RATINGS:

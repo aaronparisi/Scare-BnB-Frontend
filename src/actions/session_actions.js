@@ -6,6 +6,7 @@ import { getBookingsByUser } from './booking_actions'
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER'
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER'
 export const RECEIVE_MADE_MANAGER_RATINGS = 'RECEIVE_MADE_MANAGER_RATINGS'
+export const RECEIVE_CURRENT_USER_AVATAR = 'RECEIVE_CURRENT_USER_AVATAR'
 
 export const receiveMadeManagerRatings = toAdd => {
   return {
@@ -27,7 +28,21 @@ const logoutCurrentUser = () => {
   }
 }
 
+const receiveCurrentUserAvatar = url => {
+  return {
+    type: RECEIVE_CURRENT_USER_AVATAR,
+    imageUrl: url
+  }
+}
+
 // thunk stuff - will be exported to containers
+
+export const setCurrentUserAvatar = (id, url) => dispatch => {
+  sessionApiUtil.changeUserImageUrl(id, url)
+  .then(data => {
+    dispatch(receiveCurrentUserAvatar(url))
+  })
+}
 
 export const createNewUser = formUser => dispatch => {
   return sessionApiUtil.postUser(formUser)

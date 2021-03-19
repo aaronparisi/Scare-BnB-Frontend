@@ -1,5 +1,17 @@
 import axios from "axios"
 
+export const changeUserImageUrl = (userId, newImageUrl) => {
+  return axios({
+    method: 'put',
+    url: `/api/users/${userId}/update-image-url`,
+    withCredentials: 'include',
+    data: {
+      userId: userId,
+      newImageUrl: newImageUrl
+    }
+  })
+}
+
 export const getCurrentUser = () => {
   return axios({
     method: 'get',
