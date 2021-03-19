@@ -18,6 +18,7 @@ import { addObject, getAvatarKey, emptyFolder } from '../../utils/aws_util';
 
 import S3FileUpload from 'react-s3'
 import { changeUserImageUrl } from '../../utils/session_util';
+import keys from '../../keys';
 
 // import { appointments } from '../../../demo-data/month-appointments';
 
@@ -69,8 +70,8 @@ class GuestProfile extends React.Component {
       bucketName: 'springfieldbnb',
       dirName: `users/${this.props.user.id-1}/avatar`,
       region: 'us-west-2',
-      accessKeyId: 'AKIAR263SA55XO4CPECT',
-      secretAccessKey: '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'
+      accessKeyId: keys.access,
+      secretAccessKey: keys.secret
     }
 
     const newFile = e.currentTarget.elements[1].files[0]
