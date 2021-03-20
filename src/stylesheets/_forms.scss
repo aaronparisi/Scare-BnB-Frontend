@@ -109,3 +109,28 @@ form {
     }
   }
 }
+
+.mini-form {
+  padding-top: 20px;
+
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min-content;
+
+    input {
+      font-size: 16px;
+      height: min-content;
+      width: min-content;
+      padding: 5px 10px;
+    }
+
+    input[type="file"] {
+      background: none;
+      color: $dark-yellow;
+      width: 250px;
+      overflow-x: scroll;
+    }
+  }
+}

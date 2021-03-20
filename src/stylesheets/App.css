@@ -201,6 +201,24 @@ form {
     .booking-form-parent .booking-form input {
       margin-bottom: 35px; }
 
+.mini-form {
+  padding-top: 20px; }
+  .mini-form fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min-content; }
+    .mini-form fieldset input {
+      font-size: 16px;
+      height: min-content;
+      width: min-content;
+      padding: 5px 10px; }
+    .mini-form fieldset input[type="file"] {
+      background: none;
+      color: #D9A72D;
+      width: 250px;
+      overflow-x: scroll; }
+
 .listings {
   display: flex;
   justify-content: center; }

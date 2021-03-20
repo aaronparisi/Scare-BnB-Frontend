@@ -1,4 +1,5 @@
 import React from 'react'
+import { history } from '../../index'
 
 import Paper from '@material-ui/core/Paper';
 // import Radio from '@material-ui/core/Radio';
@@ -14,10 +15,9 @@ import {
   MonthView,
   Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { addObject, getAvatarKey, emptyFolder } from '../../utils/aws_util';
+import { getAvatarKey } from '../../utils/aws_util';
 
 import S3FileUpload from 'react-s3'
-import { changeUserImageUrl } from '../../utils/session_util';
 import keys from '../../keys';
 
 // import { appointments } from '../../../demo-data/month-appointments';
@@ -90,6 +90,17 @@ class GuestProfile extends React.Component {
     })
   }
 
+  MyComponent({ children, ...restProps}) {
+    return (
+      <Appointments.Appointment 
+        {...restProps}
+        onClick={() => history.push(`/bookings/${restProps.data.id}`)}
+      >
+        {children}
+      </Appointments.Appointment>
+    )
+  }
+
   render() {
     return (
       <div className="user-profile">
@@ -97,6 +108,7 @@ class GuestProfile extends React.Component {
         <img src={`https://springfieldbnb.s3.amazonaws.com/${this.props.user.image_url}`} alt={this.props.user.username}/>
 
         <form
+          className="mini-form"
           onSubmit={e => this.handleSubmit(e)}
         >
           <fieldset>
@@ -106,18 +118,6 @@ class GuestProfile extends React.Component {
             <input type="submit" value="Upload Photo!"/>
           </fieldset>
         </form>
-  
-        {/* <ul className="bookings-list">
-          {this.props.bookings.map((booking, idx) => {
-            return (
-              <li className="booking-list-item" key={idx}>
-                <Link to={`/bookings/${booking.id}`} >
-                  {booking.title}
-                </Link>
-              </li>
-            )
-          })}
-        </ul> */}
   
           <h2>Guest Rating</h2>
           <p>{this.props.user.guest_rating}</p>
@@ -131,9 +131,6 @@ class GuestProfile extends React.Component {
         <Paper>
           <Scheduler
             data={this.props.bookings}
-            // data={[
-            //   { title: 'test-booking', startDate: new Date(2021, 2, 10), endDate: new Date(2021, 2, 11) }
-            // ]}
             height={660}
           >
             <ViewState
@@ -156,7 +153,7 @@ class GuestProfile extends React.Component {
             <DateNavigator />
             <TodayButton />
 
-            <Appointments />
+            <Appointments appointmentComponent={this.MyComponent} />
           </Scheduler>
         </Paper>
       </div>
