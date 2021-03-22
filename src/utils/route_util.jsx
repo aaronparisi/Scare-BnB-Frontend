@@ -7,6 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   
   return {
     loggedIn: Boolean(state.session.currentUser),
+    thisLoggedIn: Boolean(state.session.currentUser.id === parseInt(ownProps.location.pathname.split("/")[2])),
     isManager: (thisProp === undefined) ? false : Boolean(state.session.currentUser.id === thisProp.manager_id)
   }
 }
@@ -30,6 +31,10 @@ const CustomBool = ({ trueComponent: TrueComponent, falseComponent: FalseCompone
   )
 }
 
+const ThisLoggedInBool = ({ component: Component, path, thisLoggedIn, exact }) => {
+  return CustomBool({ trueComponent: Component, falseComponent: ListingsRedirect, truthVal: thisLoggedIn, path, exact })
+}
+
 const ManagerBool = ({ component: Component, path, isManager, exact }) => {
   return CustomBool({ trueComponent: Component, falseComponent: ListingsRedirect, truthVal: isManager, path, exact })
 }
@@ -48,6 +53,7 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => {
 
 export const CustomBoolRoute = withRouter(connect(null, null)(CustomBool))
 
+export const ThisLoggedInBoolRoute = withRouter(connect(mapStateToProps)(ThisLoggedInBool))
 export const ManagerBoolRoute = withRouter(connect(mapStateToProps)(ManagerBool))
 export const LoggedInBoolRoute = withRouter(connect(mapStateToProps)(LoggedInBool))  // ? necessary?
 

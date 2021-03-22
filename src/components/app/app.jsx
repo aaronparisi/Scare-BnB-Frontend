@@ -11,7 +11,7 @@ import ManagerProfileContainer from '../profile/ManagerProfileContainer'
 import ManageListingContainer from '../listings/ManageListingContainer'
 
 import { Route } from 'react-router-dom'
-import { AuthRoute, ManagerBoolRoute, ProtectedRoute } from '../../utils/route_util'
+import { AuthRoute, ManagerBoolRoute, ProtectedRoute, ThisLoggedInBoolRoute } from '../../utils/route_util'
 import GuestProfileContainer from '../profile/GuestProfileContainer';
 import BookingOverviewContainer from '../bookings/BookingOverviewContainer';
 import HostFormContainer from '../listings/HostFormContainer'
@@ -30,8 +30,8 @@ const App = () => {
       <ManagerBoolRoute path="/properties/*/manage" component={ManageListingContainer} />
       <ProtectedRoute path="/properties/*/book-me" component={BookingFormContainer} />
       
-      <ProtectedRoute exact path="/profile" component={GuestProfileContainer} />
-      <ProtectedRoute exact path="/manager/*" component={ManagerProfileContainer} />
+      <ThisLoggedInBoolRoute exact path="/users/*/guest-profile" component={GuestProfileContainer} />
+      <ProtectedRoute exact path="/users/*/manager-profile" component={ManagerProfileContainer} />
       <ProtectedRoute path="/bookings/*" component={BookingOverviewContainer} />
       
       <ProtectedRoute path="/host-property" component={HostFormContainer} />

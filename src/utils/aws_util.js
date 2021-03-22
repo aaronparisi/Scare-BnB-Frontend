@@ -117,7 +117,7 @@ export const getAllObjectKeysInFolder = async (folderPath) => {
   //   console.log(`failed to get all objects in folder: ${error.message}`)
   // }
   console.log('call to getAllObjectKeysInFolder')
-  return {}
+  return []
 }
 
 export const getImageUrlFromStream = (folderName) => {

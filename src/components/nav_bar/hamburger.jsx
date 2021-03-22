@@ -48,7 +48,7 @@ const Hamburger = props => {
   }
 
   const callSignOutLinks = () => {
-    return <SignOutLinks username={props.currentUser.username} logout={props.logout} />
+    return <SignOutLinks userId={props.currentUser.id} logout={props.logout} />
   }
 
   const MenuDisplay = () => {

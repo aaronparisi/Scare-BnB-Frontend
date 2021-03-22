@@ -33,7 +33,7 @@ export const SignInLinks = () => {
   )
 }
 
-export const SignOutLinks = ({ username, logout }) => {
+export const SignOutLinks = ({ userId, logout }) => {
   return (
     <div className="menu">
       {/* <p>Hello, {username}</p> */}
@@ -41,7 +41,7 @@ export const SignOutLinks = ({ username, logout }) => {
         {/* maybe abstract this part */}
       </div>
       <div className="user-links sub-menu">
-        <Link className="btn" to="/profile">
+        <Link className="btn" to={`/users/${userId}/guest-profile`}>
           <img className="nav-link-image" src={profileText} alt="profile"/>
         </Link>
         <Link className="btn" to="/host-property">

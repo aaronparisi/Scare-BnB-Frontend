@@ -17,7 +17,7 @@ class FullListing extends React.Component {
     this.props.fetchManager(this.props.property.manager_id)
   }
 
-  ManagerLinkButton(user, manager) {
+  ManagerLinkButton({ user, manager }) {
     if (manager.id === user.id) {
       return (
         <Link to={`/properties/${this.props.property.id}/manage`} >
@@ -45,7 +45,7 @@ class FullListing extends React.Component {
           <p>{this.props.property.description}</p>
 
           <p>
-            Manager: <Link to={`/manager/${this.props.manager.id}`} >{this.props.manager.username}</Link>
+            Manager: <Link to={`/users/${this.props.manager.id}/manager-profile`} >{this.props.manager.username}</Link>
           </p>
     
           <Link to={`${this.props.match.url}/book-me`} >

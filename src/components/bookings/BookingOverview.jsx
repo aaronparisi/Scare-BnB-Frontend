@@ -36,12 +36,12 @@ const BookingOverview = props => {
       <Link
         className="btn cancel-booking-btn"
         onClick={e => props.deleteBooking(parseInt(props.match.params[0]))}
-        to="/profile"
+        to={`/users/${props.user.id}/guest-profile`}
       >
         Cancel Booking
       </Link>
 
-      <Link className="btn" to="/profile">
+      <Link className="btn" to={`/users/${props.user.id}/guest-profile`}>
         Back to your profile
       </Link>
     </div>

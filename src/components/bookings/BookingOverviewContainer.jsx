@@ -12,7 +12,8 @@ const mapStateToProps = (state, ownProps) => {
   
   return {
     booking: booking,
-    property: property
+    property: property,
+    user: state.session.currentUser
   }
 }
 

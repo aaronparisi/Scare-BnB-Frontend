@@ -78,9 +78,6 @@ export const deleteBooking = bookingId => dispatch => {
     dispatch(receiveNotices({ 0: "Booking deleted!" }))
     return deleteBooking
   })
-  // .then(() => {
-  //   history.push('/profile')
-  // })
   // ? this may be necessary if I can't make the cancel button a <Link />
   .catch(err => {
     console.log('error deleting booking')
