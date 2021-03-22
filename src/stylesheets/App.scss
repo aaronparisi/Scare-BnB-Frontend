@@ -1,4 +1,5 @@
 // @import "react-alice-carousel/lib/alice-carousel.css";
+@import "reset";
 @import "vars";
 @import "home";
 @import "nav_bar";
@@ -22,6 +23,28 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+button {
+  width: 500px;
+  height: 60px;
+  font-size: $med-font;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  text-align: center;
+  margin: 5px 0px;
+  border-radius: 10px;
+
+  background-color: $darker-purple;
+  color: $dark-yellow;
+  border: 2px solid $dark-yellow;
+  padding: 0px 0px;
+
+  &:hover {
+    color: $yellow;
+    border-color: $yellow;
+    background-color: $dark-purple;
+    cursor: pointer;
+  }
 }
 
 a {

@@ -26,9 +26,10 @@ class Carousel extends React.Component {
   }
 
   componentDidMount() {
-    getAllObjectKeysInFolder(`users/${this.props.managerId}/properties/`)
+    getAllObjectKeysInFolder(`users/${this.props.managerId}/properties/${this.props.property.title}`)
     .then(objKeys => {
-      this.setState({ imgKeys: objKeys })
+      // this.setState({ imgKeys: objKeys })
+      // ! leave imgKeys as [] until we uncomment aws util stuffs
     })
   }
   

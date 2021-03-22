@@ -27,13 +27,33 @@ export const emptyFolder = async (path) => {
     Key: path
   }
 
-  try {
-    s3.send(
-      new DeleteObjectCommand(props)
-    )
-  } catch (error) {
-    console.log(`error deleting object: ${error.message}`)
+  // try {
+  //   s3.send(
+  //     new DeleteObjectCommand(props)
+  //   )
+  // } catch (error) {
+  //   console.log(`error deleting object: ${error.message}`)
+  // }
+  console.log('call to emptyFolder')
+}
+
+export const createFolder = async (path) => {
+  const props = {
+    Bucket: "springfieldbnb",
+    Key: path
   }
+
+  // try {
+  //   const data = await s3.send(
+  //     new PutObjectCommand(props)
+  //   )
+
+  //   return data
+  // } catch (error) {
+  //   console.log(`error creating folder: ${error.message}`)
+  // }
+  console.log('call to createFolder')
+  return {}
 }
 
 export const addObject = async (file, path) => {
@@ -42,15 +62,17 @@ export const addObject = async (file, path) => {
     Key: path,
     Body: file
   }
-  try {
-    const data = await s3.send(
-      new PutObjectCommand(props)
-    )
+  // try {
+  //   const data = await s3.send(
+  //     new PutObjectCommand(props)
+  //   )
 
-    return data
-  } catch (error) {
-    console.log(`error adding object: ${error.message}`)
-  }
+  //   return data
+  // } catch (error) {
+  //   console.log(`error adding object: ${error.message}`)
+  // }
+  console.log('call to addObject')
+  return {}
 }
 
 export const getAvatarKey = async (folderPath) => {
@@ -64,15 +86,17 @@ export const getPropertyImage = async (pathToImage) => {
     Key: `${pathToImage}`
   }
 
-  try {
-    const data = await s3.send(
-      new GetObjectCommand(props)
-    )
+  // try {
+  //   const data = await s3.send(
+  //     new GetObjectCommand(props)
+  //   )
 
-    return data;
-  } catch (error) {
-    console.log(`failed to get property image: ${error.message}`)
-  }
+  //   return data;
+  // } catch (error) {
+  //   console.log(`failed to get property image: ${error.message}`)
+  // }
+  console.log('call to getPropertyImage')
+  return {}
 }
 
 export const getAllObjectKeysInFolder = async (folderPath) => {
@@ -81,17 +105,19 @@ export const getAllObjectKeysInFolder = async (folderPath) => {
     Prefix: folderPath
   }
 
-  try {
-    const data = await s3.send(
-      new ListObjectsCommand(props)
-    )
+  // try {
+  //   const data = await s3.send(
+  //     new ListObjectsCommand(props)
+  //   )
 
-    return data.Contents.slice(1).map(obj => {
-      return obj.Key
-    })
-  } catch (error) {
-    console.log(`failed to get all objects in folder: ${error.message}`)
-  }
+  //   return data.Contents.slice(1).map(obj => {
+  //     return obj.Key
+  //   })
+  // } catch (error) {
+  //   console.log(`failed to get all objects in folder: ${error.message}`)
+  // }
+  console.log('call to getAllObjectKeysInFolder')
+  return {}
 }
 
 export const getImageUrlFromStream = (folderName) => {
@@ -141,10 +167,11 @@ export const uploadPhoto = ({ dirName, accessKey, secretKey, file }) => {
     secretAccessKey: secretKey
   }
 
-  return S3FileUpload.uploadFile(file, config)
-  .catch(err => {
-    console.log(`error uploading new avatar`)
-  })
+  // return S3FileUpload.uploadFile(file, config)
+  // .catch(err => {
+  //   console.log(`error uploading new avatar`)
+  // })
+  console.log('call to uploadPhoto')
 }
 
 export const deletePhoto = ({ user, dirName, accessKey, secretKey, event, toDelete }) => {
@@ -156,12 +183,13 @@ export const deletePhoto = ({ user, dirName, accessKey, secretKey, event, toDele
     secretAccessKey: secretKey
   }
 
-  return S3FileUpload.deleteFile(toDelete, config)
-  .then(data => {
-    // ? don't think I need anything else here?
-    return data
-  })
-  .catch(err => {
-    console.log(`error uploading new avatar`)
-  })
+  // return S3FileUpload.deleteFile(toDelete, config)
+  // .then(data => {
+  //   // ? don't think I need anything else here?
+  //   return data
+  // })
+  // .catch(err => {
+  //   console.log(`error uploading new avatar`)
+  // })
+  console.log('call to deletePhoto')
 }

@@ -7,7 +7,7 @@ const ListingBox = props => {
     <li className="listing">
       <CarouselContainer propertyId={props.property.id} />
 
-      <Link to={`/properties/${props.stateId}`} >
+      <Link to={`/properties/${props.property.id}`} >
         <h1>{props.property.title.split('_').join(' ')}</h1>
       </Link>
       <p>beds: {props.property.beds}</p>

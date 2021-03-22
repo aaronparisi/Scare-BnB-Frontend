@@ -45,7 +45,6 @@ class GuestProfile extends React.Component {
     this.state = {
       // data: appointments,
       currentViewName: 'Month',
-      avatarKey: ''
     };
 
     this.currentViewNameChange = (e) => {
@@ -53,13 +52,6 @@ class GuestProfile extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  componentDidMount() {
-    getAvatarKey(`users/${this.props.user.id-1}/avatar/`)
-    .then(key => {
-      this.setState({ avatarKey: key })
-    })
   }
 
   async handleSubmit(e) {

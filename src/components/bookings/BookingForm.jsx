@@ -20,7 +20,7 @@ class BookingForm extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getBookingsByProperty(parseInt(this.props.match.params[0]) + 1)
+    this.props.getBookingsByProperty(parseInt(this.props.match.params[0]))
   }
 
   handleSubmit(event) {

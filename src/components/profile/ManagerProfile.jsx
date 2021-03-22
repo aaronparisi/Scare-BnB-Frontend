@@ -17,11 +17,9 @@ class ManagerProfile extends React.Component {
   changeRating = newRating => {
     if (this.props.madeRating === undefined) {
       // first time this user is rating this manager
-      console.log('adding new rating')
       this.props.addManagerRating(this.props.manager.id, this.props.currentUser.id, newRating)
     } else {
       // we are updating a user rating
-      console.log('updating existing rating')
       this.props.updateManagerRating(this.props.manager.id, this.props.currentUser.id, newRating)
     }
   }
@@ -33,7 +31,7 @@ class ManagerProfile extends React.Component {
       return (
         <div className="yellow-container manager-profile">
           <img 
-            src={`https://springfieldbnb.s3.amazonaws.com/avatars/${this.props.manager.username}.png`} 
+            src={`https://springfieldbnb.s3.amazonaws.com/${this.props.manager.image_url}`} 
             alt={this.props.manager.username}
           />
           <h1>{this.props.manager.username}</h1>

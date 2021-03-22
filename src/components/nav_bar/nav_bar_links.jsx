@@ -49,7 +49,7 @@ export const SignOutLinks = ({ username, logout }) => {
         </Link>
       </div>
       <div className="session-links sub-menu">
-        <button className="btn" onClick={logout}>
+        <button className="btn logout-button" onClick={logout}>
           <img className="nav-link-image" src={logoutText} alt="logout"/>
         </button>
       </div>

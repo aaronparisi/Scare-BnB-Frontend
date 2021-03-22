@@ -4,6 +4,7 @@ export const RECEIVE_PROPERTIES = "RECEIVE_PROPERTIES"
 export const RECEIVE_CURRENT_PROPERTY = "RECEIVE_CURRENT_PROPERTY"
 export const ADD_PROPERTY = "ADD_PROPERTY"
 export const ADD_ADDRESS_TO_PROPERTY = "ADD_ADDRESS_TO_PROPERTY"
+export const REMOVE_PROPERTY = "REMOVE_PROPERTY"
 
 export const receiveProperties = properties => {
   return {
@@ -23,6 +24,13 @@ export const addAddressToProperty = address => {
   return {
     type: ADD_ADDRESS_TO_PROPERTY,
     address: address
+  }
+}
+
+export const removeProperty = propId => {
+  return {
+    type: REMOVE_PROPERTY,
+    propId: propId
   }
 }
 
@@ -52,6 +60,16 @@ export const postProperty = propInfo => dispatch => {
       console.log('error posting property')
     }
   )
+}
+
+export const deleteProperty = propId => dispatch => {
+  return propertiesApiUtil.deleteProperty(propId)
+  .then(property => {
+    dispatch(removeProperty(property.data.id))
+  })
+  .catch(err => {
+    console.log('error deleting property')
+  })
 }
 
 export const postAddress = address => dispatch => {

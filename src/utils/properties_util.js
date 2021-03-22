@@ -1,6 +1,7 @@
 import { axiosIns } from "../index"
 
 export const getProperties = criteria => {
+  // ? what happens with the criteria???
   return axiosIns({
     method: 'get',
     url: '/api/properties'
@@ -15,6 +16,13 @@ export const postProperty = propInfo => {
     data: {
       property: propInfo
     }
+  })
+}
+
+export const deleteProperty = propId => {
+  return axiosIns({
+    method: 'delete',
+    url: `api/properties/${propId}`
   })
 }
 

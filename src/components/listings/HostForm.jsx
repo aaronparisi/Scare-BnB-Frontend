@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import hostYourProperty from '../../images/fontImages/host_your_property.png'
 import { history } from '../../index'
-import { uploadPhoto } from '../../utils/aws_util'
+import { createFolder, uploadPhoto } from '../../utils/aws_util'
 import keys from '../../keys'
 
 const HostForm = props => {
@@ -24,12 +24,15 @@ const HostForm = props => {
   const handleSubmit = e => {
     e.preventDefault()
 
-    uploadPhoto({
-      dirName: `users/${props.user.id-1}/properties`,
-      accessKey: keys.access,
-      secretKey: keys.secret,
-      file: e.currentTarget.elements["thumbnail"].files[0]
-    })
+    createFolder(`users/${props.user.id-1}/properties/${title.split(" ").join("_")}`)
+    .then(folder => (
+      uploadPhoto({
+        dirName: `users/${props.user.id-1}/properties/${title.split(" ").join("_")}`,
+        accessKey: keys.access,
+        secretKey: keys.secret,
+        file: e.currentTarget.elements["thumbnail"].files[0]
+      })
+    ))
     .then(data => {
       // ? anything to do here??
     })

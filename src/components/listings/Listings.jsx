@@ -21,7 +21,7 @@ class Listings extends React.Component {
       <div className="listings yellow-container">
         <ul className="listings-grid">
           {this.props.properties.map((property, idx) => {
-            return <ListingBoxContainer key={idx} property={property} stateId={property.id-1} />
+            return <ListingBoxContainer key={idx} property={property} />
           })}
         </ul>
 

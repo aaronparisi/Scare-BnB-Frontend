@@ -128,3 +128,16 @@
     }
   }
 }
+
+.logout-button {
+  box-shadow: none;
+  border: none;
+  background: none;
+  margin: 0px;
+  padding: 0px;
+  height: min-content;
+
+  &:hover {
+    background: none;
+  }
+}

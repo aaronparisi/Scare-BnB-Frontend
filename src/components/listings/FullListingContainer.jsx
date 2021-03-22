@@ -4,12 +4,13 @@ import FullListing from './FullListing'
 
 
 const mapStateToProps = (state, ownProps) => {
-  const idx = parseInt(ownProps.match.params[0]) + 1
+  const idx = parseInt(ownProps.match.params[0])
   const property = state.properties.filter(prop => prop.id === idx)[0]
   
   return {
     property: property,
-    manager: state.manager
+    manager: state.manager,
+    currentUser: state.session.currentUser
   }
 }
 

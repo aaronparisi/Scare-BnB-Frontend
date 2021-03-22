@@ -9,21 +9,35 @@ class FullListing extends React.Component {
     this.state = {
 
     }
+
+    this.ManagerLinkButton = this.ManagerLinkButton.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchManager(this.props.property.manager_id)
   }
 
+  ManagerLinkButton(user, manager) {
+    if (manager.id === user.id) {
+      return (
+        <Link to={`/properties/${this.props.property.id}/manage`} >
+          Manage Property!
+        </Link>
+      )
+    } else {
+      return null
+    }
+  }
+
   render() {
     if (this.props.property === undefined) {
-      // return <p>no current property</p>;
       return null
     } else {
       
       return (
         <div className="full-listing">
           <CarouselContainer propertyId={this.props.property.id} />
+          <this.ManagerLinkButton user={this.props.currentUser} manager={this.props.manager} />
 
           <h1>{this.props.property.title.split('_').join(' ')}</h1>
           <p>beds: {this.props.property.beds}</p>
