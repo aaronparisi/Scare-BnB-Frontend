@@ -3,7 +3,7 @@ import { getProperties } from '../../actions/properties_actions'
 import Listings from './Listings'
 
 const mapStateToProps = (state, ownProps) => {
-  let properties = Object.values(state.properties)
+  let properties = state.properties
 
   if (Object.keys(ownProps.match.params).length !== 0) {
     // we are only showing a subset of listings

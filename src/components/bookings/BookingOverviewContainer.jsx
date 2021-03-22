@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   const property = (booking === undefined) ? (
     undefined
   ) : (
-    Object.values(state.properties).filter(prop => prop.id === booking.property_id)[0]
+    state.properties.filter(prop => prop.id === booking.property_id)[0]
   )
   
   return {

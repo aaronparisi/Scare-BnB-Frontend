@@ -7,7 +7,8 @@ import {
 } from "@aws-sdk/client-s3";
 import { CognitoIdentityClient } from "@aws-sdk/client-cognito-identity";
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-provider-cognito-identity";
-// import { get } from 'jquery';
+
+import S3FileUpload from 'react-s3'
 
 const region = "us-west-2";
 
@@ -41,13 +42,11 @@ export const addObject = async (file, path) => {
     Key: path,
     Body: file
   }
-  debugger
   try {
     const data = await s3.send(
       new PutObjectCommand(props)
     )
 
-    debugger
     return data
   } catch (error) {
     console.log(`error adding object: ${error.message}`)
@@ -86,7 +85,7 @@ export const getAllObjectKeysInFolder = async (folderPath) => {
     const data = await s3.send(
       new ListObjectsCommand(props)
     )
-    
+
     return data.Contents.slice(1).map(obj => {
       return obj.Key
     })
@@ -131,4 +130,38 @@ export const getImageUrlFromStream = (folderName) => {
     return url;
   })  // return the url to be set as component state
   .catch(err => console.error(err));
+}
+
+export const uploadPhoto = ({ dirName, accessKey, secretKey, file }) => {
+  const config = {
+    bucketName: 'springfieldbnb',
+    dirName: dirName,
+    region: 'us-west-2',
+    accessKeyId: accessKey,
+    secretAccessKey: secretKey
+  }
+
+  return S3FileUpload.uploadFile(file, config)
+  .catch(err => {
+    console.log(`error uploading new avatar`)
+  })
+}
+
+export const deletePhoto = ({ user, dirName, accessKey, secretKey, event, toDelete }) => {
+  const config = {
+    bucketName: 'springfieldbnb',
+    dirName: dirName,
+    region: 'us-west-2',
+    accessKeyId: accessKey,
+    secretAccessKey: secretKey
+  }
+
+  return S3FileUpload.deleteFile(toDelete, config)
+  .then(data => {
+    // ? don't think I need anything else here?
+    return data
+  })
+  .catch(err => {
+    console.log(`error uploading new avatar`)
+  })
 }

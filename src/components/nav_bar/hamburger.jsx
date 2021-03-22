@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { LoggedInBoolRoute } from '../../utils/route_util'
 import { SignInLinks, SignOutLinks } from './nav_bar_links'
 import loginFace from '../../images/icons/login.png'
 import donut from '../../images/icons/donut.png'
 
 import styled, { ThemeProvider } from 'styled-components'
-import { getAvatarKey } from '../../utils/aws_util'
 
 const StyledDiv = styled.div`
   width: ${props => props.theme.width};
@@ -22,17 +21,9 @@ const StyledImg = styled.img`
 
 const Hamburger = props => {
   const [expanded, setExpanded] = useState(false)
-  const [avatarKey, setAvatarKey] = useState('')
 
   const burgerWidth = (expanded) ? '150px' : '110px'
   const burgerMaxHeight = (expanded) ? '250px' : '48px'
-
-  useEffect(() => {
-    getAvatarKey(`users/${props.currentUser.id-1}/avatar/`)
-    .then(key => {
-      setAvatarKey(key)
-    })
-  }, [])
 
   const loginAvatar = (
     props.currentUser == null || props.currentUser.image_url == null

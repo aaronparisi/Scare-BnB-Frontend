@@ -1,10 +1,9 @@
-import axios from "axios"
+import { axiosIns } from "../index"
 
 export const changeUserImageUrl = (userId, newImageUrl) => {
-  return axios({
+  return axiosIns({
     method: 'put',
     url: `/api/users/${userId}/update-image-url`,
-    withCredentials: 'include',
     data: {
       userId: userId,
       newImageUrl: newImageUrl
@@ -13,37 +12,34 @@ export const changeUserImageUrl = (userId, newImageUrl) => {
 }
 
 export const getCurrentUser = () => {
-  return axios({
+  return axiosIns({
     method: 'get',
     url: '/api/users/current-user',
-    withCredentials: 'include'
   })
 }
 
 // create a new user
 export const postUser = user => {
-  return axios({
+  return axiosIns({
     method: 'post',
     url: '/api/users',
     data: { user },
-    withCredentials: 'include'
   })
 }
 
 // log a user in (create a session)
 export const postSession = user => {
-  return axios({
+  return axiosIns({
     method: 'post',
     url: '/api/session',
     data: { user },
-    withCredentials: 'include'
   })
 }
 
 // log out a user (delete a session)
 export const deleteSession = () => {
-  console.log('about to make axios delete request')
-  return axios({
+  console.log('about to make axiosIns delete request')
+  return axiosIns({
     method: 'delete',
     url: '/api/session'
   })

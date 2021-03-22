@@ -5,6 +5,7 @@ import signupText from '../../images/fontImages/signup.png'
 import loginText from '../../images/fontImages/login.png'
 import logoutText from '../../images/fontImages/logout.png'
 import profileText from '../../images/fontImages/profile.png'
+import hostText from '../../images/fontImages/host.png'
 import about from '../../images/fontImages/about.png'
 import contact from '../../images/fontImages/contact.png'
 
@@ -42,6 +43,9 @@ export const SignOutLinks = ({ username, logout }) => {
       <div className="user-links sub-menu">
         <Link className="btn" to="/profile">
           <img className="nav-link-image" src={profileText} alt="profile"/>
+        </Link>
+        <Link className="btn" to="/host-property">
+          <img className="nav-link-image" src={hostText} alt="host a property"/>
         </Link>
       </div>
       <div className="session-links sub-menu">

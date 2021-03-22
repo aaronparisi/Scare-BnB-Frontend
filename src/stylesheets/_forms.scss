@@ -20,7 +20,7 @@ form {
   justify-content: center;
   align-items: center;
 
-  input {
+  input, select {
     background-color: $light-purple;
     width: 500px;
     height: 60px;
@@ -40,6 +40,20 @@ form {
       background-color: $purple;
       outline: none;
     }
+  }
+
+  select {
+    padding: 0px;
+    text-align: center;
+    text-align-last: center;
+
+    option[value=""][disabled] {
+      display: none;
+    }
+  }
+
+  select:required:invalid {
+    color: $med-light-purple;
   }
   
   input[type=submit] {

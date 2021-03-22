@@ -15,9 +15,8 @@ import {
   MonthView,
   Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { getAvatarKey } from '../../utils/aws_util';
+import { deletePhoto, getAvatarKey, uploadPhoto } from '../../utils/aws_util';
 
-import S3FileUpload from 'react-s3'
 import keys from '../../keys';
 
 // import { appointments } from '../../../demo-data/month-appointments';
@@ -66,28 +65,50 @@ class GuestProfile extends React.Component {
   async handleSubmit(e) {
     e.preventDefault();
 
-    const config = {
-      bucketName: 'springfieldbnb',
+    deletePhoto({
+      user: this.props.user,
       dirName: `users/${this.props.user.id-1}/avatar`,
-      region: 'us-west-2',
-      accessKeyId: keys.access,
-      secretAccessKey: keys.secret
-    }
-
-    const newFile = e.currentTarget.elements[1].files[0]
-    e.currentTarget.value = null
-
-    S3FileUpload.deleteFile(this.props.user.image_url.split('/').slice(-1)[0], config)
+      accessKey: keys.access,
+      secretKey: keys.secret,
+      event: e,
+      toDelete: this.props.user.image_url.split('/').slice(-1)[0]
+    })
     .then(data => {
-      return S3FileUpload.uploadFile(newFile, config)
-      // addObject(newFile, `users/${this.props.user.id-1}/avatar/`)
+      uploadPhoto({
+        dirName: `users/${this.props.user.id-1}/avatar`,
+        accessKey: keys.access,
+        secretKey: keys.secret,
+        file: e.currentTarget.elements[1].files[0]
+      })
     })
     .then(data => {
       this.props.setCurrentUserAvatar(this.props.user.id, data.key)
     })
-    .catch(err => {
-      console.log(`error uploading new avatar`)
-    })
+
+    e.currentTarget.value = null
+
+    // const config = {
+    //   bucketName: 'springfieldbnb',
+    //   dirName: `users/${this.props.user.id-1}/avatar`,
+    //   region: 'us-west-2',
+    //   accessKeyId: keys.access,
+    //   secretAccessKey: keys.secret
+    // }
+
+    // const newFile = e.currentTarget.elements[1].files[0]
+    // e.currentTarget.value = null
+
+    // S3FileUpload.deleteFile(this.props.user.image_url.split('/').slice(-1)[0], config)
+    // .then(data => {
+    //   return S3FileUpload.uploadFile(newFile, config)
+    //   // addObject(newFile, `users/${this.props.user.id-1}/avatar/`)
+    // })
+    // .then(data => {
+    //   this.props.setCurrentUserAvatar(this.props.user.id, data.key)
+    // })
+    // .catch(err => {
+    //   console.log(`error uploading new avatar`)
+    // })
   }
 
   MyComponent({ children, ...restProps}) {

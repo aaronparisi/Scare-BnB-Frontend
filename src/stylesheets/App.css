@@ -74,7 +74,8 @@
   border-radius: 25px;
   position: absolute;
   top: 50%;
-  right: 11%; }
+  right: 11%;
+  z-index: 2; }
   .hamburger .hamburger-top {
     height: 100%;
     display: flex;
@@ -134,7 +135,7 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center; }
-  form input {
+  form input, form select {
     background-color: #CFC6D9;
     width: 500px;
     height: 60px;
@@ -145,11 +146,19 @@ form {
     margin: 5px 0px;
     border-radius: 10px;
     color: #3E2443; }
-    form input::placeholder {
+    form input::placeholder, form select::placeholder {
       color: #b1a0c4; }
-    form input:focus {
+    form input:focus, form select:focus {
       background-color: #B283B7;
       outline: none; }
+  form select {
+    padding: 0px;
+    text-align: center;
+    text-align-last: center; }
+    form select option[value=""][disabled] {
+      display: none; }
+  form select:required:invalid {
+    color: #b1a0c4; }
   form input[type=submit] {
     background-color: #3E2443;
     color: #D9A72D;

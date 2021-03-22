@@ -15,6 +15,7 @@ import { Route } from 'react-router-dom'
 import { AuthRoute, ProtectedRoute } from '../../utils/route_util'
 import GuestProfileContainer from '../profile/GuestProfileContainer';
 import BookingOverviewContainer from '../bookings/BookingOverviewContainer';
+import HostFormContainer from '../listings/HostFormContainer'
 
 const App = () => {
 
@@ -30,6 +31,7 @@ const App = () => {
       <ProtectedRoute exact path="/profile" component={GuestProfileContainer} />
       <ProtectedRoute exact path="/manager/*" component={ManagerProfileContainer} />
       <ProtectedRoute path="/bookings/*" component={BookingOverviewContainer} />
+      <ProtectedRoute path="/host-property" component={HostFormContainer} />
       <AuthRoute exact path="/signup" component={SignupContainer} />
       <AuthRoute exact path="/login" component={LoginContainer} />
     </div>

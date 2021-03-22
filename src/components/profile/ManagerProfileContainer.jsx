@@ -4,7 +4,7 @@ import { addManagerRating, updateManagerRating, fetchManager } from '../../actio
 
 const mapStateToProps = (state, ownProps) => {
   // // ! this is ugly
-  // const manager = Object.values(state.properties).filter(prop => {
+  // const manager = state.properties.filter(prop => {
   //   return prop.manager.id === parseInt(ownProps.match.params[0])
   // })[0].manager
   const firstRating = state.session.madeRatings[0]

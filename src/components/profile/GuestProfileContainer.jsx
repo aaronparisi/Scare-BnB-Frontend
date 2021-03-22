@@ -3,7 +3,7 @@ import { setCurrentUserAvatar } from '../../actions/session_actions';
 import GuestProfile from './GuestProfile'
 
 const mapStateToProps = state => {
-  let propsArray = Object.values(state.properties)
+  let propsArray = state.properties
   // debugger
   let bookingsPlus = state.bookings.userBookings
   .filter(booking => booking.guest_id === state.session.currentUser.id)
