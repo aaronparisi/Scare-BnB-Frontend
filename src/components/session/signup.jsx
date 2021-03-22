@@ -1,4 +1,5 @@
 import React from 'react'
+import { history } from '../..'
 import signupText from '../../images/fontImages/signup.png'
 
 class Signup extends React.Component {
@@ -24,6 +25,7 @@ class Signup extends React.Component {
     e.preventDefault()
 
     this.props.createNewUser(this.state)
+    .then(() => history.push('/listings'))
   }
 
   render() {

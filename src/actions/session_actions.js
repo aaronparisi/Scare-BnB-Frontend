@@ -80,6 +80,7 @@ export const logout = () => dispatch => {
       console.log(`returned from delete api call with message: ${logoutMsg}`)
       dispatch(logoutCurrentUser())
       history.push('/login')
+      return null
     },
     err => {
       console.log('error with api delete')
@@ -101,4 +102,14 @@ export const fetchCurrentUser = () => dispatch => {
       console.log('error fetching current user')
     }
   )
+}
+
+export const deleteUser = userId => dispatch => {
+  return dispatch(logout())
+  .then(() => {
+    sessionApiUtil.deleteUser(userId)
+  })
+  .catch(err => {
+    console.log('err deleting user')
+  })
 }

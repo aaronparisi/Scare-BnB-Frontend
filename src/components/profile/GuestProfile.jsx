@@ -52,6 +52,14 @@ class GuestProfile extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.deleteAccount = this.deleteAccount.bind(this)
+  }
+
+  deleteAccount(e) {
+    e.preventDefault()
+
+    this.props.deleteUser(this.props.user.id)
+    .then(() => history.push('/signup'))
   }
 
   async handleSubmit(e) {
@@ -78,29 +86,6 @@ class GuestProfile extends React.Component {
     })
 
     e.currentTarget.value = null
-
-    // const config = {
-    //   bucketName: 'springfieldbnb',
-    //   dirName: `users/${this.props.user.id-1}/avatar`,
-    //   region: 'us-west-2',
-    //   accessKeyId: keys.access,
-    //   secretAccessKey: keys.secret
-    // }
-
-    // const newFile = e.currentTarget.elements[1].files[0]
-    // e.currentTarget.value = null
-
-    // S3FileUpload.deleteFile(this.props.user.image_url.split('/').slice(-1)[0], config)
-    // .then(data => {
-    //   return S3FileUpload.uploadFile(newFile, config)
-    //   // addObject(newFile, `users/${this.props.user.id-1}/avatar/`)
-    // })
-    // .then(data => {
-    //   this.props.setCurrentUserAvatar(this.props.user.id, data.key)
-    // })
-    // .catch(err => {
-    //   console.log(`error uploading new avatar`)
-    // })
   }
 
   MyComponent({ children, ...restProps}) {
@@ -169,6 +154,12 @@ class GuestProfile extends React.Component {
             <Appointments appointmentComponent={this.MyComponent} />
           </Scheduler>
         </Paper>
+
+        <button
+          onClick={e => this.deleteAccount(e)}
+        >
+          Delete Account!
+        </button>
       </div>
     )
   }

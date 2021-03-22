@@ -27,6 +27,13 @@ export const postUser = user => {
   })
 }
 
+export const deleteUser = userId => {
+  return axiosIns({
+    method: 'delete',
+    url: `/api/users/${userId}`
+  })
+}
+
 // log a user in (create a session)
 export const postSession = user => {
   return axiosIns({

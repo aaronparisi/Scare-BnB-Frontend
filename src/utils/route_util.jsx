@@ -4,10 +4,11 @@ import { Redirect, Route, withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state, ownProps) => {
   let thisProp = state.properties.filter(prop => prop.id === parseInt(ownProps.location.pathname.split("/")[2]))[0]
-  
+  let thisUser = state.session.currentUser
+
   return {
     loggedIn: Boolean(state.session.currentUser),
-    thisLoggedIn: Boolean(state.session.currentUser.id === parseInt(ownProps.location.pathname.split("/")[2])),
+    thisLoggedIn: (thisUser === null) ? false : Boolean(state.session.currentUser.id === parseInt(ownProps.location.pathname.split("/")[2])),
     isManager: (thisProp === undefined) ? false : Boolean(state.session.currentUser.id === thisProp.manager_id)
   }
 }
