@@ -36,11 +36,20 @@
     "styled-components": "^5.2.1",
     "webpack-cli": "^4.5.0"
   },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js,jsx"
+    }
+  },
   "scripts": {
     "start": "PORT=8080 react-scripts start",
     "build": "PORT=8080 react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch": "npm-watch"
   },
   "eslintConfig": {
     "extends": "react-app"

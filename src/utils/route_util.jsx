@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect, Route, withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state, ownProps) => {
+  debugger
   let thisProp = state.properties.filter(prop => prop.id === parseInt(ownProps.location.pathname.split("/")[2]))[0]
   let thisUser = state.session.currentUser
 
