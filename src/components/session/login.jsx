@@ -6,9 +6,9 @@ class Login extends React.Component {
     super(props)
 
     this.state = {
-      username: 'Frankie_the_Squealer',
-      email: 'Frankie_the_Squealer@springfieldbnb.com',
-      password: 'password'
+      username: '',
+      email: '',
+      password: ''
     }
 
     this.handleInput = this.handleInput.bind(this)
