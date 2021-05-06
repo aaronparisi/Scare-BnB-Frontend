@@ -109,10 +109,13 @@ export const getAllObjectKeysInFolder = async (folderPath) => {
     const data = await s3.send(
       new ListObjectsCommand(props)
     )
-
-    return data.Contents.slice(1).map(obj => {
-      return obj.Key
-    })
+    if (data.Contents !== undefined) {
+      return data.Contents.slice(1).map(obj => {
+        return obj.Key
+      })
+    } else {
+      return []
+    }
   } catch (error) {
     console.log(`failed to get all objects in folder: ${error.message}`)
   }
