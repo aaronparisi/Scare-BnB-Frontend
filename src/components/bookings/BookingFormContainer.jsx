@@ -4,7 +4,7 @@ import { postBooking } from '../../actions/booking_actions'
 import { getBookingsByProperty } from '../../actions/booking_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const property = state.properties[parseInt(ownProps.match.params[0])]
+  const property = state.properties[parseInt(ownProps.match.params[0] - 1)]
   const conflictDates = [];
   
   state.bookings.propertyBookings.forEach(booking => {
@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
       curDate = new Date(curDate.setDate(curDate.getDate()+1))
     }
   })
-  
+
   return {
     property: property,
     guestId: state.session.currentUser.id,

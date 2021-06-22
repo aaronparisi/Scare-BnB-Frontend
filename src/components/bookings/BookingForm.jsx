@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import 'flatpickr/dist/themes/airbnb.css'
 import Flatpickr from 'react-flatpickr'
 import bookText from '../../images/fontImages/book.png'
-import { history } from '../../index' // ! where do I save this?
+import { history } from '../../index'
 
 class BookingForm extends React.Component {
   constructor(props) {
@@ -92,7 +92,9 @@ class BookingForm extends React.Component {
               this.updateStartDate(startDate[0])
             }}
             options={
-              { minDate:  new Date().toJSON().slice(0, 10) },
+              // { minDate: new Date().toJSON().slice(0, 10) },
+              // * seems like including the disable option
+              // * makes the minDate option not do anything
               { disable: this.props.conflictDates }
             }
           />
@@ -107,7 +109,7 @@ class BookingForm extends React.Component {
               this.setState({ endDate: newEnd })
             }}
             options={
-              { minDate:  this.state.startDate + 1 },
+              // { minDate: this.state.startDate + 1 },
               { enable: this.state.endDatePossibilities }
             }
           />
