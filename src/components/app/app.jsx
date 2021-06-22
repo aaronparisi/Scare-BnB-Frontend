@@ -26,6 +26,7 @@ const App = () => {
       <ProtectedRoute exact path="/listings" component={ListingsContainer} />
       <ProtectedRoute exact path="/listings/*" component={ListingsContainer} />
 
+      <ProtectedRoute exact path="/properties" component={FullListingContainer} />
       <ProtectedRoute path="/properties/*" component={FullListingContainer} />
       <ManagerBoolRoute path="/properties/*/manage" component={ManageListingContainer} />
       <ProtectedRoute path="/properties/*/book-me" component={BookingFormContainer} />

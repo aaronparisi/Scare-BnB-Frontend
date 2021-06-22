@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Route, withRouter } from 'react-router-dom'
 
@@ -20,14 +20,14 @@ const LoginRedirect = () => {
   return <Redirect to="/login" />
 }
 
-const CustomBool = ({ trueComponent: TrueComponent, falseComponent: FalseComponent, path, truthVal, exact  }) => {
+const CustomBool = ({ trueComponent: TrueComponent, falseComponent: FalseComponent, path, truthVal, exact }) => {
   return (
     <Route path={path} exact={exact} render={(props) => {
-      return truthVal ? (
-        <TrueComponent {...props} />
-      ) : (
-        <FalseComponent {...props} />
-      )
+      if (truthVal) {
+        return <TrueComponent {...props} />
+      } else {
+        return <FalseComponent {...props} />
+      }
     }}/>
   )
 }
@@ -45,11 +45,11 @@ const LoggedInBool = ({ trueComponent: TrueComponent, falseComponent: FalseCompo
 }
 
 const Auth = ({ component: Component, path, loggedIn, exact }) => {
-  return LoggedInBool({ trueComponent: ListingsRedirect, falseComponent: Component, path, loggedIn, exact })
+  return CustomBool({ trueComponent: ListingsRedirect, falseComponent: Component, truthVal: loggedIn, path, exact })
 }
 
 const Protected = ({ component: Component, path, loggedIn, exact }) => {
-  return LoggedInBool({ trueComponent: Component, falseComponent: LoginRedirect, path, loggedIn, exact })
+  return CustomBool({ trueComponent: Component, falseComponent: LoginRedirect, truthVal: loggedIn, path, exact })
 }
 
 export const CustomBoolRoute = withRouter(connect(null, null)(CustomBool))
