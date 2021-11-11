@@ -67,19 +67,25 @@ button, input {
 
 .btn.logo-btn {
   display: flex;
-  position: relative; }
+  position: relative;
+  padding: 2px;
+  border: 3px solid transparent;
+  border-radius: 10px; }
   .btn.logo-btn .logo-couch {
     height: 130px;
-    filter: invert(71%) sepia(58%) saturate(591%) hue-rotate(355deg) brightness(90%) contrast(87%); }
-    .btn.logo-btn .logo-couch:hover {
-      filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%);
-      cursor: pointer; }
+    filter: invert(71%) sepia(58%) saturate(591%) hue-rotate(355deg) brightness(90%) contrast(87%);
+    border-radius: 6px; }
   .btn.logo-btn .logo-text {
     filter: invert(13%) sepia(43%) saturate(813%) hue-rotate(244deg) brightness(94%) contrast(89%);
     height: 24px;
     position: absolute;
     left: 34%;
     top: 63%; }
+  .btn.logo-btn:hover {
+    border-color: #FBD822; }
+  .btn.logo-btn:hover .logo-couch {
+    filter: invert(92%) sepia(19%) saturate(4270%) hue-rotate(340deg) brightness(111%) contrast(97%);
+    cursor: pointer; }
 
 .logo-couch:hover .hero-img-frame {
   border-color: #FBD822; }

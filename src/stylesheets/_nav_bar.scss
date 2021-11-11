@@ -19,14 +19,14 @@
   display: flex;
   position: relative;
 
+  padding: 2px;
+  border: 3px solid transparent;
+  border-radius: 10px;
+
   .logo-couch {
     height: 130px;
     filter: $dark-yellow-filter;
-
-    &:hover {
-      filter: $yellow-filter;
-      cursor: pointer;
-    }
+    border-radius: 6px;
   }
   
   .logo-text {
@@ -35,6 +35,15 @@
     position: absolute;
     left: 34%;
     top: 63%;
+  }
+
+  &:hover {
+    border-color: $yellow;
+  }
+
+  &:hover .logo-couch {
+    filter: $yellow-filter;
+    cursor: pointer;
   }
 }
 
