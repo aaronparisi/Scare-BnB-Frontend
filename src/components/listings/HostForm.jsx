@@ -24,10 +24,10 @@ const HostForm = props => {
   const handleSubmit = e => {
     e.preventDefault()
 
-    createFolder(`users/${props.user.id-1}/properties/${title.split(" ").join("_")}`)
+    createFolder(`users/${props.user.username}/properties/${title.split(" ").join("_")}`)
     .then(folder => (
       uploadPhoto({
-        dirName: `users/${props.user.id-1}/properties/${title.split(" ").join("_")}`,
+        dirName: `users/${props.user.username}/properties/${title.split(" ").join("_")}`,
         accessKey: keys.access,
         secretKey: keys.secret,
         file: e.currentTarget.elements["thumbnail"].files[0]
@@ -46,7 +46,8 @@ const HostForm = props => {
       smoking: smoking,
       pets: pets,
       nightly_rate: nightlyRate,
-      manager_id: props.user.id
+      manager_id: props.user.id,
+      image_directory: `/users/${props.user.username}/properties/${title}/`
     }
 
     props.postProperty(propInfo)

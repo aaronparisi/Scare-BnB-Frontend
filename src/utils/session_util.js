@@ -20,6 +20,7 @@ export const getCurrentUser = () => {
 
 // create a new user
 export const postUser = user => {
+  debugger;
   return axiosIns({
     method: 'post',
     url: '/api/users',

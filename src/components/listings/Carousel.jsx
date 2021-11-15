@@ -26,12 +26,12 @@ class Carousel extends React.Component {
   }
 
   componentDidMount() {
-    getAllObjectKeysInFolder(`users/${this.props.managerId}/properties/${this.props.property.title}`)
+    //getAllObjectKeysInFolder(`users/${this.props.managerId}/properties/${this.props.property.title.replace(/ /g,"_")}`)
+    getAllObjectKeysInFolder(this.props.property.image_directory)
     .then(objKeys => {
       this.setState({ imgKeys: objKeys })
     })
   }
-  
   render() {
     
     return (
@@ -41,7 +41,6 @@ class Carousel extends React.Component {
             <li className="carousel-box" key={idx}>
               <img
                 src={`https://springfieldbnb.s3.amazonaws.com/${imgKey}`}
-                // src={imgSrc}
                 alt={imgKey}
                 className="property-thumbnail"
               />

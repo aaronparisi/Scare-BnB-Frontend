@@ -1,7 +1,7 @@
 import {
   S3Client,
   GetObjectCommand,
-  ListObjectsCommand,
+  ListObjectsV2Command,
   PutObjectCommand,
   DeleteObjectCommand
 } from "@aws-sdk/client-s3";
@@ -9,6 +9,7 @@ import { CognitoIdentityClient } from "@aws-sdk/client-cognito-identity";
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-provider-cognito-identity";
 
 import S3FileUpload from 'react-s3'
+import S3 from 'aws-s3'
 
 const region = "us-west-2";
 
@@ -107,10 +108,13 @@ export const getAllObjectKeysInFolder = async (folderPath) => {
 
   try {
     const data = await s3.send(
-      new ListObjectsCommand(props)
+      new ListObjectsV2Command(props)
     )
     if (data.Contents !== undefined) {
-      return data.Contents.slice(1).map(obj => {
+      // for folders with more than 1 element in them,
+      // the first key in data.Contents will be the folder itself??
+      const slicer = (data.Contents.length > 1) ? 1 : 0
+      return data.Contents.slice(slicer).map(obj => {
         return obj.Key
       })
     } else {
@@ -170,11 +174,20 @@ export const uploadPhoto = ({ dirName, accessKey, secretKey, file }) => {
     secretAccessKey: secretKey
   }
 
-  return S3FileUpload.uploadFile(file, config)
+  // return S3FileUpload.uploadFile(file, config)
+  // .catch(err => {
+  //   console.log(`error uploading new avatar`)
+  // })
+  // // console.log('call to uploadPhoto')
+
+  // S3FileUpload doesn't let me specify file name???
+  const uploadClient = new S3(config)
+  const newFileName = 'avatar.png'
+  return uploadClient.uploadFile(file, newFileName)
   .catch(err => {
     console.log(`error uploading new avatar`)
   })
-  // console.log('call to uploadPhoto')
+
 }
 
 export const deletePhoto = ({ user, dirName, accessKey, secretKey, event, toDelete }) => {

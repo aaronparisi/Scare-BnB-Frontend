@@ -67,15 +67,15 @@ class GuestProfile extends React.Component {
 
     deletePhoto({
       user: this.props.user,
-      dirName: `users/${this.props.user.id-1}/avatar`,
+      dirName: `users/${this.props.user.username}`,
       accessKey: keys.access,
       secretKey: keys.secret,
       event: e,
-      toDelete: this.props.user.image_url.split('/').slice(-1)[0]
+      toDelete: "avatar.png"
     })
     .then(data => {
       uploadPhoto({
-        dirName: `users/${this.props.user.id-1}/avatar`,
+        dirName: `users/${this.props.user.id-1}`,
         accessKey: keys.access,
         secretKey: keys.secret,
         file: e.currentTarget.elements[1].files[0]
