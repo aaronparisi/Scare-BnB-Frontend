@@ -27,13 +27,18 @@ class Carousel extends React.Component {
 
   componentDidMount() {
     //getAllObjectKeysInFolder(`users/${this.props.managerId}/properties/${this.props.property.title.replace(/ /g,"_")}`)
-    getAllObjectKeysInFolder(this.props.property.image_directory)
+    getAllObjectKeysInFolder(
+      this
+        .props
+        .property
+        .image_directory.split('').slice(1).join('')
+    )
     .then(objKeys => {
       this.setState({ imgKeys: objKeys })
     })
   }
   render() {
-    
+    //console.log(this.state.imgKeys)
     return (
       <ul className="carousel">
         {this.state.imgKeys.map((imgKey, idx) => {
@@ -53,3 +58,5 @@ class Carousel extends React.Component {
 }
 
 export default Carousel
+
+// s3://springfieldbnb/users/Frankie_the_Squealer/

@@ -105,11 +105,12 @@ export const getAllObjectKeysInFolder = async (folderPath) => {
     Bucket: "springfieldbnb",
     Prefix: folderPath
   }
-
+  
   try {
     const data = await s3.send(
       new ListObjectsV2Command(props)
     )
+    console.log(data)
     if (data.Contents !== undefined) {
       // for folders with more than 1 element in them,
       // the first key in data.Contents will be the folder itself??
