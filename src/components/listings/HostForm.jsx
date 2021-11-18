@@ -47,7 +47,7 @@ const HostForm = props => {
       pets: pets,
       nightly_rate: nightlyRate,
       manager_id: props.user.id,
-      image_directory: `/users/${props.user.username}/properties/${title}/`
+      image_directory: `/users/${props.user.username}/properties/${title.split(' ').join('_')}/`
     }
 
     props.postProperty(propInfo)

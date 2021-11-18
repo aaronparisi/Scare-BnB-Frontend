@@ -28,10 +28,12 @@ class Carousel extends React.Component {
   componentDidMount() {
     //getAllObjectKeysInFolder(`users/${this.props.managerId}/properties/${this.props.property.title.replace(/ /g,"_")}`)
     getAllObjectKeysInFolder(
+      // atodo maybe change how I save the image url?
+      // the command expects the prefix to NOT start with a leading '/'
       this
         .props
         .property
-        .image_directory.split('').slice(1).join('')
+        .image_directory.split('').slice(1).join('')  // remove the leading '/'
     )
     .then(objKeys => {
       this.setState({ imgKeys: objKeys })
