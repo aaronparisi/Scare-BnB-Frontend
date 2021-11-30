@@ -57,6 +57,23 @@ export const createFolder = async (path) => {
   // return {}
 }
 
+export const deleteFolder = async (path) => {
+  const props = {
+    Bucket: "springfieldbnb",
+    Key: path
+  }
+
+  try {
+    const data = await s3.send(
+      new DeleteObjectCommand(props)
+    )
+    
+    return data
+  } catch(error) {
+    console.log(`error deleting folder: ${error.message}`)
+  }
+}
+
 export const addObject = async (file, path) => {
   const props = {
     Bucket: "springfieldbnb",
@@ -110,7 +127,7 @@ export const getAllObjectKeysInFolder = async (folderPath) => {
     const data = await s3.send(
       new ListObjectsV2Command(props)
     )
-    console.log(data)
+    
     if (data.Contents !== undefined) {
       // for folders with more than 1 element in them,
       // the first key in data.Contents will be the folder itself??
@@ -166,38 +183,36 @@ export const getImageUrlFromStream = (folderName) => {
   .catch(err => console.error(err));
 }
 
-export const uploadPhoto = ({ dirName, accessKey, secretKey, file }) => {
+export const uploadPhoto = ({ dirName, file, filename }) => {
   const config = {
     bucketName: 'springfieldbnb',
     dirName: dirName,
     region: 'us-west-2',
-    accessKeyId: accessKey,
-    secretAccessKey: secretKey
+    // accessKeyId: accessKey,
+    // secretAccessKey: secretKey
   }
 
   // return S3FileUpload.uploadFile(file, config)
   // .catch(err => {
   //   console.log(`error uploading new avatar`)
   // })
-  // // console.log('call to uploadPhoto')
+  // console.log('call to uploadPhoto')
 
-  // S3FileUpload doesn't let me specify file name???
+  //S3FileUpload doesn't let me specify file name???
   const uploadClient = new S3(config)
-  const newFileName = 'avatar.png'
-  return uploadClient.uploadFile(file, newFileName)
+  return uploadClient.uploadFile(file, filename)
   .catch(err => {
-    console.log(`error uploading new avatar`)
+    // ???? why does the filename end up as "file.png.png"???
+    console.log(`error uploading photo ${filename}`)
   })
 
 }
 
-export const deletePhoto = ({ user, dirName, accessKey, secretKey, event, toDelete }) => {
+export const deletePhoto = ({ user, dirName, event, toDelete }) => {
   const config = {
     bucketName: 'springfieldbnb',
     dirName: dirName,
     region: 'us-west-2',
-    accessKeyId: accessKey,
-    secretAccessKey: secretKey
   }
 
   return S3FileUpload.deleteFile(toDelete, config)

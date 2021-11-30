@@ -1,4 +1,5 @@
 import * as propertiesApiUtil from '../utils/properties_util'
+import * as awsUtil from '../utils/aws_util'
 
 export const RECEIVE_PROPERTIES = "RECEIVE_PROPERTIES"
 export const RECEIVE_CURRENT_PROPERTY = "RECEIVE_CURRENT_PROPERTY"
@@ -49,10 +50,13 @@ export const getProperties = criteria => dispatch => {
 }
 
 export const postProperty = propInfo => dispatch => {
+  // add prop to api
   return propertiesApiUtil.postProperty(propInfo)
   .then(
     property => {
-      // ! problem here is property does not have address when post returns....
+      // uploaded to s3 in host form component....
+
+      // add prop to redux state
       dispatch(addProperty(property.data))
       return property
     },
@@ -63,8 +67,12 @@ export const postProperty = propInfo => dispatch => {
 }
 
 export const deleteProperty = propId => dispatch => {
+  // remove property from rails api
   return propertiesApiUtil.deleteProperty(propId)
   .then(property => {
+    // remove property from s3 bucket done in manage listing component
+
+    // remove property from redux state
     dispatch(removeProperty(property.data.id))
   })
   .catch(err => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import hostYourProperty from '../../images/fontImages/host_your_property.png'
 import { history } from '../../index'
-import { createFolder, uploadPhoto } from '../../utils/aws_util'
+import { addObject, createFolder, uploadPhoto } from '../../utils/aws_util'
 import keys from '../../keys'
 
 const HostForm = props => {
@@ -25,14 +25,18 @@ const HostForm = props => {
     e.preventDefault()
 
     createFolder(`users/${props.user.username}/properties/${title.split(" ").join("_")}`)
-    .then(folder => (
-      uploadPhoto({
+    .then(folder => {
+      const toUpload = e.target.elements["thumbnail"].files[0]
+      return uploadPhoto({
         dirName: `users/${props.user.username}/properties/${title.split(" ").join("_")}`,
-        accessKey: keys.access,
-        secretKey: keys.secret,
-        file: e.currentTarget.elements["thumbnail"].files[0]
+        file: toUpload,
+        filename: toUpload.name.split(' ').join('_')
       })
-    ))
+
+      // ???? attempting to upload photos via addObject,
+      // running into 403 forbidden with the uploadPhoto util...
+      //return addObject(toUpload, `users/${props.user.username}/properties/${title.split(" ").join("_")}`)
+    })
     .then(data => {
       // ? anything to do here??
     })

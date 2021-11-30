@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { history } from '../..'
-import { emptyFolder } from '../../utils/aws_util'
+import { deleteFolder } from '../../utils/aws_util'
 
 const ManageListing = props => {
   useEffect(() => {
@@ -9,9 +9,9 @@ const ManageListing = props => {
   }, [])
 
   const handleDelete = e => {
-    console.log('delete button clicked')
-
-    emptyFolder(`users/${props.property.manager_id}/properties/${props.property.title}/`)
+    // deleteFolder(props.property.image_directory.slice(0, props.property.image_directory.length - 1))
+    // thought i had to remove trailing slash to resolve 204 no content, but didn't change anything
+    deleteFolder(props.property.image_directory)
     .then(() => {
       props.deleteProperty(props.property.id)
     })
