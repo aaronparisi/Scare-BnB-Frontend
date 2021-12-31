@@ -25,30 +25,29 @@ class Carousel extends React.Component {
     this.setState({ imgUrls: newUrls })
   }
 
-  componentDidMount() {
-    //getAllObjectKeysInFolder(`users/${this.props.managerId}/properties/${this.props.property.title.replace(/ /g,"_")}`)
-    getAllObjectKeysInFolder(
-      // atodo maybe change how I save the image url?
-      // the command expects the prefix to NOT start with a leading '/'
-      this
-        .props
-        .property
-        .image_directory.split('').slice(1).join('')  // remove the leading '/'
-    )
-    .then(objKeys => {
-      this.setState({ imgKeys: objKeys })
-    })
-  }
+  // componentDidMount() {
+  //   getAllObjectKeysInFolder(
+  //     this
+  //       .props
+  //       .property
+  //       .image_directory.split('').slice(1).join('')  // remove the leading '/'
+  //   )
+  //   .then(objKeys => {
+  //     this.setState({ imgKeys: objKeys })
+  //   })
+  // }
+
   render() {
     //console.log(this.state.imgKeys)
+    
     return (
       <ul className="carousel">
-        {this.state.imgKeys.map((imgKey, idx) => {
+        {this.props.property.image_urls.map((img_url, idx) => {
           return (
             <li className="carousel-box" key={idx}>
               <img
-                src={`https://springfieldbnb.s3.amazonaws.com/${imgKey}`}
-                alt={imgKey}
+                src={img_url}
+                alt={`image of ${this.props.property.title}`}
                 className="property-thumbnail"
               />
             </li>

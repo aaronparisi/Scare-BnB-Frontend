@@ -17,7 +17,7 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { deletePhoto, getAvatarKey, uploadPhoto } from '../../utils/aws_util';
 
-import keys from '../../keys';
+//import keys from '../../keys';
 
 // import { appointments } from '../../../demo-data/month-appointments';
 

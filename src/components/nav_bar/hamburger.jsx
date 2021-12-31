@@ -26,10 +26,10 @@ const Hamburger = props => {
   const burgerMaxHeight = (expanded) ? '250px' : '48px'
 
   const loginAvatar = (
-    props.currentUser == null || props.currentUser.image_url == null
+    props.currentUser == null || props.currentUser.avatar_url == null
   ) ? 
   loginFace : 
-  `https://springfieldbnb.s3.amazonaws.com/${props.currentUser.image_url}`
+  props.currentUser.avatar_url
 
   const burgerTheme = {
     width: burgerWidth,
@@ -40,7 +40,7 @@ const Hamburger = props => {
   // padding: (expanded) ? '5px 7px' : (props.currentUser == null) ? '0px 0px' : '5px 7px',
   const faceTheme = {
     padding: (expanded) ? '5px 7px' : '0px 0px',
-    filter: (props.currentUser == null || props.currentUser.image_url == null) ? 'invert(71%) sepia(58%) saturate(591%) hue-rotate(355deg) brightness(90%) contrast(87%)' : 'none'
+    filter: (props.currentUser == null || props.currentUser.avatar_url == null) ? 'invert(71%) sepia(58%) saturate(591%) hue-rotate(355deg) brightness(90%) contrast(87%)' : 'none'
   }
 
   const callSignInLinks = () => {
@@ -84,12 +84,7 @@ const Hamburger = props => {
           className="hamburger-top"
         >
           <img src={donut} alt="donut" className="nav-link-image hamburger-dropdown"/>
-          {/* <LoggedInBoolRoute
-            trueComponent={LoggedInFace}
-            falseComponent={LoggedOutFace}
-          /> */}
-          {/* when i move the above to a separate function,
-          the transition on the padding does not work */}
+
           <ThemeProvider theme={faceTheme}>
             <StyledImg 
               className={genHamburgerFaceClass()} 
