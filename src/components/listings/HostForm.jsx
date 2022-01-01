@@ -11,8 +11,8 @@ const HostForm = props => {
   const [beds, setBeds] = useState('0')
   const [baths, setBaths] = useState('1')
   const [squareFeet, setSquareFeet] = useState('1500')
-  const [smoking, setSmoking] = useState(true)
-  const [pets, setPets] = useState(true)
+  const [smoking, setSmoking] = useState("default")
+  const [pets, setPets] = useState("default")
   const [nightlyRate, setNightlyRate] = useState(650)
 
   const [line1, setLine1] = useState('123 Fake Street')
@@ -24,36 +24,67 @@ const HostForm = props => {
   const handleSubmit = e => {
     e.preventDefault()
 
-    createFolder(`users/${props.user.username}/properties/${title.split(" ").join("_")}`)
-    .then(folder => {
-      const toUpload = e.target.elements["thumbnail"].files[0]
-      return uploadPhoto({
-        dirName: `users/${props.user.username}/properties/${title.split(" ").join("_")}`,
-        file: toUpload,
-        filename: toUpload.name.split(' ').join('_')
-      })
-
-      // ???? attempting to upload photos via addObject,
-      // running into 403 forbidden with the uploadPhoto util...
-      //return addObject(toUpload, `users/${props.user.username}/properties/${title.split(" ").join("_")}`)
-    })
-    .then(data => {
-      // ? anything to do here??
-    })
-
-    const propInfo = {
-      title: title,
-      description: description,
-      beds: beds,
-      baths: baths,
-      square_feet: squareFeet,
-      smoking: smoking,
-      pets: pets,
-      nightly_rate: nightlyRate,
-      manager_id: props.user.id,
-      image_directory: `/users/${props.user.username}/properties/${title.split(' ').join('_')}/`
-    }
-
+    const propInfo = new FormData();
+    const images = e.target.elements["thumbnail"].files;
+    
+    propInfo.append(
+      "title",
+      title
+    )
+    propInfo.append(
+      "description",
+      description
+    )
+    propInfo.append(
+      "beds",
+      beds
+    )
+    propInfo.append(
+      "baths",
+      baths
+    )
+    propInfo.append(
+      "square_feet",
+      squareFeet
+    )
+    propInfo.append(
+      "smokine",
+      smoking
+    )
+    propInfo.append(
+      "pets",
+      pets
+    )
+    propInfo.append(
+      "nightly_rate",
+      nightlyRate
+    )
+    propInfo.append(
+      "manager_id",
+      props.user.id
+    )
+    for (let i=0; i < images.length; i++) {
+      propInfo.append(
+        "images",
+        images[i]
+      )
+    };
+    // const propInfo = {
+    //   title: title,
+    //   description: description,
+    //   beds: beds,
+    //   baths: baths,
+    //   square_feet: squareFeet,
+    //   smoking: smoking,
+    //   pets: pets,
+    //   nightly_rate: nightlyRate,
+    //   manager_id: props.user.id,
+    //   images: [
+    //     e.target.elements["thumbnail"].files[0],
+    //     "hi"
+    //   ]
+    // }
+    debugger
     props.postProperty(propInfo)
     .then(property => {
       const addressInfo = {
@@ -124,7 +155,7 @@ const HostForm = props => {
             placeholder="City"
             required
           >
-            <option value="" disabled selected>City</option>
+            <option value="default" disabled hidden>City</option>
             <option value="Springfield">Springfield</option>
           </select>
           <select 
@@ -135,7 +166,7 @@ const HostForm = props => {
             placeholder="State"
             required
           >
-            <option value="" disabled selected>State</option>
+            <option value="default" disabled hidden>State</option>
             <option value="Springfield">North Takoma</option>
           </select>
           <select 
@@ -146,7 +177,7 @@ const HostForm = props => {
             placeholder="Zip"
             required
           >
-            <option value="" disabled selected>Zip</option>
+            <option value="default" disabled hidden>Zip</option>
             <option value="Springfield">192005</option>
           </select>
         </fieldset>
@@ -187,7 +218,7 @@ const HostForm = props => {
           placeholder="Smoking"
           required
         >
-          <option value="" disabled selected>Select Smoking Policy</option>
+          <option value="default" disabled hidden>Select Smoking Policy</option>
           <option value={true}>Smoking</option>
           <option value={false}>Non Smoking</option>
         </select>
@@ -200,7 +231,7 @@ const HostForm = props => {
           placeholder="Pets"
           required
         >
-          <option value='' disabled selected>Select Pet Policy</option>
+          <option value="default" disabled hidden>Select Pet Policy</option>
           <option value={true}>Pets</option>
           <option value={false}>No Pets</option>
         </select>

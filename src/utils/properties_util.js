@@ -13,6 +13,9 @@ export const postProperty = propInfo => {
   return axiosIns({
     method: 'post',
     url: 'api/properties',
+    headers: {
+      'Content-Type': 'mulipart/form-data'
+    },
     data: {
       property: propInfo
     }
