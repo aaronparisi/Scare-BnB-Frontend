@@ -14,7 +14,7 @@ export const changeUserImageUrl = (userId, newImageUrl) => {
 export const getCurrentUser = () => {
   return axiosIns({
     method: 'get',
-    url: '/api/users/current-user',
+    url: '/api/users/current-user'
   })
 }
 

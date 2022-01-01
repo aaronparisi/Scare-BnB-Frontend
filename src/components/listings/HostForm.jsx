@@ -21,70 +21,57 @@ const HostForm = props => {
   const [state, setState] = useState('North Takoma')
   const [zip, setZip] = useState('192005')
 
+  const [images, setImages] = useState([])
+
   const handleSubmit = e => {
     e.preventDefault()
 
     const propInfo = new FormData();
-    const images = e.target.elements["thumbnail"].files;
-    
+    // const images = e.target.elements["images"].files;
+
     propInfo.append(
-      "title",
+      "property[title]",
       title
     )
     propInfo.append(
-      "description",
+      "property[description]",
       description
     )
     propInfo.append(
-      "beds",
+      "property[beds]",
       beds
     )
     propInfo.append(
-      "baths",
+      "property[baths]",
       baths
     )
     propInfo.append(
-      "square_feet",
+      "property[square_feet]",
       squareFeet
     )
     propInfo.append(
-      "smokine",
+      "property[smoking]",
       smoking
     )
     propInfo.append(
-      "pets",
+      "property[pets]",
       pets
     )
     propInfo.append(
-      "nightly_rate",
+      "property[nightly_rate]",
       nightlyRate
     )
     propInfo.append(
-      "manager_id",
+      "property[manager_id]",
       props.user.id
     )
     for (let i=0; i < images.length; i++) {
       propInfo.append(
-        "images",
+        "property[images][]",
         images[i]
       )
     };
-    // const propInfo = {
-    //   title: title,
-    //   description: description,
-    //   beds: beds,
-    //   baths: baths,
-    //   square_feet: squareFeet,
-    //   smoking: smoking,
-    //   pets: pets,
-    //   nightly_rate: nightlyRate,
-    //   manager_id: props.user.id,
-    //   images: [
-    //     e.target.elements["thumbnail"].files[0],
-    //     "hi"
-    //   ]
-    // }
-    debugger
+    
     props.postProperty(propInfo)
     .then(property => {
       const addressInfo = {
@@ -249,7 +236,18 @@ const HostForm = props => {
 
         <fieldset>
           <legend>Upload a photo!</legend>
-          <input type="file" name="thumbnail" id="thumbnail"/>
+          <ul>
+            { Array.from(images).map((img, i) => <li key={i}>{img.filename}</li>) }
+          </ul>
+          <input 
+            type="file" 
+            name="images" 
+            id="images" 
+            multiple
+            onChange={e => {
+              setImages(e.currentTarget.files)
+            }}
+          />
         </fieldset>
 
         <input type="submit" value="Host your property!"/>
