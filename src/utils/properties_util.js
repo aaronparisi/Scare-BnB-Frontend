@@ -44,12 +44,13 @@ export const deletePropertyImage = (propId, imgId) => {
   })
 }
 
-export const addPropertyImage = (propId, img) => {
+export const addPropertyImage = (propId, formData) => {
   return newAxiosIns({
     method: 'put',
     url: `api/properties/${propId}/add-image`,
-    data: {
-      img
+    data: formData,
+    headers: {
+      'Content-Type': 'multipart/form-data'
     }
   })
 }

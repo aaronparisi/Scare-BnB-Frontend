@@ -257,6 +257,14 @@ form input[type=submit]:hover {
   background-color: #61478E;
   cursor: pointer;
 }
+form input[type=submit]:disabled {
+  background-color: #4C616B;
+  color: #A0B0BD;
+  border: #12181F;
+}
+form input[type=submit]:disabled:hover {
+  cursor: default;
+}
 
 .booking-form-parent {
   position: absolute;

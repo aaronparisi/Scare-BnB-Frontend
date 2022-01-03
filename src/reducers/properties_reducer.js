@@ -32,15 +32,16 @@ const propertiesReducer = (state = _emptyProperties, action) => {
     case DELETE_PROPERTY_IMAGE_FROM_REDUX: {
       const newState = state.slice()
       const ret = newState.map(prop => {
-        if (prop.id === action.propId) {
+        
+        if (prop.id === parseInt(window.location.pathname.split("/")[2])) {  // probably a cleaner way to do this, maybe just pass prop id as param back from frontend
           const newProp = Object.assign({}, prop)
-          newProp.imageUrls = prop.imageUrls.filter(url => url.id !== action.deletedImageId)
-  
+          newProp.image_urls = prop.image_urls.filter(url => url.id !== action.deletedImageId)
           return newProp
         } else {
           return prop
         }
       })
+
       return ret
     }
     case ADD_PROPERTY_IMAGE_TO_REDUX: {
@@ -48,7 +49,7 @@ const propertiesReducer = (state = _emptyProperties, action) => {
       const ret = newState.map(prop => {
         if (prop.id === action.propId) {
           // image should go with this prop
-          return Object.assign({}, prop, { imageUrls: [action.toAdd] })
+          return Object.assign({}, prop, { image_urls: action.toAdd })
         } else {
           return prop
         }

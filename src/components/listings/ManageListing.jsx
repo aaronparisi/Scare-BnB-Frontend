@@ -4,7 +4,7 @@ import { history } from '../..'
 
 const ManageListing = props => {
   const [images, setImages] = useState([])
-  
+
   useEffect(() => {
     props.getBookingsByProperty(parseInt(props.match.params[0]))
   }, [])
@@ -45,7 +45,7 @@ const ManageListing = props => {
       // redirect or something?
     })
   }
-
+  console.log(`images.length: ${images.length}`)
   return (
     <React.Fragment >
       <h1>{props.property.title}</h1>
@@ -63,11 +63,11 @@ const ManageListing = props => {
               name="images" 
               id="images" 
               onChange={e => {
-                console.log(images)
-                setImages([...images, e.currentTarget.files[0]])
+                setImages(e.currentTarget.files.length === 0 ? [] : [...images, e.currentTarget.files[0]])
               }}
             />
           </fieldset>
+          <input type="submit" value="Submit Images!" disabled={images.length < 1} />
       </form>
 
       <button

@@ -68,6 +68,16 @@ form {
       background-color: $dark-purple;
       cursor: pointer;
     }
+
+    &:disabled {
+      background-color: $gray;
+      color: $light-gray;
+      border: $dark-gray;
+
+      &:hover {
+        cursor: default
+      }
+    }
   }
 }
  

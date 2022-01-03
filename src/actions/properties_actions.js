@@ -44,11 +44,11 @@ export const deletePropertyImageFromRedux = deletedImageId => {
   }
 }
 
-export const addPropertyImageToRedux = (propId, image) => {
+export const addPropertyImageToRedux = (propId, images) => {
   return {
     type: ADD_PROPERTY_IMAGE_TO_REDUX,
     propId: propId,
-    toAdd: image
+    toAdd: images
   }
 }
 
@@ -110,20 +110,20 @@ export const postAddress = address => dispatch => {
 
 export const deletePropertyImage = (propId, imgId) => dispatch => {
   return propertiesApiUtil.deletePropertyImage(propId, imgId)
-  .then(deletedImageId => {
-    dispatch(deletePropertyImageFromRedux(deletedImageId))
-    return deletedImageId
+  .then(deletedImageData => {
+    dispatch(deletePropertyImageFromRedux(deletedImageData.data.deletedImageId))
+    return deletedImageData
   })
   .catch(err => {
     console.log('error deleting property image')
   })
 }
 
-export const addPropertyImage = (propId, img) => dispatch => {
-  return propertiesApiUtil.addPropertyImage(propId, img)
-  .then(data => {
-    dispatch(addPropertyImageToRedux(data.propId, data.updatedPropImages))
-    return data.updatedPropImages
+export const addPropertyImage = (propId, formData) => dispatch => {
+  return propertiesApiUtil.addPropertyImage(propId, formData)
+  .then(retData => {
+    dispatch(addPropertyImageToRedux(retData.data.propId, retData.data.images))
+    return retData.data.images
   })
   .catch(err => {
     console.log('error adding property image')
