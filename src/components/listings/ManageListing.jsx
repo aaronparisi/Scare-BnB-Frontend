@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { history } from '../..'
 
 const ManageListing = props => {
+  const [images, setImages] = useState([])
+  
   useEffect(() => {
     props.getBookingsByProperty(parseInt(props.match.params[0]))
   }, [])
@@ -26,11 +28,47 @@ const ManageListing = props => {
     </React.Fragment>
   }
 
+  const handleSubmit = e => {
+    e.preventDefault()
+
+    const imageInfo = new FormData()
+
+    for (let i=0; i < images.length; i++) {
+      imageInfo.append(
+        "property[images][]",
+        images[i]
+      )
+    };
+
+    props.addPropertyImage(props.property.id, imageInfo)
+    .then(data => {
+      // redirect or something?
+    })
+  }
+
   return (
     <React.Fragment >
       <h1>{props.property.title}</h1>
       
       <p>There are {props.bookings.length} bookings for this property</p>
+
+      <form onSubmit={e => handleSubmit(e)}>
+        <fieldset>
+            <legend>Upload a photo!</legend>
+            <ul>
+              { Array.from(images).map((img, i) => <li key={i}>{img.name}</li>) }
+            </ul>
+            <input 
+              type="file" 
+              name="images" 
+              id="images" 
+              onChange={e => {
+                console.log(images)
+                setImages([...images, e.currentTarget.files[0]])
+              }}
+            />
+          </fieldset>
+      </form>
 
       <button
         onClick={e => handleDelete(e)}

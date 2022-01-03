@@ -36,3 +36,20 @@ export const postAddress = address => {
     }
   })
 }
+
+export const deletePropertyImage = (propId, imgId) => {
+  return newAxiosIns({
+    method: 'put',
+    url: `api/properties/${propId}/destroy-image/${imgId}`
+  })
+}
+
+export const addPropertyImage = (propId, img) => {
+  return newAxiosIns({
+    method: 'put',
+    url: `api/properties/${propId}/add-image`,
+    data: {
+      img
+    }
+  })
+}

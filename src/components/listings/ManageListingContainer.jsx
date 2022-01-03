@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { getBookingsByProperty } from '../../actions/booking_actions'
-import { deleteProperty } from '../../actions/properties_actions'
+import { addPropertyImage, deleteProperty,  } from '../../actions/properties_actions'
 import ManageListing from './ManageListing'
 
 const mapStateToProps = (state, ownProps) => {
@@ -13,7 +13,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     getBookingsByProperty: propId => dispatch(getBookingsByProperty(propId)),
-    deleteProperty: propId => dispatch(deleteProperty(propId))
+    deleteProperty: propId => dispatch(deleteProperty(propId)),
+    addPropertyImage: (propId, images) => dispatch(addPropertyImage(propId, images))
   }
 }
 
