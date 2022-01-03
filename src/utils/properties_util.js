@@ -1,8 +1,8 @@
-import { axiosIns } from "../index"
+import { newAxiosIns } from "../axiosIns"
 
 export const getProperties = criteria => {
   // ? what happens with the criteria???
-  return axiosIns({
+  return newAxiosIns({
     method: 'get',
     url: '/api/properties'
   })
@@ -10,7 +10,7 @@ export const getProperties = criteria => {
 // data: { criteria }
 
 export const postProperty = propInfo => {
-  return axiosIns({
+  return newAxiosIns({
     method: 'post',
     url: 'api/properties',
     data: propInfo,
@@ -21,14 +21,14 @@ export const postProperty = propInfo => {
 }
 
 export const deleteProperty = propId => {
-  return axiosIns({
+  return newAxiosIns({
     method: 'delete',
     url: `api/properties/${propId}`
   })
 }
 
 export const postAddress = address => {
-  return axiosIns({
+  return newAxiosIns({
     method: 'post',
     url: 'api/addresses',
     data: {

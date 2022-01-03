@@ -1,14 +1,14 @@
-import { axiosIns } from "../index"
+import { newAxiosIns } from "../axiosIns"
 
 export const fetchManager = managerId => {
-  return axiosIns({
+  return newAxiosIns({
     method: 'get',
     url: `/api/users/${managerId}/manager`
   })
 }
 
 export const addManagerRating = (managerId, guestId, newRating) => {
-  return axiosIns ({
+  return newAxiosIns ({
     method: 'post',
     url: `/api/ratings/add-manager-rating`,
     data: {
@@ -22,7 +22,7 @@ export const addManagerRating = (managerId, guestId, newRating) => {
 }
 
 export const updateManagerRating = (managerId, guestId, newRating) => {
-  return axiosIns ({
+  return newAxiosIns ({
     method: 'put',
     url: `/api/ratings/update-manager-rating`,
     data: {

@@ -27,7 +27,6 @@ export const addManagerRating = (managerId, guestId, newRating) => dispatch => {
 }
 
 export const updateManagerRating = (managerId, guestId, newRating) => dispatch => {
-  //debugger;
   return managerApiUtil.updateManagerRating(managerId, guestId, newRating)
   .then(info => {
     dispatch(receiveManager(info.data))

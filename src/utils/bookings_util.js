@@ -1,21 +1,21 @@
-import { axiosIns } from "../index"
+import { newAxiosIns } from "../axiosIns"
 
 export const getBookings = userId => {
-  return axiosIns({
+  return newAxiosIns({
     method: 'get',
     url: `/api/users/${userId}/bookings`
   })
 }
 
 export const getBookingsByProperty = propertyId => {
-  return axiosIns({
+  return newAxiosIns({
     method: 'get',
     url: `/api/properties/${propertyId}/bookings`
   })
 }
 
 export const postBooking = info => {
-  return axiosIns({
+  return newAxiosIns({
     method: 'post',
     url: '/api/bookings',
     data: info
@@ -23,7 +23,7 @@ export const postBooking = info => {
 }
 
 export const deleteBooking = bookingId => {
-  return axiosIns ({
+  return newAxiosIns ({
     method: 'delete',
     url: `/api/bookings/${bookingId}`
   })

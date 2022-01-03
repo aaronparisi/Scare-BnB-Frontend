@@ -1,7 +1,7 @@
-import { axiosIns } from "../index"
+import { newAxiosIns } from "../axiosIns"
 
 export const changeUserImageUrl = (userId, newImageUrl) => {
-  return axiosIns({
+  return newAxiosIns({
     method: 'put',
     url: `/api/users/${userId}/update-image-url`,
     data: {
@@ -12,7 +12,7 @@ export const changeUserImageUrl = (userId, newImageUrl) => {
 }
 
 export const getCurrentUser = () => {
-  return axiosIns({
+  return newAxiosIns({
     method: 'get',
     url: '/api/users/current-user'
   })
@@ -20,7 +20,7 @@ export const getCurrentUser = () => {
 
 // create a new user
 export const postUser = user => {
-  return axiosIns({
+  return newAxiosIns({
     method: 'post',
     url: '/api/users',
     data: { user },
@@ -28,7 +28,7 @@ export const postUser = user => {
 }
 
 export const deleteUser = userId => {
-  return axiosIns({
+  return newAxiosIns({
     method: 'delete',
     url: `/api/users/${userId}`
   })
@@ -36,7 +36,7 @@ export const deleteUser = userId => {
 
 // log a user in (create a session)
 export const postSession = user => {
-  return axiosIns({
+  return newAxiosIns({
     method: 'post',
     url: '/api/session',
     data: { user },
@@ -45,8 +45,8 @@ export const postSession = user => {
 
 // log out a user (delete a session)
 export const deleteSession = () => {
-  console.log('about to make axiosIns delete request')
-  return axiosIns({
+  console.log('about to make newAxiosIns delete request')
+  return newAxiosIns({
     method: 'delete',
     url: '/api/session'
   })

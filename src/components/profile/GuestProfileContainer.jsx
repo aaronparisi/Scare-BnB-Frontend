@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import { deleteUser, setCurrentUserAvatar } from '../../actions/session_actions';
+import { deleteUser, receiveCurrentUser, h } from '../../actions/session_actions';
+import { deleteUserAvatar, addUserAvatar } from '../../utils/user_utils';
 import GuestProfile from './GuestProfile'
 
 const mapStateToProps = state => {
@@ -26,8 +27,12 @@ const mapStateToProps = state => {
  
 const mapDispatchToProps = dispatch => {
   return {
-    setCurrentUserAvatar: (id, url) => dispatch(setCurrentUserAvatar(id, url)),
-    deleteUser: userId => dispatch(deleteUser(userId))
+    receiveCurrentUser: user => dispatch(receiveCurrentUser(user)),
+    deleteUser: userId => dispatch(deleteUser(userId)),
+    addUserAvatar: (userId, avatar) => addUserAvatar(userId, avatar),
+    deleteUserAvatar: userId => deleteUserAvatar(userId)
+    // not sure if I need these as props or if I can just import them
+    // directly into the component, since there's no dispatching...
   }
 }
 

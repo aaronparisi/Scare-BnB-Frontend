@@ -2,9 +2,7 @@ import React from 'react'
 import { history } from '../../index'
 
 import Paper from '@material-ui/core/Paper';
-// import Radio from '@material-ui/core/Radio';
-// import RadioGroup from '@material-ui/core/RadioGroup';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import { ViewState } from '@devexpress/dx-react-scheduler';
 import {
   Scheduler,
@@ -15,28 +13,7 @@ import {
   MonthView,
   Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { deletePhoto, getAvatarKey, uploadPhoto } from '../../utils/aws_util';
 
-//import keys from '../../keys';
-
-// import { appointments } from '../../../demo-data/month-appointments';
-
-// const ExternalViewSwitcher = ({
-//   currentViewName,
-//   onChange,
-// }) => (
-//   <RadioGroup
-//     aria-label="Views"
-//     style={{ flexDirection: 'row' }}
-//     name="views"
-//     value={currentViewName}
-//     onChange={onChange}
-//   >
-//     <FormControlLabel value="Week" control={<Radio />} label="Week" />
-//     <FormControlLabel value="Work Week" control={<Radio />} label="Work Week" />
-//     <FormControlLabel value="Month" control={<Radio />} label="Month" />
-//   </RadioGroup>
-// );
 
 class GuestProfile extends React.Component {
   constructor(props) {
@@ -45,6 +22,7 @@ class GuestProfile extends React.Component {
     this.state = {
       // data: appointments,
       currentViewName: 'Month',
+      avatar: null
     };
 
     this.currentViewNameChange = (e) => {
@@ -63,23 +41,24 @@ class GuestProfile extends React.Component {
   }
 
   async handleSubmit(e) {
+    // submissio of avatar update form
     e.preventDefault();
 
-    deletePhoto({
-      user: this.props.user,
-      dirName: `users/${this.props.user.username}`,
-      event: e,
-      toDelete: "avatar.png"
-    })
+    const guestInfo = new FormData();
+    guestInfo.append(
+      "user[avatar]",
+      this.state.avatar
+    )
+
+    this.props.deleteUserAvatar(this.props.user.id)
     .then(data => {
-      uploadPhoto({
-        dirName: `users/${this.props.user.id-1}`,
-        file: e.currentTarget.elements[1].files[0],
-        filename: 'avatar.png'
-      })
+      return this.props.addUserAvatar(this.props.user.id, guestInfo)
     })
-    .then(data => {
-      this.props.setCurrentUserAvatar(this.props.user.id, data.key)
+    .then(userData => {
+      // we no longer have to update an aws url for the user
+      // but we do have to receive the user with its new avatar url
+      // ... there's probably a way to do this without overwriting the entire user...
+      this.props.receiveCurrentUser(userData)
     })
 
     e.currentTarget.value = null
@@ -100,7 +79,7 @@ class GuestProfile extends React.Component {
     return (
       <div className="user-profile">
         <h1>{this.props.user.username}</h1>
-        <img src={`https://springfieldbnb.s3.amazonaws.com/${this.props.user.image_url}`} alt={this.props.user.username}/>
+        <img src={this.props.user.avatar_url} alt={this.props.user.username}/>
 
         <form
           className="mini-form"
@@ -108,7 +87,7 @@ class GuestProfile extends React.Component {
         >
           <fieldset>
             <legend>Upload a new photo!</legend>
-            <input type="file" name="thumbnail" id="thumbnail"/>
+            <input type="file" name="thumbnail" id="thumbnail" onChange={e => this.setState({ avatar: e.currentTarget.files[0]})}/>
 
             <input type="submit" value="Upload Photo!"/>
           </fieldset>

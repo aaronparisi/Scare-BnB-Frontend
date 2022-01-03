@@ -11,15 +11,6 @@ import { fetchCurrentUser } from './actions/session_actions'
 import { getProperties } from './actions/properties_actions';
 import { receiveUserBookings } from './actions/booking_actions';
 
-// const axios = require('axios').default
-import axios from 'axios'
-
-const baseUrl = (process.env.NODE_ENV === 'production') ? 'https://springfield-bnb-api.herokuapp.com/' : 'http://localhost:3000'
-export const axiosIns =  axios.create({
-  baseURL: baseUrl,
-  withCredentials: true
-})
-
 const store = createStore()
 export const history = createBrowserHistory()
 
