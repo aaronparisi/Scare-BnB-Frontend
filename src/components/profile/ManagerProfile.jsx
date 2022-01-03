@@ -31,7 +31,7 @@ class ManagerProfile extends React.Component {
       return (
         <div className="yellow-container manager-profile">
           <img 
-            src={`https://springfieldbnb.s3.amazonaws.com/${this.props.manager.image_url}`} 
+            src={this.props.manager.avatar_url} 
             alt={this.props.manager.username}
           />
           <h1>{this.props.manager.username}</h1>

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { deleteUser, receiveCurrentUser, h } from '../../actions/session_actions';
+import { deleteUser, receiveCurrentUser } from '../../actions/session_actions';
 import { deleteUserAvatar, addUserAvatar } from '../../utils/user_utils';
 import GuestProfile from './GuestProfile'
 

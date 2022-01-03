@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ManagerProfile from './ManagerProfile'
-import { addManagerRating, updateManagerRating, fetchManager } from '../../actions/manager_actions'
+import { addManagerRating, updateManagerRating, fetchManager } from '../../actions/user_actions'
 
 const mapStateToProps = (state, ownProps) => {
   // // ! this is ugly

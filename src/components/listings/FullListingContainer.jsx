@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetchManager } from '../../actions/manager_actions'
+import { fetchManager } from '../../actions/user_actions'
 import FullListing from './FullListing'
 
 

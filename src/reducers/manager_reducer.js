@@ -1,4 +1,4 @@
-import { RECEIVE_MANAGER } from '../actions/manager_actions'
+import { RECEIVE_MANAGER } from '../actions/user_actions'
 
 const _emptyManager = {
 

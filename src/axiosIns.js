@@ -1,5 +1,4 @@
 import axios from 'axios'
-import getCSRFToken from './cookies'
 
 const baseUrl = (process.env.NODE_ENV === 'production') ? 'https://springfield-bnb-api.herokuapp.com/' : 'http://localhost:3000'
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import hostYourProperty from '../../images/fontImages/host_your_property.png'
 import { history } from '../../index'
-import { addObject, createFolder, uploadPhoto } from '../../utils/aws_util'
 //import keys from '../../keys'
 
 const HostForm = props => {
