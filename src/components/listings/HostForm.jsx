@@ -236,7 +236,7 @@ const HostForm = props => {
         <fieldset>
           <legend>Upload a photo!</legend>
           <ul>
-            { Array.from(images).map((img, i) => <li key={i}>{img.filename}</li>) }
+            { Array.from(images).map((img, i) => <li key={i}>{img.name}</li>) }
           </ul>
           <input 
             type="file" 
@@ -244,7 +244,8 @@ const HostForm = props => {
             id="images" 
             multiple
             onChange={e => {
-              setImages(e.currentTarget.files)
+              console.log(images)
+              setImages([...images, e.currentTarget.files[0]])
             }}
           />
         </fieldset>
