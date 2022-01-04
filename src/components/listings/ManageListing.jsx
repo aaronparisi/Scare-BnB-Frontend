@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useEffect } from 'react'
 import { history } from '../..'
 
@@ -8,6 +8,8 @@ const ManageListing = props => {
   useEffect(() => {
     props.getBookingsByProperty(parseInt(props.match.params[0]))
   }, [])
+
+  const ref = useRef()
 
   const handleDelete = e => {
     // deleteFolder(props.property.image_directory.slice(0, props.property.image_directory.length - 1))
@@ -40,12 +42,15 @@ const ManageListing = props => {
       )
     };
 
+    ref.current.value = "";  // reset file input
+    setImages([])
+    
     props.addPropertyImage(props.property.id, imageInfo)
     .then(data => {
       // redirect or something?
     })
   }
-  console.log(`images.length: ${images.length}`)
+  
   return (
     <React.Fragment >
       <h1>{props.property.title}</h1>
@@ -61,7 +66,8 @@ const ManageListing = props => {
             <input 
               type="file" 
               name="images" 
-              id="images" 
+              id="images"
+              ref={ref}
               onChange={e => {
                 setImages(e.currentTarget.files.length === 0 ? [] : [...images, e.currentTarget.files[0]])
               }}

@@ -49,7 +49,7 @@ const propertiesReducer = (state = _emptyProperties, action) => {
       const ret = newState.map(prop => {
         if (prop.id === action.propId) {
           // image should go with this prop
-          return Object.assign({}, prop, { image_urls: action.toAdd })
+          return Object.assign({}, prop, { image_urls: [...prop.image_urls, ...action.toAdd] })
         } else {
           return prop
         }
