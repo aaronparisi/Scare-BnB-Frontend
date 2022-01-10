@@ -93,13 +93,14 @@ export const fetchCurrentUser = () => dispatch => {
   return sessionApiUtil.getCurrentUser()
   .then(
     currentUser => {
-      if (currentUser.data !== '') {
+      if (currentUser && currentUser.data !== '') {  // issue in prod where it tries reading data of undefined?
         dispatch(receiveCurrentUser(currentUser.data))
       }
+      
       return currentUser
     },
     err => {
-      console.log('error fetching current user')
+      console.log(`error fetching current user: ${err}`)
     }
   )
 }

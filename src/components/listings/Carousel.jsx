@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Carousel = props => {
+
   const DeleteButton = ({ img_id, path }) => {
     if (path.includes('manage')) {
       return (

@@ -24,6 +24,22 @@ export const updateUserAvatar = (userId, guestInfo) => {
   .then(data => addUserAvatar(userId, guestInfo))
 }
 
+
+// todo - this should not be here, it applies to non-user stuff as well
+export const exchangeBlobUrlForServiceUrl = (blobUrl) => {
+  console.log(`getting service url for blob: ${blobUrl}`)
+  
+  return newAxiosIns({
+    method: 'get',
+    url: blobUrl
+  })
+  .then(data => {
+    console.log(`===> back from getting service url: ${data.data}`)
+    return data.data
+  })
+  .catch(err => console.log(err))
+}
+
 // ##############################################################################
 // 
 // 

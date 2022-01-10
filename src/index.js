@@ -16,7 +16,7 @@ export const history = createBrowserHistory()
 
 fetchCurrentUser()(store.dispatch)
 .then(info => {
-  if (info.data.bookings !== undefined) {
+  if (info && info.data.bookings !== undefined) {
     return store.dispatch(receiveUserBookings(info.data.bookings))
   }
 })
