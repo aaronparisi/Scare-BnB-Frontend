@@ -1,23 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import { exchangeImageIdForS3Url } from '../../utils/properties_util'
+import { exchangeImageIdsForS3Urls } from '../../utils/properties_util'
 
 const Carousel = props => {
 
   const [redirectUrls, setRedirectUrls] = useState([])
 
   const mapper = () => {
-    return Promise.all(props.property.image_urls.map(async imageInfo => {
-      return exchangeImageIdForS3Url(imageInfo.id)
-      .then(data => {
-        return {
-          url: data,
-          id: imageInfo.id
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    }))
+    // return Promise.all(props.property.image_urls.map(async imageInfo => {
+    //   return exchangeImageIdsForS3Urls(imageInfo.id)
+    //   .then(data => {
+    //     return {
+    //       url: data,
+    //       id: imageInfo.id
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
+    // }))
+
+
+    return exchangeImageIdsForS3Urls(props.property.image_urls.map(imgInfo => imgInfo.id))
+    .then(data => {
+      return data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  
   }
 
   useEffect(() => {

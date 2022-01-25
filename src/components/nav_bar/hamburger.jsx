@@ -5,7 +5,7 @@ import loginFace from '../../images/icons/login.png'
 import donut from '../../images/icons/donut.png'
 
 import styled, { ThemeProvider } from 'styled-components'
-import { exchangeImageIdForS3Url } from '../../utils/properties_util'
+import { exchangeImageIdsForS3Urls } from '../../utils/properties_util'
 
 const StyledDiv = styled.div`
   width: ${props => props.theme.width};
@@ -25,9 +25,9 @@ const Hamburger = props => {
   const [redirectUrl, setRedirectUrl] = useState([])
 
   useEffect(() => {
-    exchangeImageIdForS3Url(props.currentUser.avatar_url.id)
+    exchangeImageIdsForS3Urls([props.currentUser.avatar_url.id])
     .then(data => {
-      setRedirectUrl(data)
+      setRedirectUrl(data[0].url)
     })
     .catch(err => {
       console.log(err)
