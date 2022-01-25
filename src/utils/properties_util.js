@@ -54,3 +54,19 @@ export const addPropertyImage = (propId, formData) => {
     }
   })
 }
+
+export const exchangeImageIdForS3Url = (imgId) => {
+  return newAxiosIns({
+    method: 'get',
+    url: `/api/exchange-image-id-for-s3-url/${imgId}`
+  })
+  .then(response => {
+    console.log(`backend returned redirectUrl`)
+    console.log(response)
+    return response.data.url
+  })
+  .catch(err => {
+    console.log('there was an error exchanging id for s3 url')
+    console.log(err)
+  })
+}
