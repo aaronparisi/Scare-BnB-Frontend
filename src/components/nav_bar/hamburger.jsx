@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { LoggedInBoolRoute } from '../../utils/route_util'
 import { SignInLinks, SignOutLinks } from './nav_bar_links'
 import loginFace from '../../images/icons/login.png'
 import donut from '../../images/icons/donut.png'
 
 import styled, { ThemeProvider } from 'styled-components'
+import { exchangeImageIdForS3Url } from '../../utils/properties_util'
 
 const StyledDiv = styled.div`
   width: ${props => props.theme.width};
@@ -21,6 +22,17 @@ const StyledImg = styled.img`
 
 const Hamburger = props => {
   const [expanded, setExpanded] = useState(false)
+  const [redirectUrl, setRedirectUrl] = useState([])
+
+  useEffect(() => {
+    exchangeImageIdForS3Url(props.currentUser.avatar_url.id)
+    .then(data => {
+      setRedirectUrl(data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }, []) // watch out for array equality issues...?
 
   const burgerWidth = (expanded) ? '150px' : '110px'
   const burgerMaxHeight = (expanded) ? '250px' : '48px'
@@ -29,7 +41,7 @@ const Hamburger = props => {
     props.currentUser == null || props.currentUser.avatar_url == null
   ) ? 
   loginFace : 
-  props.currentUser.avatar_url
+  redirectUrl
 
   const burgerTheme = {
     width: burgerWidth,
