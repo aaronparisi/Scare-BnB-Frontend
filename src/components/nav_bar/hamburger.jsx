@@ -34,7 +34,7 @@ const Hamburger = props => {
         console.log(err)
       })
     }
-  }, []) // watch out for array equality issues...?
+  }, [props.currentUser.avatar_url]) // watch out for array equality issues...?
 
   const burgerWidth = (expanded) ? '150px' : '110px'
   const burgerMaxHeight = (expanded) ? '250px' : '48px'
