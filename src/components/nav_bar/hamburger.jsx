@@ -25,13 +25,15 @@ const Hamburger = props => {
   const [redirectUrl, setRedirectUrl] = useState([])
 
   useEffect(() => {
-    exchangeImageIdsForS3Urls([props.currentUser.avatar_url.id])
-    .then(data => {
-      setRedirectUrl(data[0].url)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+    if (props.currentUser !== null) {  // this feels hacky...
+      exchangeImageIdsForS3Urls([props.currentUser.avatar_url.id])
+      .then(data => {
+        setRedirectUrl(data[0].url)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }
   }, []) // watch out for array equality issues...?
 
   const burgerWidth = (expanded) ? '150px' : '110px'
