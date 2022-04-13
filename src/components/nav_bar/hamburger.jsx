@@ -21,8 +21,6 @@ const StyledImg = styled.img`
 `;
 
 const Hamburger = (props) => {
-  console.log("inside hamburger component");
-  console.log(props);
   const [expanded, setExpanded] = useState(false);
   const [redirectUrl, setRedirectUrl] = useState([]);
 
