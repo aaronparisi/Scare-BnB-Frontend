@@ -1,7 +1,0 @@
-- make sure state is loading correct data, no redundant data
-- notices don't go away unless there is a dispatch...
-- link property manager to booking, property pages
-- booking form centering
-- css for yellow border items
-
-- navigaing away from manager profile then coming back, current user's rating is missing
